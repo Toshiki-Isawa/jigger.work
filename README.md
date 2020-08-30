@@ -1,7 +1,7 @@
-# Cocktails
+# Jigger.work
 
 ## サイト概要
-「cocktails」では、様々なカクテルやモクテル（ノンアルコールカクテル）のレシピを掲載しています。
+「Jigger.work」では、様々なカクテルやモクテル（ノンアルコールカクテル）のレシピを掲載しています。
 登録者のマイレシピを登録することで、他のユーザーへ公開することも可能ですし、他のユーザーが考えたレシピを
 閲覧することも可能となります。
 
@@ -22,6 +22,7 @@
 可能です。
 
 ## 設計書
+- ER図：https://drive.google.com/file/d/1mijitAWHEuq6wvDZRP4eQiFSQFHuELg6/view?usp=sharing
 
 ### 機能一覧
 <https://docs.google.com/spreadsheets/d/e/2PACX-1vRFK1YLlc_EjQoa_v-gJ_8-2Yx5_XWGg18kcis7NXoMTGeg7wpNb7SUz76EkqR_GYvpOF_24jtnB5Cv/pubhtml>
