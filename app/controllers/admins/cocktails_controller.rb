@@ -1,13 +1,22 @@
 class Admins::CocktailsController < ApplicationController
   def index
   end
+  
+  def show
+  end
 
   def new
   end
 
-  def show
+  def edit
   end
 
-  def edit
+  def create
+  end
+
+  def update
+  end
+
+  def destroy
   end
 end

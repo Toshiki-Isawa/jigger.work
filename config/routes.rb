@@ -18,8 +18,10 @@ Rails.application.routes.draw do
       member do
         get :unsubscribe
         put :withdraw
+        get :following, :followers
       end
     end
+    resources :relationships, only: [:create, :destroy]
   
     resources :cocktails
     resources :ingredients, only:[:index,:show]
