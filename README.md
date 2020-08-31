@@ -23,6 +23,8 @@
 
 ## 設計書
 - ER図：https://drive.google.com/file/d/1mijitAWHEuq6wvDZRP4eQiFSQFHuELg6/view?usp=sharing
+- データベース設計：https://docs.google.com/spreadsheets/d/1HKdf40T_zGml8pDR_0ivoPfJKiNJkzMO9nCNTQ-TtDY/edit?usp=sharing
+- 詳細設計：https://docs.google.com/spreadsheets/d/1ml3zO8AkYwl9wHE_pER7QCZoKMnzmxGwneqXcX806n8/edit?usp=sharing
 
 ### 機能一覧
 <https://docs.google.com/spreadsheets/d/e/2PACX-1vRFK1YLlc_EjQoa_v-gJ_8-2Yx5_XWGg18kcis7NXoMTGeg7wpNb7SUz76EkqR_GYvpOF_24jtnB5Cv/pubhtml>
