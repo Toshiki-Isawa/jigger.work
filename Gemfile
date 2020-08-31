@@ -74,3 +74,4 @@ gem "toastr-rails"
 gem 'rails-i18n'
 gem 'ransack'
 gem 'slim-rails'
+gem 'html2slim'

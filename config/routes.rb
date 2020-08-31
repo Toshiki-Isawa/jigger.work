@@ -12,7 +12,7 @@ Rails.application.routes.draw do
   namespace :public do
     get 'homes/top' => 'homes#top', as: 'end_user_top'
     get 'homes/about' => 'homes#about', as: 'end_user_about'
-    get 'homes/terms' => 'homse#terms', as: 'end_user_terms'
+    get 'homes/terms' => 'homes#terms', as: 'end_user_terms'
   
     resource :end_users, only:[:edit,:show,:update] do
       member do
