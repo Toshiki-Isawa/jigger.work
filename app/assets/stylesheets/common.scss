@@ -1,4 +1,18 @@
+html {
+  position: relative;
+  min-height: 100%;
+}
+
 body {
   padding-top: 70px;
   padding-bottom: 30px;
+}
+
+footer {
+  position: absolute;
+  position: 60px;
+  bottom: 0;
+  width: 100%;
+  height: 60px;
+  line-height: 60px;
 }

@@ -33,5 +33,9 @@ html
             -else
               li = link_to 'ログイン', new_end_user_session_path
 
-    .container
+    main.container
       = yield
+    
+    footer.navbar.navbar-default.navbar-fixed-bottom
+      .container
+        p.text-muted.text-center Jigger.work
