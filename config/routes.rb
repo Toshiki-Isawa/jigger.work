@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  root 'public/homes#top'
+
   # EndUser側ルーティング
   devise_scope :public do
     devise_for :end_users, controllers: {
