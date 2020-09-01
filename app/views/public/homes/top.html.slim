@@ -3,3 +3,6 @@ h1
 p
   | Find me in app/views/public/homes/top.html.erb
 = link_to 'ABOUT', public_end_user_about_path, class: 'btn btn-info'
+
+= link_to 'Log out', destroy_end_user_session_path, class: 'btn btn-danger', method: :delete
+= link_to 'Sign up', new_end_user_registration_path, class: 'btn btn-success'
