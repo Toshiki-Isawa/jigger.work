@@ -73,6 +73,8 @@ ActiveRecord::Schema.define(version: 2020_08_31_064825) do
 
   create_table "ingredients", force: :cascade do |t|
     t.string "name", null: false
+    t.integer "type", null: false
+    t.integer "alcohol", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -80,7 +82,7 @@ ActiveRecord::Schema.define(version: 2020_08_31_064825) do
   create_table "rates", force: :cascade do |t|
     t.string "end_user_id", null: false
     t.string "cocktail_id", null: false
-    t.float "rate", null: false
+    t.integer "rate", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
