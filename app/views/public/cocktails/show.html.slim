@@ -2,3 +2,11 @@ h1
   | Public::Cocktails#show
 p
   | Find me in app/views/public/cocktails/show.html.erb
+
+h2  = @api_cocktail["cocktail_name"]
+h3
+  = @api_cocktail["base_name"]
+  = @api_cocktail["technique_name"]
+  = @api_cocktail["taste_name"]
+  = @api_cocktail["cocktail_digest"]
+  = @api_cocktail["cocktail_desc"]
