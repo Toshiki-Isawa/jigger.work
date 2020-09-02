@@ -1,4 +1,20 @@
 h1
-  | Public::Cocktails#index
-p
-  | Find me in app/views/public/cocktails/index.html.erb
+  | Cocktails
+
+.cocktail-index
+  table.table.table-hover
+    thead
+      tr
+        th id
+        th name
+        th base
+        th taste
+        th alcohol
+    tbody
+      - @api_cocktails.each do |cocktail|
+           tr
+            th = cocktail["cocktail_id"]
+            th = link_to cocktail["cocktail_name"], public_cocktail_path(cocktail["cocktail_id"])
+            th = cocktail["base_name"]
+            th = cocktail["taste_name"]
+            th = cocktail["alcohol"]
