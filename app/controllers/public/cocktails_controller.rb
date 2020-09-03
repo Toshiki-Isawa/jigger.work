@@ -4,6 +4,15 @@ class Public::CocktailsController < ApplicationController
   def index
   end
 
+  # 材料検索用
+  def search
+    search_url = URI.encode("https://cocktail-f.com/api/v1/cocktails?word=#{params[:name]}")
+    response = open(search_url).read
+    hash = JSON.parse(response)
+    @api_cocktails = hash["cocktails"]
+    render 'public/cocktails/index'
+  end
+
   def show
     response = open("https://cocktail-f.com/api/v1/cocktails/#{params[:id]}").read
     hash = JSON.parse(response)
@@ -15,7 +24,6 @@ class Public::CocktailsController < ApplicationController
     img_response = open(google_url).read
     hash = JSON.parse(img_response)
     @api_cocktail_imglink = hash["items"][0]["link"]
-
   end
 
   def new
