@@ -7,7 +7,7 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 require './db/seeds/end_user.rb'
-require './db/seeds/ingredient.rb'
+# require './db/seeds/ingredient.rb'
 
 Admin.create!(
   email: 'admin@admin',
