@@ -15,7 +15,7 @@ Rails.application.routes.draw do
     get 'homes/top' => 'homes#top', as: 'end_user_top'
     get 'homes/about' => 'homes#about', as: 'end_user_about'
     get 'homes/terms' => 'homes#terms', as: 'end_user_terms'
-  
+    
     resource :end_users, only:[:edit,:show,:update] do
       member do
         get :unsubscribe
@@ -24,8 +24,13 @@ Rails.application.routes.draw do
       end
     end
     resources :relationships, only: [:create, :destroy]
-  
-    resources :cocktails
+    
+    resources :cocktails do
+      collection do
+        post 'search'
+      end
+    end
+    
     resources :ingredients, only:[:index,:show]
   end
 
