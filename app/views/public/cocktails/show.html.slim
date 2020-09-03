@@ -1,7 +1,6 @@
 .row
   .col-lg-4
-    h2
-      = @api_cocktail["cocktail_name"]
+    h2 = @api_cocktail["cocktail_name"]
     p = @api_cocktail["cocktail_digest"]
     img.cocktail-img src="#{@api_cocktail_imglink}" alt="img" width="350" height="500"
 
