@@ -1,12 +1,37 @@
-h1
-  | Public::Cocktails#show
-p
-  | Find me in app/views/public/cocktails/show.html.erb
+.row
+  .col-lg-4
+    h2
+      = @api_cocktail["cocktail_name"]
+    p = @api_cocktail["cocktail_digest"]
+    img.cocktail-img src="#{@api_cocktail_imglink}" alt="img" width="350" height="500"
 
-h2  = @api_cocktail["cocktail_name"]
-h3
-  = @api_cocktail["base_name"]
-  = @api_cocktail["technique_name"]
-  = @api_cocktail["taste_name"]
-  = @api_cocktail["cocktail_digest"]
-  = @api_cocktail["cocktail_desc"]
+  .col-lg-8
+    table.table
+      thead
+        tr
+          th Base
+          th Technique
+          th Taste
+          th Style
+          th Alcohol
+          th TPO
+      tobody
+        tr
+          th = @api_cocktail["base_name"]
+          th = @api_cocktail["technique_name"]
+          th = @api_cocktail["taste_name"]
+          th = @api_cocktail["style_name"]
+          th = @api_cocktail["alcohol"]
+          th = @api_cocktail["top_name"]
+    h2
+      | How to Make
+    h4
+      br
+      = @api_cocktail["recipe_desc"]
+    br
+    table.table
+      - @recipes.each do |recipe|
+        tr
+          th = recipe["ingredient_name"]
+          th = recipe["amount"]
+          th = recipe["unit"]
