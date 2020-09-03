@@ -1,4 +1,17 @@
-h1
-  | Public::EndUsers#show
-p
-  | Find me in app/views/public/end_users/show.html.erb
+.profile-page
+  .main-raised
+    .row
+      .col-lg-6.offset-md-3
+        .profile
+          .avatar
+            = attachment_image_tag @user, :image_id, format: 'jpeg', class: "img-raised rounded-circle img-responsive", fallback: "no_image.png", size: "160x160"
+
+          .name
+            h2.title = @user.name
+            h5.email = @user.email
+
+    .description.text-center
+      p
+      |  An artist of considerable range, Chet Faker — the name taken by Melbourne-raised, Brooklyn-based Nick Murphy — writes, performs and records all of his own music, giving it a warm, intimate feel with a solid groove structure. 
+
+ 

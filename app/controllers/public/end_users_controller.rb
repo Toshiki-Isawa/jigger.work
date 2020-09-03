@@ -1,4 +1,6 @@
 class Public::EndUsersController < ApplicationController
+  before_action :set_user
+
   def show
   end
 
@@ -12,5 +14,10 @@ class Public::EndUsersController < ApplicationController
   end
 
   def withdraw
+  end
+
+  private
+  def set_user
+    @user = current_end_user
   end
 end
