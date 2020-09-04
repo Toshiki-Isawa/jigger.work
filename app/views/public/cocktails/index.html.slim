@@ -1,5 +1,7 @@
-h1
-  | Cocktails
+- if params[:name]
+  h2 「#{params[:name]}」を使ったカクテル
+- else
+  h2 Cocktails
 h3 API Cocktails
 .cocktail-index
   table.table.table-hover
