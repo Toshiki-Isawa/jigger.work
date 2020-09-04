@@ -1,7 +1,10 @@
 class Public::CocktailsController < ApplicationController
+  before_action :authenticate_end_user!, only:[:new, :edit, :create, :update, :destroy]
   before_action :set_api_cocktails, only:[:index, :show]
+  before_action :set_end_user
 
   def index
+    @cocktails = Cocktail.all
   end
 
   # 材料検索用
@@ -14,6 +17,7 @@ class Public::CocktailsController < ApplicationController
   end
 
   def show
+    # cocktail-fのカクテルからcocktail_idで検索
     response = open("https://cocktail-f.com/api/v1/cocktails/#{params[:id]}").read
     hash = JSON.parse(response)
     @api_cocktail = hash["cocktail"]
@@ -27,12 +31,23 @@ class Public::CocktailsController < ApplicationController
   end
 
   def new
+    @cocktail = Cocktail.new
+    @cocktail.ingredient_relations.new
   end
 
   def edit
   end
 
   def create
+    @cocktail = Cocktail.new(cocktail_params)
+    @cocktail.end_user_id = @end_user.id
+    @cocktail.alcohol = 10
+    @cocktail.save
+    if @cocktail.save
+      redirect_to public_end_users_path
+    else
+      render 'new'
+    end
   end
 
   def update
@@ -44,6 +59,15 @@ end
 
 private
 
+  def set_end_user
+    @end_user = current_end_user
+  end
+
+  def cocktail_params
+    params.require(:cocktail).permit(:name,:base_name,:technique_name,:taste_name,:style_name,:alcohol,:tpo_name,:cocktail_desc,:recipe_desc,:image,ingredient_relations_attributes:[:cocktail_id,:ingredient_id,:amount,:unit, :_destroy, ingredient_attributes:[:name, :type_name, :alcohol]])
+  end
+
+  # cocktail-fのカクテル一覧を取得
   def set_api_cocktails
     response = open("https://cocktail-f.com/api/v1/cocktails").read
     hash = JSON.parse(response)

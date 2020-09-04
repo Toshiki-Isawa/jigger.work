@@ -27,7 +27,7 @@ ActiveRecord::Schema.define(version: 2020_08_31_064825) do
   create_table "cocktails", force: :cascade do |t|
     t.integer "end_user_id", null: false
     t.string "name", null: false
-    t.integer "base_name", null: false
+    t.integer "base_name"
     t.integer "technique_name", null: false
     t.integer "taste_name", null: false
     t.integer "style_name", null: false
@@ -38,6 +38,7 @@ ActiveRecord::Schema.define(version: 2020_08_31_064825) do
     t.string "image_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["end_user_id"], name: "index_cocktails_on_end_user_id"
     t.index ["name"], name: "index_cocktails_on_name", unique: true
   end
 
@@ -62,6 +63,8 @@ ActiveRecord::Schema.define(version: 2020_08_31_064825) do
     t.integer "cocktail_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["cocktail_id"], name: "index_favorites_on_cocktail_id"
+    t.index ["end_user_id"], name: "index_favorites_on_end_user_id"
   end
 
   create_table "ingredient_relations", force: :cascade do |t|
@@ -71,6 +74,8 @@ ActiveRecord::Schema.define(version: 2020_08_31_064825) do
     t.integer "unit", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["cocktail_id"], name: "index_ingredient_relations_on_cocktail_id"
+    t.index ["ingredient_id"], name: "index_ingredient_relations_on_ingredient_id"
   end
 
   create_table "ingredients", force: :cascade do |t|

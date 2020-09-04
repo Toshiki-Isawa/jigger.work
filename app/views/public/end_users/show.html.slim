@@ -4,11 +4,14 @@
       .col-lg-6.offset-md-3
         .profile
           .avatar
-            = attachment_image_tag @user, :image_id, format: 'jpeg', class: "img-raised rounded-circle img-responsive", fallback: "no_image.png", size: "160x160"
+            = attachment_image_tag @end_user, :image_id, format: 'jpeg', class: "img-raised rounded-circle img-responsive", fallback: "no_image.png", size: "160x160"
 
           .name
-            h2.title = @user.name
-            h5.email = @user.email
+            h2.title = @end_user.name
+            h5.email = @end_user.email
+
+          .myrecipe-create
+            = link_to "マイレシピ作成", new_public_cocktail_path, class: "btn btn-success"
 
     .description.text-center
       p

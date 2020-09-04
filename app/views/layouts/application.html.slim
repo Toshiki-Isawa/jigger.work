@@ -11,32 +11,30 @@ html
   body
     nav.navbar.navbar-default.navbar-fixed-top.navbar-expand-lg
       .container
-        .navbar-header
-          button.navbar-toggle.collapsed aria-controls="navbar" aria-expanded="false" data-target="#navbar" data-toggle="collapse" type="button"
-            span.sr-pnly Toggle navigation
-            span.icon-bar
-            span.icon-bar
-            span.icon-bar
-          = link_to 'Jigger', root_path, class: 'navbar-brand'
-        #navbar.navbar-collapse.collapse
-          ul.nav.navbar-nav
-            li.nav-link = link_to 'About', public_end_user_about_path
-            li.nav-link = link_to 'Terms', public_end_user_terms_path
-            li.nav-link = link_to 'Cocktails', public_cocktails_path
-            li.nav-link = link_to 'Ingredients', public_ingredients_path
-          ul.nav.navbar-nav.navbar-right
+        = link_to 'Jigger', root_path, class: 'navbar-brand'
+        button.navbar-toggle.collapsed aria-controls="navbar" aria-expanded="false" data-target="#navbar" data-toggle="collapse" type="button"
+          span.sr-pnly Toggle navigation
+          span.icon-bar
+          span.icon-bar
+          span.icon-bar
+        #navbarNavDropdown.collapse.navbar-collapse
+          ul.navbar-nav
+            li.nav-link = link_to 'アバウト', public_end_user_about_path
+            li.nav-link = link_to 'カクテル用語一覧', public_end_user_terms_path
+            li.nav-link = link_to 'カクテル一覧', public_cocktails_path
+            li.nav-link = link_to '材料一覧', public_ingredients_path
+          ul.navbar-nav.navbar-right
             -if end_user_signed_in?
-              li.dropdown
+              li.dropdown.nav-item
                 a.nav-link.dropdown-toggle aria-expanded="false" aria-haspopup="true" data-toggle="dropdown" href="javascript:;" id="navbarDropdownMenuLink"
                   = current_end_user.name
-                  span.caret
-                ul.dropdown-menu aria-labelledby="navbarDropdownMenuLink"
-                  li.dropdown-item = link_to 'マイページ', public_end_users_path
-                  li.dropdown-item = link_to 'マイレシピ作成',  new_public_cocktail_path
-                  li.dropdown-item = link_to 'ログアウト', destroy_end_user_session_path, method: :delete
+                .dropdown-menu aria-labelledby="navbarDropdownMenuLink"
+                  .dropdown-item = link_to 'マイページ', public_end_users_path
+                  .dropdown-item = link_to 'マイレシピ作成',  new_public_cocktail_path
+                  .dropdown-item = link_to 'ログアウト', destroy_end_user_session_path, method: :delete
             -else
-              li.nav-link = link_to 'ログイン', new_end_user_session_path
-              li.nav-link = link_to '新規登録', new_end_user_registration_path
+              .nav-link = link_to 'ログイン', new_end_user_session_path
+              .nav-link = link_to '新規登録', new_end_user_registration_path
 
     main.container
       = yield
