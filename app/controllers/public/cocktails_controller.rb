@@ -9,14 +9,17 @@ class Public::CocktailsController < ApplicationController
 
   # 材料検索用
   def search
+    # API-Cocktail
     search_url = URI.encode("https://cocktail-f.com/api/v1/cocktails?word=#{params[:name]}")
     response = open(search_url).read
     hash = JSON.parse(response)
     @api_cocktails = hash["cocktails"]
-    render 'public/cocktails/index'
+    
+    # 投稿カクテル
+    search_ingredient = Ingredient.find_by(name: params[:name])
+    @cocktails = Cocktail.includes(:ingredient_relations).where(ingredient_relations: {ingredient_id: search_ingredient.id})
 
-    # 表示の為暫定処置
-    @cocktails = Cocktail.all
+    render 'public/cocktails/index'
   end
 
   def show
