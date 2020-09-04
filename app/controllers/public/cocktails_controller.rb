@@ -47,8 +47,6 @@ class Public::CocktailsController < ApplicationController
   def create
     @cocktail = Cocktail.new(cocktail_params)
     @cocktail.end_user_id = @end_user.id
-    @cocktail.alcohol = 10
-    @cocktail.save
     if @cocktail.save
       redirect_to public_end_users_path
     else
