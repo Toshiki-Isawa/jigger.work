@@ -5,5 +5,6 @@ class Ingredient < ApplicationRecord
     副材料: 3,
   }
 
-  has_many :ingredient_relations
+  has_many :ingredient_relations, dependent: :destroy
+  has_many :cocktails, through: :ingredient_relations
 end

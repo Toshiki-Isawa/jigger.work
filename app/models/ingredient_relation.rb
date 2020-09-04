@@ -9,6 +9,6 @@ class IngredientRelation < ApplicationRecord
     FullUp: 7,
   }
 
-  belongs_to :end_user
+  belongs_to :cocktail
   belongs_to :ingredient
 end

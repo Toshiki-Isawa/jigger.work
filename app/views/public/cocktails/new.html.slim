@@ -3,6 +3,7 @@
       h5 マイレシピ作成
     .card-body
       = form_with model:[:public,@cocktail], local: true do |f|
+        = render 'shared/error_messages', model: f.object
         .row
           .col-lg-4
             label レシピタイトル
@@ -30,7 +31,7 @@
               
             .row
               label How to Make
-              = f.text_area :cocktail_desc, placeholder:"作り方を入力", class:"form-control"
+              = f.text_area :recipe_desc, placeholder:"作り方を入力", class:"form-control"
 
               table.table
                 thead

@@ -1,5 +1,5 @@
 class Public::EndUsersController < ApplicationController
-  before_action :set_user
+  before_action :set_end_user
 
   def show
   end
@@ -17,7 +17,7 @@ class Public::EndUsersController < ApplicationController
   end
 
   private
-  def set_user
-    @user = current_end_user
+  def set_end_user
+    @end_user = current_end_user
   end
 end
