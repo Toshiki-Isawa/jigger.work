@@ -14,6 +14,9 @@ class Public::CocktailsController < ApplicationController
     hash = JSON.parse(response)
     @api_cocktails = hash["cocktails"]
     render 'public/cocktails/index'
+
+    # 表示の為暫定処置
+    @cocktails = Cocktail.all
   end
 
   def show

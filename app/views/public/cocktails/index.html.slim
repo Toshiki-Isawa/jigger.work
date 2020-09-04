@@ -1,6 +1,6 @@
 h1
   | Cocktails
-
+h3 API Cocktails
 .cocktail-index
   table.table.table-hover
     thead
@@ -18,3 +18,20 @@ h1
             th = cocktail["base_name"]
             th = cocktail["taste_name"]
             th = cocktail["alcohol"]
+
+h3 User Cocktails
+.cocktail-index
+  table.table.table-hover
+    thead
+      tr
+        th id
+        th name
+        th taste
+        th alcohol
+    tbody
+      - @cocktails.each do |cocktail|
+           tr
+            th = cocktail.id
+            th = link_to cocktail.name, public_cocktail_path(cocktail.id)
+            th = cocktail.taste_name
+            th = cocktail.alcohol
