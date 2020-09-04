@@ -37,6 +37,7 @@ class Cocktail < ApplicationRecord
   belongs_to :end_user
   attachment :image
 
-  has_many :ingredient_relations
+  has_many :ingredient_relations, dependent: :destroy
   has_many :ingredients, through: :ingredient_relations
+  accepts_nested_attributes_for :ingredient_relations, allow_destroy:true
 end

@@ -29,8 +29,7 @@ class Public::CocktailsController < ApplicationController
 
   def new
     @cocktail = Cocktail.new
-    @ingredient_relation = IngredientRelation.new
-    @ingredients = Ingredient.all
+    @cocktail.ingredient_relations.new
   end
 
   def edit
@@ -48,6 +47,11 @@ class Public::CocktailsController < ApplicationController
 end
 
 private
+
+  def cocktail_params
+    params.require(:cocktail).permit(:name,:base_name,:technique_name,:taste_name,:style_name,:alcohol,:tpo_name,:cocktail_desc,:recipe_desc,:image_id,[ingredient_relations_attributes:[:cocktail_id,:ingredient_id,:amount,:unit]]).merge(end_user_id: current_end_user.id)
+    
+  end
 
   # cocktail-fのカクテル一覧を取得
   def set_api_cocktails

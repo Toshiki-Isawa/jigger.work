@@ -32,7 +32,6 @@ Rails.application.routes.draw do
     end
     
     resources :ingredients, only:[:index,:show]
-    resources :ingredient_relations, only:[:create]
   end
 
   # Admin側ルーティング

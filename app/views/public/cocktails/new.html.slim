@@ -15,27 +15,19 @@
             label キャッチコピー（文字数：５０字以内）
             = f.text_field :cocktail_desc, placeholder:"レシピのキャッチコピーを入力", class:"form-control"
 
-            = form_with model:[:public,@ingredient_relation], local: true do |ff|
-              table.table
-                thead
-                  tr
-                    th 材料
-                    th 分量
-                    th 単位
-                tbody
-                  tr
-                    th = ff.select :ingredient_id, Ingredient.all.map {|ingredient| [ingredient.name, ingredient.id]}
-                    th = ff.number_field :amount
-                    th = ff.select :unit, options_for_select(IngredientRelation.units.keys), class: 'form-control'
-                  tr
-                    th = ff.select :ingredient_id, Ingredient.all.map {|ingredient| [ingredient.name, ingredient.id]}
-                    th = ff.number_field :amount
-                    th = ff.select :unit, options_for_select(IngredientRelation.units.keys), class: 'form-control'
-                  tr
-                    th = ff.select :ingredient_id, Ingredient.all.map {|ingredient| [ingredient.name, ingredient.id]}
-                    th = ff.number_field :amount
-                    th = ff.select :unit, options_for_select(IngredientRelation.units.keys), class: 'form-control'
-            
+            table.table
+              thead
+                tr
+                  th 材料
+                  th 分量
+                  th 単位
+                  th 
+              tbody.line-ingredients
+                = f.fields_for :ingredient_relations do |ff|
+                  = render 'ingredient_relation_fields', f: ff
+            .links
+              = link_to_add_association '＋別の材料を追加', f, :ingredient_relations, data:{"association-insertion-node" => "tbody.line-ingredients", "association-insertion-method" => "append"}
+              
             .row
               label How to Make
               = f.text_area :cocktail_desc, placeholder:"作り方を入力", class:"form-control"
