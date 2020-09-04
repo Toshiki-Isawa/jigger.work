@@ -28,6 +28,7 @@ h3 User Cocktails
       tr
         th id
         th name
+        th base
         th taste
         th alcohol
     tbody
@@ -35,5 +36,6 @@ h3 User Cocktails
            tr
             th = cocktail.id
             th = link_to cocktail.name, public_cocktail_path(cocktail.id)
+            th = cocktail.base_name
             th = cocktail.taste_name
             th = cocktail.alcohol
