@@ -10,6 +10,9 @@
             h2.title = @user.name
             h5.email = @user.email
 
+          .myrecipe-create
+            = link_to "マイレシピ作成", new_public_cocktail_path, class: "btn btn-success"
+
     .description.text-center
       p
       |  An artist of considerable range, Chet Faker — the name taken by Melbourne-raised, Brooklyn-based Nick Murphy — writes, performs and records all of his own music, giving it a warm, intimate feel with a solid groove structure. 
