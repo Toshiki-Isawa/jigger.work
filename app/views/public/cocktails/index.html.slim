@@ -2,26 +2,7 @@
   h2 「#{params[:name]}」を使ったカクテル
 - else
   h2 Cocktails
-h3 API Cocktails
-.cocktail-index
-  table.table.table-hover
-    thead
-      tr
-        th id
-        th name
-        th base
-        th taste
-        th alcohol
-    tbody
-      - @api_cocktails.each do |cocktail|
-           tr
-            th = cocktail["cocktail_id"]
-            th = link_to cocktail["cocktail_name"], public_cocktail_path(cocktail["cocktail_id"])
-            th = cocktail["base_name"]
-            th = cocktail["taste_name"]
-            th = cocktail["alcohol"]
 
-h3 User Cocktails
 .cocktail-index
   table.table.table-hover
     thead
@@ -39,3 +20,23 @@ h3 User Cocktails
             th = cocktail.base_name
             th = cocktail.taste_name
             th = cocktail.alcohol
+
+/ 
+  h3 API Cocktails
+  .cocktail-index
+    table.table.table-hover
+      thead
+        tr
+          th id
+          th name
+          th base
+          th taste
+          th alcohol
+      tbody
+        - @api_cocktails.each do |cocktail|
+            tr
+              th = cocktail["cocktail_id"]
+              th = link_to cocktail["cocktail_name"], public_cocktail_path(cocktail["cocktail_id"])
+              th = cocktail["base_name"]
+              th = cocktail["taste_name"]
+              th = cocktail["alcohol"]
