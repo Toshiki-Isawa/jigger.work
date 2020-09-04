@@ -27,11 +27,12 @@ Rails.application.routes.draw do
     
     resources :cocktails do
       collection do
-        post 'search'
+        post :search
       end
     end
     
     resources :ingredients, only:[:index,:show]
+    resources :ingredient_relations, only:[:create]
   end
 
   # Admin側ルーティング

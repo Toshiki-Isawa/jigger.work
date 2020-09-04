@@ -14,6 +14,7 @@ class Public::CocktailsController < ApplicationController
   end
 
   def show
+    # cocktail-fのカクテルからcocktail_idで検索
     response = open("https://cocktail-f.com/api/v1/cocktails/#{params[:id]}").read
     hash = JSON.parse(response)
     @api_cocktail = hash["cocktail"]
@@ -27,12 +28,16 @@ class Public::CocktailsController < ApplicationController
   end
 
   def new
+    @cocktail = Cocktail.new
+    @ingredient_relation = IngredientRelation.new
+    @ingredients = Ingredient.all
   end
 
   def edit
   end
 
   def create
+    redirect_to public_end_users_path
   end
 
   def update
@@ -44,6 +49,7 @@ end
 
 private
 
+  # cocktail-fのカクテル一覧を取得
   def set_api_cocktails
     response = open("https://cocktail-f.com/api/v1/cocktails").read
     hash = JSON.parse(response)

@@ -4,4 +4,6 @@ class Ingredient < ApplicationRecord
     ノンアルコール: 2,
     副材料: 3,
   }
+
+  has_many :ingredient_relations
 end
