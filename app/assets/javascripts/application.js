@@ -17,6 +17,7 @@
 //= require bootstrap-sprockets
 //= require_tree .
 //= require cocoon
+//= require toastr
 
 // MyPage-Tabbutton
 $(function(){

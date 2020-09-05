@@ -37,8 +37,6 @@ Rails.application.routes.draw do
   # Admin側ルーティング
   devise_scope :admins do
     devise_for :admins, controllers: {
-      registrations: 'admins/devise/registrations',
-      passwords: 'admins/devise/passwords',
       sessions: 'admins/devise/sessions',
     }
   end
