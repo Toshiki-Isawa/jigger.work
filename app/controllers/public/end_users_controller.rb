@@ -9,6 +9,12 @@ class Public::EndUsersController < ApplicationController
   end
 
   def update
+    if @end_user.update(end_user_params)
+      redirect_to public_end_users_path, notice: '登録情報を変更しました'
+    else
+      render :edit
+    end
+    
   end
 
   def unsubscribe
@@ -18,6 +24,10 @@ class Public::EndUsersController < ApplicationController
   end
 
   private
+  def end_user_params
+    params.require(:end_user).permit(:name, :email, :image)
+  end
+
   def set_end_user
     @end_user = current_end_user
   end

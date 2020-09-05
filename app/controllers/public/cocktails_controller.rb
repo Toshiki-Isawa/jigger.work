@@ -44,7 +44,7 @@ class Public::CocktailsController < ApplicationController
   end
 
   def edit
-    @cocktail = cocktail.find(params[:id])
+    @cocktail = Cocktail.find(params[:id])
   end
 
   def create
@@ -63,6 +63,14 @@ class Public::CocktailsController < ApplicationController
   end
 
   def update
+    @cocktail = Cocktail.find(params[:id])
+    @cocktail.ingredient_relations.destroy_all
+
+    if @cocktail.update(cocktail_params)
+      redirect_to public_end_users_path, notice: 'カクテル情報を変更しました'
+    else
+      render :edit
+    end
   end
   
   def destroy
