@@ -44,6 +44,7 @@ class Public::CocktailsController < ApplicationController
   end
 
   def edit
+    @cocktail = cocktail.find(params[:id])
   end
 
   def create
