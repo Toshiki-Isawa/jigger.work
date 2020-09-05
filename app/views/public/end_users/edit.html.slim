@@ -1,4 +1,22 @@
-h1
-  | Public::EndUsers#edit
-p
-  | Find me in app/views/public/end_users/edit.html.erb
+.profile-page
+  .main-raised
+    .row
+      .col-lg-6.offset-md-3
+        = form_with model: @end_user, url: public_end_users_path,  local: true do |f|
+          .profile
+            .avatar
+              = attachment_image_tag @end_user, :image, format: 'jpeg', class: "img-raised rounded-circle img-responsive", fallback: "no_image.png", size: "160x160"
+              = f.attachment_field :image, placeholder: "プロフィール画像"
+
+            .name
+              h2.title
+              = f.text_field :name, class:"form-control"
+              h5.email
+              = f.text_field :email, class:"form-control"
+            
+            = f.submit "保存する", class:"btn btn-success"
+
+
+    .description.text-center
+      p
+      |  An artist of considerable range, Chet Faker — the name taken by Melbourne-raised, Brooklyn-based Nick Murphy — writes, performs and records all of his own music, giving it a warm, intimate feel with a solid groove structure. 
