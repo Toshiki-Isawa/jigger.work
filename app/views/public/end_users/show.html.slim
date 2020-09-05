@@ -16,5 +16,28 @@
     .description.text-center
       p
       |  An artist of considerable range, Chet Faker — the name taken by Melbourne-raised, Brooklyn-based Nick Murphy — writes, performs and records all of his own music, giving it a warm, intimate feel with a solid groove structure. 
+    
+    .row
+      .col
+        .profile-tabs
+          .tabs
+            .tab-buttons
+              span.content1 マイレシピ
+              span.content2 お気に入り
+              span.content3 フォローユーザー
+              #lamp.content1
 
- 
+            .tab-content
+              #myrecipe.content1
+                - @my_recipes.each do |my_recipe|
+                  = my_recipe.name
+              #favorite.content2
+                | ジントニック <br>
+                | マティーニ <br>
+                | ブラック・ルシアン <br>
+              #follow.content3
+                | User1 <br>
+                | User2 <br>
+                | User3 <br>
+
+

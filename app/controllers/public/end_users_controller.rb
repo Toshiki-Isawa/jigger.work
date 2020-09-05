@@ -2,6 +2,7 @@ class Public::EndUsersController < ApplicationController
   before_action :set_end_user
 
   def show
+    @my_recipes = Cocktail.where(end_user_id: @end_user.id)
   end
 
   def edit
