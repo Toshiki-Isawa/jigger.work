@@ -43,7 +43,8 @@ class Public::CocktailsController < ApplicationController
     @cocktail.base_name = Ingredient.find_by(id: base_id).name
 
     if @cocktail.save
-      redirect_to public_end_users_path, notice: 'レシピを投稿しました'
+      flash[:notice] = "レシピを投稿しました"
+      redirect_to public_end_users_path
     else
       render 'new'
     end
@@ -54,7 +55,8 @@ class Public::CocktailsController < ApplicationController
     @cocktail.ingredient_relations.destroy_all
 
     if @cocktail.update(cocktail_params)
-      redirect_to public_end_users_path, notice: 'カクテル情報を変更しました'
+      flash[:notice] = "カクテル情報を変更しました"
+      redirect_to public_end_users_path
     else
       render :edit
     end
