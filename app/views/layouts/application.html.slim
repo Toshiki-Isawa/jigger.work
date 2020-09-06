@@ -51,9 +51,8 @@ html
         javascript:
           toastr["#{key}"]("#{value}");
 
-    main.container
+    main.container-fluid
       = yield
     
-    footer.navbar.navbar-default.navbar-fixed-bottom
-      .container
-        p.text-muted.text-center 2020 Jigger.work
+      footer
+        p.text-center 2020 Jigger.work

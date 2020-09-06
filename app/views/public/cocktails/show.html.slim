@@ -1,10 +1,11 @@
 .row
   .col-lg-4
-    h2
+    h3
        = @cocktail.name
-       - if end_user_signed_in? || @cocktail.end_user_id == current_end_user.id
-        = link_to "edit", edit_public_cocktail_path(@cocktail.id)
     p = @cocktail.cocktail_desc
+    - if end_user_signed_in? || @cocktail.end_user_id == current_end_user.id
+      = link_to "edit", edit_public_cocktail_path(@cocktail.id), class:"btn btn-info"
+      = link_to "delete", public_cocktail_path(@cocktail.id), method: :delete,class:"btn btn-danger"
     = attachment_image_tag @cocktail, :image, fallback:"default.jpeg", width:"350",height:"400", class:"cocktail-img"
     / img.cocktail-img src="#{@api_cocktail_imglink}" alt="img" width="350" height="500"
 

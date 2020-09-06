@@ -74,6 +74,13 @@ class Admins::CocktailsController < ApplicationController
     redirect_to admins_top_path
   end
 
+  def search
+    search_ingredient = Ingredient.find_by(name: params[:name])
+    @cocktails = Cocktail.includes(:ingredient_relations).where(ingredient_relations: {ingredient_id: search_ingredient.id})
+
+    render 'admins/cocktails/index'
+  end
+
   private
 
   def set_cocktail

@@ -47,6 +47,7 @@ Rails.application.routes.draw do
     resources :cocktails do
       collection do
         get :get_api_cocktails
+        post :search
       end
     end
     resources :ingredients, only: [:index, :create, :destroy]

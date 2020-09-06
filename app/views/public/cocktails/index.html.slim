@@ -1,42 +1,45 @@
-- if params[:name]
-  h2 「#{params[:name]}」を使ったカクテル
-- else
-  h2 Cocktails
+.row
+  .col-lg-2
+    .sidebar.bg-default
+      ul.nav.flex-column
+        h4 ベース
+        li = link_to "ジン", search_public_cocktails_path(:name => "ジン", :search_key => "base"), method: :post, class:"nav-item nav-link"
+        li = link_to "ウォッカ", search_public_cocktails_path(:name => "ウォッカ", :search_key => "base"), method: :post, class:"nav-item nav-link"
+        li = link_to "テキーラ", search_public_cocktails_path(:name => "テキーラ", :search_key => "base"), method: :post, class:"nav-item nav-link"
+        li = link_to "ラム", search_public_cocktails_path(:name => "ラム", :search_key => "base"), method: :post, class:"nav-item nav-link"
+        li = link_to "ウイスキー", search_public_cocktails_path(:name => "ウイスキー", :search_key => "base"), method: :post, class:"nav-item nav-link"
+        li = link_to "リキュール", search_public_cocktails_path(:name => "リキュール", :search_key => "base"), method: :post, class:"nav-item nav-link"
+        h4 技法
+        - Cocktail.technique_names.keys.each do |technique_name|
+          li = link_to "#{technique_name}", search_public_cocktails_path(:name => technique_name, :search_key => "technique"), method: :post, class:"nav-item nav-link"
+        h4 味わい
+        - Cocktail.taste_names.keys.each do |taste_name|
+          li = link_to "#{taste_name}", search_public_cocktails_path(:name => taste_name, :search_key => "taste"), method: :post, class:"nav-item nav-link"
+        h4 スタイル
+        - Cocktail.style_names.keys.each do |style_name|
+          li = link_to "#{style_name}", search_public_cocktails_path(:name => style_name, :search_key => "style"), method: :post, class:"nav-item nav-link"
+        h4 TPO
+        - Cocktail.tpo_names.keys.each do |tpo_name|
+          li = link_to "#{tpo_name}", search_public_cocktails_path(:name => tpo_name, :search_key => "tpo"), method: :post, class:"nav-item nav-link"
 
-.cocktail-index
-  table.table.table-hover
-    thead
-      tr
-        th id
-        th name
-        th base
-        th taste
-        th alcohol
-    tbody
-      - @cocktails.each do |cocktail|
-           tr
-            th = cocktail.id
-            th = link_to cocktail.name, public_cocktail_path(cocktail.id)
-            th = cocktail.base_name
-            th = cocktail.taste_name
-            th = cocktail.alcohol
+  .col-lg-10
+    - if params[:name]
+      h2 #{@page_title}カクテル（全#{@cocktails.size}件）
+    - else
+      h2 Cocktails（全#{@cocktails.size}件）
 
-/ 
-  h3 API Cocktails
-  .cocktail-index
-    table.table.table-hover
-      thead
-        tr
-          th id
-          th name
-          th base
-          th taste
-          th alcohol
-      tbody
-        - @api_cocktails.each do |cocktail|
-            tr
-              th = cocktail["cocktail_id"]
-              th = link_to cocktail["cocktail_name"], public_cocktail_path(cocktail["cocktail_id"])
-              th = cocktail["base_name"]
-              th = cocktail["taste_name"]
-              th = cocktail["alcohol"]
+    .cocktail-index
+      table.table.table-hover
+        thead
+          tr
+            th name
+            th ベース
+            th 味わい
+            th アルコール(%)
+        tbody
+          - @cocktails.each do |cocktail|
+              tr
+                th = link_to cocktail.name, public_cocktail_path(cocktail.id)
+                th = cocktail.base_name
+                th = cocktail.taste_name
+                th = cocktail.alcohol
