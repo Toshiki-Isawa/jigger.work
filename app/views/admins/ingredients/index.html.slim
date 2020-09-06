@@ -6,10 +6,10 @@ table.table
     tr
       th 材料名
       th タイプ
-      th アルコール度数
+      th アルコール度数(%)
   tbody
     - @ingredients.each do |ingredient|
       tr
-        th = link_to ingredient.name, search_public_cocktails_path(name: "#{ingredient.name}"), method: :post
+        th = link_to ingredient.name, search_admins_cocktails_path(name: "#{ingredient.name}"), method: :post
         th = ingredient.type_name
         th = ingredient.alcohol
