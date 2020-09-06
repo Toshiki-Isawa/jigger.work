@@ -19,12 +19,18 @@ html
           span.icon-bar
         #navbarNavDropdown.collapse.navbar-collapse
           ul.navbar-nav
-            li.nav-link = link_to 'アバウト', public_end_user_about_path
-            li.nav-link = link_to 'カクテル用語一覧', public_end_user_terms_path
-            li.nav-link = link_to 'カクテル一覧', public_cocktails_path
-            li.nav-link = link_to '材料一覧', public_ingredients_path
+            - if admin_signed_in?
+              li.nav-link = link_to 'TOP', admins_top_path
+              li.nav-link = link_to 'カクテル一覧', admins_cocktails_path
+              li.nav-link = link_to '材料一覧', admins_ingredients_path
+              li.nav-link = link_to 'ユーザー一覧', admins_end_users_path
+            - else
+              li.nav-link = link_to 'アバウト', public_end_user_about_path
+              li.nav-link = link_to 'カクテル用語一覧', public_end_user_terms_path
+              li.nav-link = link_to 'カクテル一覧', public_cocktails_path
+              li.nav-link = link_to '材料一覧', public_ingredients_path
           ul.navbar-nav.navbar-right
-            -if end_user_signed_in?
+            - if end_user_signed_in?
               li.dropdown.nav-item
                 a.nav-link.dropdown-toggle aria-expanded="false" aria-haspopup="true" data-toggle="dropdown" href="javascript:;" id="navbarDropdownMenuLink"
                   = current_end_user.name
@@ -32,13 +38,22 @@ html
                   .dropdown-item = link_to 'マイページ', public_end_users_path
                   .dropdown-item = link_to 'マイレシピ作成',  new_public_cocktail_path
                   .dropdown-item = link_to 'ログアウト', destroy_end_user_session_path, method: :delete
-            -else
+            - elsif admin_signed_in?
+              li.nav-link = link_to 'ログアウト', destroy_admin_session_path, method: :delete
+            - else
               .nav-link = link_to 'ログイン', new_end_user_session_path
               .nav-link = link_to '新規登録', new_end_user_registration_path
+
+    - if flash.any?
+      - flash.each do |key,value|
+        - key = "success" if key == "notice"
+        - key = "error" if key == "alert"
+        javascript:
+          toastr["#{key}"]("#{value}");
 
     main.container
       = yield
     
     footer.navbar.navbar-default.navbar-fixed-bottom
       .container
-        p.text-muted.text-center Jigger.work
+        p.text-muted.text-center 2020 Jigger.work

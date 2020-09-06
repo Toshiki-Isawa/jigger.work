@@ -1,21 +1,9 @@
 class Cocktail < ApplicationRecord
-  enum base_name: {
-    ノンアルコール: 0,
-    ジン: 1,
-    ウォッカ: 2,
-    テキーラ: 3,
-    ラム: 4,
-    ウィスキー: 5,
-    ブランデー: 6,
-    リキュール: 7,
-    ワイン: 8,
-    ビール: 9,
-    日本酒: 10,
-  }
   enum technique_name: {
     ビルド: 1,
     ステア: 2,
     シェイク: 3,
+    ブレンド: 4,
   }
   enum taste_name: {
     甘口: 1,
@@ -37,7 +25,7 @@ class Cocktail < ApplicationRecord
   belongs_to :end_user
   attachment :image
 
-  has_many :ingredients, through: :ingredient_relations
   has_many :ingredient_relations, dependent: :destroy
+  has_many :ingredients, through: :ingredient_relations
   accepts_nested_attributes_for :ingredient_relations, allow_destroy:true
 end

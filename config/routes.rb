@@ -37,8 +37,6 @@ Rails.application.routes.draw do
   # Admin側ルーティング
   devise_scope :admins do
     devise_for :admins, controllers: {
-      registrations: 'admins/devise/registrations',
-      passwords: 'admins/devise/passwords',
       sessions: 'admins/devise/sessions',
     }
   end
@@ -46,7 +44,11 @@ Rails.application.routes.draw do
   namespace :admins do
     get 'homes/top' => 'homes#top', as:'top'
     resources :end_users, only: [:index, :edit, :show, :update]
-    resources :cocktails
+    resources :cocktails do
+      collection do
+        get :get_api_cocktails
+      end
+    end
     resources :ingredients, only: [:index, :create, :destroy]
   end
     

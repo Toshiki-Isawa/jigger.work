@@ -2,7 +2,7 @@
   .col-lg-4
     h2
        = @cocktail.name
-       -if @cocktail.end_user_id == current_end_user.id
+       - if end_user_signed_in? || @cocktail.end_user_id == current_end_user.id
         = link_to "edit", edit_public_cocktail_path(@cocktail.id)
     p = @cocktail.cocktail_desc
     = attachment_image_tag @cocktail, :image, fallback:"default.jpeg", width:"350",height:"400", class:"cocktail-img"

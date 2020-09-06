@@ -1,4 +1,15 @@
 h1
-  | Admins::Ingredients#index
-p
-  | Find me in app/views/admins/ingredients/index.html.erb
+  | 材料一覧
+
+table.table
+  thead
+    tr
+      th 材料名
+      th タイプ
+      th アルコール度数
+  tbody
+    - @ingredients.each do |ingredient|
+      tr
+        th = link_to ingredient.name, search_public_cocktails_path(name: "#{ingredient.name}"), method: :post
+        th = ingredient.type_name
+        th = ingredient.alcohol
