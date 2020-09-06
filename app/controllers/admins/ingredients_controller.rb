@@ -1,4 +1,6 @@
 class Admins::IngredientsController < ApplicationController
+  before_action :authenticate_admin!
+
   def index
     @ingredients = Ingredient.all
   end

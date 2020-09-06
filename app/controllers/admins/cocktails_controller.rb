@@ -1,4 +1,6 @@
 class Admins::CocktailsController < ApplicationController
+  before_action :authenticate_admin!
+
   def index
     @cocktails = Cocktail.all
   end
