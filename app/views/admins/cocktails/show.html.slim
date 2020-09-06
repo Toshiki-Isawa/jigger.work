@@ -1,4 +1,55 @@
-h1
-  | Admins::Cocktails#show
-p
-  | Find me in app/views/admins/cocktails/show.html.erb
+.row
+  .col-lg-4
+    h3
+      = @cocktail.name
+    p = @cocktail.cocktail_desc
+    h4
+      = link_to "edit", edit_admins_cocktail_path(@cocktail.id), class:"btn btn-info"
+      = link_to "delete", admins_cocktail_path(@cocktail.id), method: :delete,class:"btn btn-danger"
+    - if @cocktail.image_id.nil?
+      = attachment_image_tag @cocktail, :image, fallback:"default.jpeg", width:"350",height:"400", class:"cocktail-img"
+    - elsif @cocktail.image_id.include?("http")
+      = link_to @cocktail.image_id do
+        img.cocktail-img src="#{@cocktail.image_id}" alt="img" width="350" height="500"
+    - else
+      = attachment_image_tag @cocktail, :image, fallback:"default.jpeg", width:"350",height:"400", class:"cocktail-img"
+
+
+  .col-lg-8
+    table.table
+      thead
+        tr
+          th Base
+          th Technique
+          th Taste
+          th Style
+          th Alcohol
+          th TPO
+      tobody
+        tr
+          th = @cocktail.base_name
+          th = @cocktail.technique_name
+          th = @cocktail.taste_name
+          th = @cocktail.style_name
+          th
+           = @cocktail.alcohol
+           | %
+          th = @cocktail.tpo_name
+    h2
+      | How to Make
+    h4
+      br
+      = @cocktail.recipe_desc
+    h3 Recipe
+    table.table
+      thead
+        tr
+          th 材料名
+          th 量
+          th 単位
+      tbody
+        - @cocktail.ingredient_relations.each do |recipe|
+          tr
+            th = recipe.ingredient.name
+            th = recipe.amount
+            th = recipe.unit

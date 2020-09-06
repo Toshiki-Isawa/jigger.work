@@ -10,6 +10,7 @@ require './db/seeds/end_user.rb'
 require './db/seeds/ingredient.rb'
 
 Admin.create!(
+  name: 'Admin',
   email: 'admin@admin',
   password: 'qazwsx',
 )

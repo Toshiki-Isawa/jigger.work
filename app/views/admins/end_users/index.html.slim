@@ -1,4 +1,15 @@
 h1
-  | Admins::EndUsers#index
-p
-  | Find me in app/views/admins/end_users/index.html.erb
+  | ユーザー一覧
+
+table.table
+  thead
+    tr
+      th ユーザー名
+      th メールアドレス
+      th 誕生日
+  tbody
+    - @end_users.each do |end_user|
+      tr
+        th = link_to end_user.name, admins_end_user_path(end_user.id)
+        th = end_user.email
+        th = end_user.birth_date

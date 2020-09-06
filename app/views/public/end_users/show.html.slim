@@ -9,7 +9,7 @@
           .name
             h2.title
              = @end_user.name
-             p = link_to "edit", edit_public_end_users_path(@end_user.id)
+             span = link_to "edit", edit_public_end_users_path(@end_user.id), class:"btn"
             h5.email = @end_user.email
 
           .myrecipe-create
