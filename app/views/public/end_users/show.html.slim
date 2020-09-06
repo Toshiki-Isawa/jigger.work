@@ -33,9 +33,11 @@
               #myrecipe.content1
                 - @my_recipes.each do |my_recipe|
                   = link_to public_cocktail_path(my_recipe.id)
-                    = attachment_image_tag my_recipe, :image, format: 'jpeg', class: "img-raised rounded cocktail-img", fallback: "default.jpeg", size:"100x100"
+                    - if my_recipe.image_id.nil? || my_recipe.image_id.exclude?("http")
+                      = attachment_image_tag my_recipe, :image, fallback:"default.jpeg", width:"150",height:"150", class:"img-raised rounded cocktail-img"
+                    - else
+                      img.cocktail-img src="#{my_recipe.image_id}" alt="img" width="150" height="150" class="img-raised rounded cocktail-img"
                     = my_recipe.name
-                    br
               #favorite.content2
                 | ジントニック <br>
                 | マティーニ <br>
