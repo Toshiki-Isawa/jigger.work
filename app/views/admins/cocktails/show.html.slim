@@ -6,8 +6,13 @@
     h4
       = link_to "edit", edit_admins_cocktail_path(@cocktail.id), class:"btn btn-info"
       = link_to "delete", admins_cocktail_path(@cocktail.id), method: :delete,class:"btn btn-danger"
-    = attachment_image_tag @cocktail, :image, fallback:"default.jpeg", width:"350",height:"400", class:"cocktail-img"
-    / img.cocktail-img src="#{@api_cocktail_imglink}" alt="img" width="350" height="500"
+    - if @cocktail.image_id.nil?
+      = attachment_image_tag @cocktail, :image, fallback:"default.jpeg", width:"350",height:"400", class:"cocktail-img"
+    - elsif @cocktail.image_id.include?("http")
+      = link_to @cocktail.image_id do
+        img.cocktail-img src="#{@cocktail.image_id}" alt="img" width="350" height="500"
+    - else
+      = attachment_image_tag @cocktail, :image, fallback:"default.jpeg", width:"350",height:"400", class:"cocktail-img"
 
 
   .col-lg-8
