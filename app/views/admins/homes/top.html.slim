@@ -5,6 +5,10 @@ p
 
 
 p
+ | レシピ数：
+ = @cocktails.size
+br
+p
  | ジン：
  = @cocktails.where(base_name: "ジン").size
 br

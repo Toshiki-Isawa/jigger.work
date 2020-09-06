@@ -1,8 +1,10 @@
 .row
   .col-lg-4
     h2
-       = @cocktail.name
-        = link_to "edit", edit_admins_cocktail_path(@cocktail.id)
+      = @cocktail.name
+    h4
+      = link_to "edit", edit_admins_cocktail_path(@cocktail.id), class:"btn btn-info"
+      = link_to "delete", admins_cocktail_path(@cocktail.id), method: :delete,class:"btn btn-danger"
     p = @cocktail.cocktail_desc
     = attachment_image_tag @cocktail, :image, fallback:"default.jpeg", width:"350",height:"400", class:"cocktail-img"
     / img.cocktail-img src="#{@api_cocktail_imglink}" alt="img" width="350" height="500"

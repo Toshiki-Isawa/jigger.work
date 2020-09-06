@@ -1,12 +1,12 @@
 class Admins::CocktailsController < ApplicationController
   before_action :authenticate_admin!
+  before_action :set_cocktail, only:[:show, :edit, :update, :destroy]
 
   def index
     @cocktails = Cocktail.all
   end
   
   def show
-    @cocktail = Cocktail.find(params[:id])
   end
 
   def new
@@ -22,6 +22,11 @@ class Admins::CocktailsController < ApplicationController
   end
 
   def destroy
+    destroy_name = @cocktail.name
+    if @cocktail.destroy
+      flash[:notice] = "#{destroy_name}を削除しました"
+      redirect_to admins_cocktails_path
+    end
   end
 
   def get_api_cocktails
@@ -68,4 +73,11 @@ class Admins::CocktailsController < ApplicationController
     flash[:notice] = "#{save_count}件のカクテルを取得しました。"
     redirect_to admins_top_path
   end
+
+  private
+
+  def set_cocktail
+    @cocktail = Cocktail.find(params[:id])
+  end
+
 end
