@@ -20,6 +20,7 @@ html
         #navbarNavDropdown.collapse.navbar-collapse
           ul.navbar-nav
             - if admin_signed_in?
+              li.nav-link = link_to 'TOP', admins_top_path
               li.nav-link = link_to 'カクテル一覧', admins_cocktails_path
               li.nav-link = link_to '材料一覧', admins_ingredients_path
               li.nav-link = link_to 'ユーザー一覧', admins_end_users_path
@@ -55,4 +56,4 @@ html
     
     footer.navbar.navbar-default.navbar-fixed-bottom
       .container
-        p.text-muted.text-center Jigger.work
+        p.text-muted.text-center 2020 Jigger.work

@@ -1,6 +1,5 @@
 class Public::CocktailsController < ApplicationController
   before_action :authenticate_end_user!, only:[:new, :edit, :create, :update, :destroy]
-  # before_action :set_api_cocktails, only:[:index]
   before_action :set_end_user
 
   def index
@@ -9,12 +8,6 @@ class Public::CocktailsController < ApplicationController
 
   # 材料検索用
   def search
-    # API-Cocktail
-    # search_url = URI.encode("https://cocktail-f.com/api/v1/cocktails?word=#{params[:name]}")
-    # response = open(search_url).read
-    # hash = JSON.parse(response)
-    # @api_cocktails = hash["cocktails"]
-    
     # 投稿カクテル
     search_ingredient = Ingredient.find_by(name: params[:name])
     @cocktails = Cocktail.includes(:ingredient_relations).where(ingredient_relations: {ingredient_id: search_ingredient.id})
@@ -23,12 +16,6 @@ class Public::CocktailsController < ApplicationController
   end
 
   def show
-    # cocktail-fのカクテルからcocktail_idで検索
-    # response = open("https://cocktail-f.com/api/v1/cocktails/#{params[:id]}").read
-    # hash = JSON.parse(response)
-    # @api_cocktail = hash["cocktail"]
-    # @recipes = @api_cocktail["recipes"]
-
     @cocktail = Cocktail.find(params[:id])
 
     # カクテル名(英語)+alcohol+cocktailで画像検索 100件/1日
@@ -56,7 +43,7 @@ class Public::CocktailsController < ApplicationController
     @cocktail.base_name = Ingredient.find_by(id: base_id).name
 
     if @cocktail.save
-      redirect_to public_end_users_path
+      redirect_to public_end_users_path, notice: 'レシピを投稿しました'
     else
       render 'new'
     end
@@ -86,10 +73,3 @@ private
   def cocktail_params
     params.require(:cocktail).permit(:name,:base_name,:technique_name,:taste_name,:style_name,:alcohol,:tpo_name,:cocktail_desc,:recipe_desc,:image,ingredient_relations_attributes:[:cocktail_id,:ingredient_id,:amount,:unit, :_destroy, ingredient_attributes:[:name, :type_name, :alcohol]])
   end
-
-  # cocktail-fのカクテル一覧を取得
-  # def set_api_cocktails
-  #   response = open("https://cocktail-f.com/api/v1/cocktails").read
-  #   hash = JSON.parse(response)
-  #   @api_cocktails = hash["cocktails"]
-  # end

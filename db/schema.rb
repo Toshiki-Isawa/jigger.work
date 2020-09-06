@@ -26,20 +26,19 @@ ActiveRecord::Schema.define(version: 2020_08_31_064825) do
   end
 
   create_table "cocktails", force: :cascade do |t|
-    t.integer "end_user_id", null: false
+    t.integer "end_user_id"
     t.string "name", null: false
-    t.integer "base_name"
+    t.string "base_name"
     t.integer "technique_name", null: false
     t.integer "taste_name", null: false
     t.integer "style_name", null: false
-    t.integer "alcohol", null: false
+    t.integer "alcohol"
     t.integer "tpo_name", null: false
     t.text "cocktail_desc"
     t.text "recipe_desc", null: false
     t.string "image_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["end_user_id"], name: "index_cocktails_on_end_user_id"
     t.index ["name"], name: "index_cocktails_on_name", unique: true
   end
 
@@ -71,7 +70,7 @@ ActiveRecord::Schema.define(version: 2020_08_31_064825) do
   create_table "ingredient_relations", force: :cascade do |t|
     t.integer "cocktail_id", null: false
     t.integer "ingredient_id", null: false
-    t.integer "amount"
+    t.string "amount"
     t.integer "unit", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

@@ -44,7 +44,11 @@ Rails.application.routes.draw do
   namespace :admins do
     get 'homes/top' => 'homes#top', as:'top'
     resources :end_users, only: [:index, :edit, :show, :update]
-    resources :cocktails
+    resources :cocktails do
+      collection do
+        get :get_api_cocktails
+      end
+    end
     resources :ingredients, only: [:index, :create, :destroy]
   end
     
