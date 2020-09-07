@@ -6,6 +6,8 @@ class EndUser < ApplicationRecord
   attachment :image
 
   has_many :cocktails
+  has_many :favorites
+  has_many :favorite_cocktails, through: :favorites, source: :cocktail
 
   def active_for_authentication?
     self.is_active == true

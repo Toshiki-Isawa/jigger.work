@@ -25,6 +25,7 @@ Rails.application.routes.draw do
     resources :relationships, only: [:create, :destroy]
     
     resources :cocktails do
+      resource :favorites, only: [:create, :destroy]
       collection do
         post :search
       end
