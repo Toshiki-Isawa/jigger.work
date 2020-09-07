@@ -1,17 +1,19 @@
-.row
-  .col-lg-4
+.row.justify-content-center
+  .col-lg-3
     h3
        = @cocktail.name
     p = @cocktail.cocktail_desc
     - if end_user_signed_in? && @cocktail.end_user_id == current_end_user.id
       = link_to "edit", edit_public_cocktail_path(@cocktail.id), class:"btn btn-info"
       = link_to "delete", public_cocktail_path(@cocktail.id), method: :delete,class:"btn btn-danger"
+
     - if @cocktail.image_id.nil? || @cocktail.image_id.exclude?("http")
       = attachment_image_tag @cocktail, :image, fallback:"default.jpeg", width:"350",height:"400", class:"img-raised rounded cocktail-img"
     - else
-      img.cocktail-img src="#{@cocktail.image_id}" alt="img" width="350" height="400" class="img-raised rounded cocktail-img"
+      = link_to @cocktail.image_id
+        img.cocktail-img src="#{@cocktail.image_id}" alt="img" width="350" height="400" class="img-raised rounded cocktail-img"
 
-  .col-lg-8
+  .col-lg-7
     table.table
       thead
         tr
