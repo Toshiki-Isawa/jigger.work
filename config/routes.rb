@@ -18,8 +18,7 @@ Rails.application.routes.draw do
     
     resource :end_users, only:[:edit,:show,:update] do
       member do
-        get :unsubscribe
-        put :withdraw
+        patch :withdraw
         get :following, :followers
       end
     end
@@ -43,7 +42,12 @@ Rails.application.routes.draw do
 
   namespace :admins do
     get 'homes/top' => 'homes#top', as:'top'
-    resources :end_users, only: [:index, :edit, :show, :update]
+    resources :end_users, only: [:index, :edit, :show, :update] do
+      member do
+        patch :withdraw
+        patch :unfreeze
+      end
+    end
     resources :cocktails do
       collection do
         get :get_api_cocktails

@@ -6,4 +6,12 @@ class EndUser < ApplicationRecord
   attachment :image
 
   has_many :cocktails
+
+  def active_for_authentication?
+    self.is_active == true
+  end
+
+  def inactive_message
+    "このアカウントは退会されています"
+  end
 end

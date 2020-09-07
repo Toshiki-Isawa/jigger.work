@@ -10,17 +10,19 @@ class Public::EndUsersController < ApplicationController
 
   def update
     if @end_user.update(end_user_params)
-      redirect_to public_end_users_path, notice: '登録情報を変更しました'
+      flash[:notice] = "登録情報を変更しました"
+      redirect_to public_end_users_path
     else
       render :edit
-    end
-    
+    end  
   end
 
-  def unsubscribe
-  end
 
   def withdraw
+    @end_user.update(is_active: false)
+    reset_session
+    flash[:notice] = "ご利用ありがとうございました。"
+    redirect_to public_end_user_top_path
   end
 
   private

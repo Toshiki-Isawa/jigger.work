@@ -10,9 +10,14 @@
 
             .name
               h2.title
+              = f.label :ユーザーネーム
               = f.text_field :name, class:"form-control"
               h5.email
+              = f.label :メールアドレス
               = f.text_field :email, class:"form-control"
+              h5.email
+              = f.label :誕生日
+              = f.date_select :birth_date, use_month_numbers: true, start_year: 1930, end_year: (Time.now.year - 10),class:"form-control"
             
             = f.submit "保存する", class:"btn btn-success"
 
