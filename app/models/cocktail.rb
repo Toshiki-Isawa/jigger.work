@@ -23,9 +23,14 @@ class Cocktail < ApplicationRecord
   }
 
   belongs_to :end_user
+  has_many :favorites
   attachment :image
 
   has_many :ingredient_relations, dependent: :destroy
   has_many :ingredients, through: :ingredient_relations
   accepts_nested_attributes_for :ingredient_relations, allow_destroy:true
+
+  def favorited_by?(end_user)
+    favorites.where(end_user_id: end_user.id).exists?
+  end
 end

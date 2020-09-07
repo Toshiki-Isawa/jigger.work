@@ -3,6 +3,7 @@ class Public::EndUsersController < ApplicationController
 
   def show
     @my_recipes = Cocktail.where(end_user_id: @end_user.id)
+    @favorite_cocktails = @end_user.favorite_cocktails
   end
 
   def edit
