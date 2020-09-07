@@ -51,6 +51,7 @@ ActiveRecord::Schema.define(version: 2020_08_31_064825) do
     t.string "name", null: false
     t.date "birth_date", null: false
     t.string "image_id"
+    t.boolean "is_active", default: true
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["email"], name: "index_end_users_on_email", unique: true

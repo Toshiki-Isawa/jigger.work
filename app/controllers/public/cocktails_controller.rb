@@ -37,11 +37,6 @@ class Public::CocktailsController < ApplicationController
   end
 
   def show
-    # カクテル名(英語)+alcohol+cocktailで画像検索 100件/1日
-    # google_url = "https://www.googleapis.com/customsearch/v1?key=#{ENV['API_key']}&cx=#{ENV['Search_Engine_id']}&searchType=image&q=#{@cocktail["cocktail_name_english"]}+alcohol+cocktail&lr=lang_ja&safe=off&num=1"
-    # img_response = open(google_url).read
-    # hash = JSON.parse(img_response)
-    # @api_cocktail_imglink = hash["items"][0]["link"]
   end
 
   def new

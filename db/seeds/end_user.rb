@@ -1,7 +1,7 @@
 EndUser.create!(
   [
     {
-      name: 'first',
+      name: 'cocktail-f',
       birth_date: '1992-10-29',
       email: '1@1',
       password: '111111',

@@ -10,6 +10,7 @@
             h2.title
              = @end_user.name
              span = link_to "edit", edit_public_end_users_path(@end_user.id), class:"btn"
+             span = link_to "退会する", withdraw_public_end_users_path(@end_user.id), method: :patch, class:"btn btn-danger", data:{confirm:'本当に退会しますか？'}
             h5.email = @end_user.email
 
           .myrecipe-create
