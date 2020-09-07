@@ -5,7 +5,6 @@ class Public::CocktailsController < ApplicationController
 
   def index
     @cocktails = Cocktail.all
-
   end
 
   def search
