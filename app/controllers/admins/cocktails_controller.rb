@@ -3,7 +3,7 @@ class Admins::CocktailsController < ApplicationController
   before_action :set_cocktail, only:[:show, :edit, :update, :destroy]
 
   def index
-    @cocktails = Cocktail.all.page(params[:page])
+    @cocktails = Cocktail.all
   end
   
   def show
