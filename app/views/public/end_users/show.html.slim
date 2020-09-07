@@ -4,17 +4,23 @@
       .col-lg-6.offset-md-3
         .profile
           .avatar
-            = attachment_image_tag @end_user, :image, format: 'jpeg', class: "img-raised rounded-circle img-responsive", fallback: "no_image.png", size: "160x160"
+            = attachment_image_tag @user, :image, format: 'jpeg', class: "img-raised rounded-circle img-responsive", fallback: "no_image.png", size: "160x160"
 
           .name
             h2.title
-             = @end_user.name
-             span = link_to "edit", edit_public_end_users_path(@end_user.id), class:"btn"
-             span = link_to "退会する", withdraw_public_end_users_path(@end_user.id), method: :patch, class:"btn btn-danger", data:{confirm:'本当に退会しますか？'}
-            h5.email = @end_user.email
+             = @user.name
 
-          .myrecipe-create
-            = link_to "マイレシピ作成", new_public_cocktail_path, class: "btn btn-success"
+            - if end_user_signed_in?
+              - if @user == current_end_user
+                h5.email = @user.email
+                span = link_to "edit", edit_public_end_user_path(@user.id), class:"btn"
+                span = link_to "退会する", withdraw_public_end_user_path(@user.id), method: :patch, class:"btn btn-danger", data:{confirm:'本当に退会しますか？'}
+                span = link_to "マイレシピ作成", new_public_cocktail_path, class: "btn btn-success"
+              - else
+                - if @user.followed_by?(current_end_user)
+                  = link_to "フォロー済み", public_end_user_relationships_path(@user.id), method: :delete, class:"btn btn-danger"
+                - else  
+                  = link_to "フォローする", public_end_user_relationships_path(@user.id), method: :post, class:"btn btn-success"  
 
     .description.text-center
       p
@@ -32,20 +38,20 @@
 
             .tab-content
               #myrecipe.content1
-                - if @my_recipes.presence
+                - if @recipes.presence
                   .masonry
-                    - @my_recipes.each do |my_recipe|
+                    - @recipes.each do |recipe|
                       .grid
-                        - if my_recipe.image_id.nil? || my_recipe.image_id.exclude?("http")
-                          = attachment_image_tag my_recipe, :image, fallback:"default.jpeg", class:"img-raised rounded"
+                        - if recipe.image_id.nil? || recipe.image_id.exclude?("http")
+                          = attachment_image_tag recipe, :image, fallback:"default.jpeg", class:"img-raised rounded"
                         - else
-                          img src="#{my_recipe.image_id}" alt="img" class="img-raised rounded"
+                          img src="#{recipe.image_id}" alt="img" class="img-raised rounded"
                         .grid__body
                           .relative
-                            = link_to public_cocktail_path(my_recipe.id), class:"grid__link"
-                              h1.grid__title = my_recipe.name
+                            = link_to public_cocktail_path(recipe.id), class:"grid__link"
+                              h1.grid__title = recipe.name
                           .mt-auto
-                            span.grid__tag ##{my_recipe.base_name}
+                            span.grid__tag ##{recipe.base_name}
                 - else
                   .text-center
                     h4 マイレシピが登録されていません
@@ -66,10 +72,29 @@
                                 h1.grid__title = cocktail.name
                             .mt-auto
                               span.grid__tag ##{cocktail.base_name}
+                - else
+                  h4 お気に入りが登録されていません。
 
               #follow.content3
-                | User1 <br>
-                | User2 <br>
-                | User3 <br>
+                - if @follow_users.presence
+                  table.table
+                    thead
+                      tr
+                        th 
+                        th ユーザー名
+                        th 投稿レシピ数
+                        th
+                    tbody
+                      tr
+                      - @follow_users.each do |user|
+                        th = attachment_image_tag user, :image, format: 'jpeg', class: "img-raised rounded-circle img-responsive", fallback: "no_image.png", size: "50x50"
+                        th = user.name
+                        th = user.cocktails.size
+                        - if user.followed_by?(current_end_user)
+                          th = link_to "フォロー済み", public_end_user_relationships_path(user.id), method: :delete, class:"btn btn-danger"
+                        - else  
+                          th = link_to "フォローする", public_end_user_relationships_path(user.id), method: :post, class:"btn btn-success"  
+                - else
+                  h4 フォローしているユーザーがいません。
 
 

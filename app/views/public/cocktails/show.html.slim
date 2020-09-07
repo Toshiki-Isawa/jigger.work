@@ -1,7 +1,6 @@
 .row.justify-content-center
   .col-lg-3
-    h3
-       = @cocktail.name
+    h3 = @cocktail.name
     p = @cocktail.cocktail_desc
     - if end_user_signed_in? && @cocktail.end_user_id == current_end_user.id
       = link_to "edit", edit_public_cocktail_path(@cocktail.id), class:"btn btn-info"
@@ -34,15 +33,29 @@
           th = @cocktail.style_name
           th = @cocktail.alcohol
           th = @cocktail.tpo_name
-    h2
-      | How to Make
-    h4
-      br
-      = @cocktail.recipe_desc
-    br
-    table.table
-      - @cocktail.ingredient_relations.each do |recipe|
-        tr
-          th = recipe.ingredient.name
-          th = recipe.amount
-          th = recipe.unit
+
+    .row
+      .col-9
+        h2 How to Make
+        h4
+          br
+          = @cocktail.recipe_desc
+        br
+        table.table
+          thead
+            tr
+              th 材料
+              th 量
+              th 単位
+          tbody
+          - @cocktail.ingredient_relations.each do |recipe|
+            tr
+              th = recipe.ingredient.name
+              th = recipe.amount
+              th = recipe.unit
+
+      .col-3.text-center
+        h3 投稿者
+        = link_to  public_end_user_path(@cocktail.end_user_id)
+          = attachment_image_tag @cocktail.end_user, :image, format: 'jpeg', class: "img-raised rounded-circle img-responsive", fallback: "no_image.png"
+          h4 = @cocktail.end_user.name
