@@ -1,3 +1,15 @@
+.loader-wrap
+  .breeding-rhombus-spinner
+    .rhombus.child-1
+    .rhombus.child-2
+    .rhombus.child-3
+    .rhombus.child-4
+    .rhombus.child-5
+    .rhombus.child-6
+    .rhombus.child-7
+    .rhombus.child-8
+    .rhombus.big
+
 .row
   .col-lg-2
     .sidebar.bg-default
@@ -22,24 +34,25 @@
         - Cocktail.tpo_names.keys.each do |tpo_name|
           li = link_to "#{tpo_name}", search_public_cocktails_path(:name => tpo_name, :search_key => "tpo"), method: :post, class:"nav-item nav-link"
 
-  .col-lg-10
+  .col-lg-9
     - if params[:name]
       h2 #{@page_title}カクテル（全#{@cocktails.size}件）
     - else
       h2 Cocktails（全#{@cocktails.size}件）
+      .masonry
+        - @cocktails.each do |cocktail|
+          .grid
+            - if cocktail.image_id.nil? || cocktail.image_id.exclude?("http")
+              = attachment_image_tag cocktail, :image, fallback:"default.jpeg", class:"img-raised rounded"
+            - else
+              img.cocktail-img src="#{cocktail.image_id}" alt="cocktail-img" class="img-raised rounded"
+            .grid__body
+              .relative
+                = link_to public_cocktail_path(cocktail.id), class:"grid__link"
+                  h1.grid__title = cocktail.name
+                  p.grid__author = EndUser.find_by(id: cocktail.end_user_id).name
+              .mt-auto
+                span.grid__tag ##{cocktail.base_name}
 
-    .masonry
-      - @cocktails.each do |cocktail|
-        .grid
-          - if cocktail.image_id.nil? || cocktail.image_id.exclude?("http")
-            = attachment_image_tag cocktail, :image, fallback:"default.jpeg", class:"img-raised rounded cocktail-img"
-          - else
-            img.cocktail-img src="#{cocktail.image_id}" alt="img" class="img-raised rounded cocktail-img"
-          .grid__body
-            .relative
-              = link_to public_cocktail_path(cocktail.id), class:"grid__link"
-                h1.grid__title = cocktail.name
-                p.grid__author = EndUser.find_by(id: cocktail.end_user_id).name
-            .mt-auto
-              span.grid__tag ##{cocktail.base_name}
-
+#page_top
+  a href="#"

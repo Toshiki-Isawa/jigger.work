@@ -73,7 +73,7 @@ gem 'dotenv-rails'
 gem 'font-awesome-sass', '~> 5.8.1'
 gem "toastr-rails"
 gem 'rails-i18n'
-gem 'ransack'
 gem 'slim-rails'
 gem 'html2slim'
 gem 'cocoon'
+gem 'kaminari'
