@@ -22,7 +22,7 @@
     .row
       .col
         .profile-tabs
-          .tabs
+          .mytabs
             .tab-buttons
               span.content1 マイレシピ
               span.content2 お気に入り
@@ -31,11 +31,25 @@
 
             .tab-content
               #myrecipe.content1
-                - @my_recipes.each do |my_recipe|
-                  = link_to public_cocktail_path(my_recipe.id)
-                    = attachment_image_tag my_recipe, :image, format: 'jpeg', class: "img-raised rounded cocktail-img", fallback: "default.jpeg", size:"100x100"
-                    = my_recipe.name
-                    br
+                - if @my_recipes.presence
+                  .masonry
+                    - @my_recipes.each do |my_recipe|
+                      .grid
+                        - if my_recipe.image_id.nil? || my_recipe.image_id.exclude?("http")
+                          = attachment_image_tag my_recipe, :image, fallback:"default.jpeg", class:"img-raised rounded"
+                        - else
+                          img src="#{my_recipe.image_id}" alt="img" class="img-raised rounded"
+                        .grid__body
+                          .relative
+                            = link_to public_cocktail_path(my_recipe.id), class:"grid__link"
+                              h1.grid__title = my_recipe.name
+                          .mt-auto
+                            span.grid__tag ##{my_recipe.base_name}
+                - else
+                  .text-center
+                    h4 マイレシピが登録されていません
+                    = link_to "マイレシピ作成", new_public_cocktail_path, class: "btn btn-success"
+
               #favorite.content2
                 | ジントニック <br>
                 | マティーニ <br>

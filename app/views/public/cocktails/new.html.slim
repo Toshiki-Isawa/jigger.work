@@ -1,77 +1,79 @@
-  .card.card-nav-tabs.text-center
-    .card-header.card-header-success
-      h5 マイレシピ作成
-    .card-body
-      .card-title.text-muted キャッチコピーは入力しなくても投稿可能です
-      = form_with model:[:public,@cocktail], local: true do |f|
-        = render 'shared/error_messages', model: f.object
-        .row
-          .col-lg-4
-            label レシピタイトル
-            = f.text_field :name, placeholder:"レシピタイトルを入力", class:"form-control"
+ .row.justify-content-center
+  .col-10
+    .card.card-nav-tabs.text-center
+      .card-header.card-header-success
+        h5 マイレシピ作成
+      .card-body
+        .card-title.text-muted キャッチコピーは入力しなくても投稿可能です
+        = form_with model:[:public,@cocktail], local: true do |f|
+          = render 'shared/error_messages', model: f.object
+          .row
+            .col-lg-4
+              label レシピタイトル
+              = f.text_field :name, placeholder:"レシピタイトルを入力", class:"form-control"
 
-            = attachment_image_tag @cocktail, :image, class: "image", fallback: "default.jpeg", size:"300x350"
-            = f.attachment_field :image, placeholder: "カクテル画像"
+              = attachment_image_tag @cocktail, :image, class: "image", fallback: "default.jpeg", size:"350x400"
+              = f.attachment_field :image, placeholder: "カクテル画像"
 
-          .col-lg-8
-            label キャッチコピー（文字数：５０字以内）
-            = f.text_field :cocktail_desc, placeholder:"レシピのキャッチコピーを入力", class:"form-control"
+            .col-lg-8
+              label キャッチコピー（文字数：５０字以内）
+              = f.text_field :cocktail_desc, placeholder:"レシピのキャッチコピーを入力", class:"form-control"
 
-
-            table.table
-              thead
-                tr
-                  th 材料
-                  th 分量
-                  th 単位
-                  th 
-              tbody.line-ingredients
-                = f.fields_for :ingredient_relations do |ff|
-                  = render 'ingredient_relation_fields', f: ff
-            .links
-              = link_to_add_association '＋別の材料を追加', f, :ingredient_relations, data:{"association-insertion-node" => "tbody.line-ingredients", "association-insertion-method" => "append"}
-              
-            .row
-              label How to Make
-              = f.text_area :recipe_desc, placeholder:"作り方を入力", class:"form-control"
 
               table.table
                 thead
                   tr
-                    th 技法
-                    th テイスト
-                    th スタイル
-                    th TPO
+                    th 材料
+                    th 分量
+                    th 単位
                     th 
-                      | アルコール度数
-                      = link_to " ※", public_end_user_terms_path
-
-                    / ModalWindow何故か表示されない為、保留
-                      #myModal.modal.fade aria-hidden="true"
-                        .modal-dialog
-                          .modal-content
-                            .modal-header
-                              p head
-                            .modal-body
-                              p text
+                tbody.line-ingredients
+                  = f.fields_for :ingredient_relations do |ff|
+                    = render 'ingredient_relation_fields', f: ff
+              .links
+                = link_to_add_association '＋別の材料を追加', f, :ingredient_relations, data:{"association-insertion-node" => "tbody.line-ingredients", "association-insertion-method" => "append"}
                 
-                tbody
-                  tr
-                    th = f.collection_radio_buttons(:technique_name, Cocktail.technique_names, :first,:first) do |b|
-                      label.radio-vertical
-                        = b.label {b.radio_button + " " + b.text }
-                    th = f.collection_radio_buttons(:taste_name, Cocktail.taste_names, :first,:first) do |b|
-                      label.radio-vertical
-                        = b.label {b.radio_button + " " + b.text }
-                    th = f.collection_radio_buttons(:style_name, Cocktail.style_names, :first,:first) do |b|
-                      label.radio-vertical
-                        = b.label {b.radio_button + " " + b.text }
-                    th = f.collection_radio_buttons(:tpo_name, Cocktail.tpo_names, :first,:first) do |b|
-                      label.radio-vertical
-                        = b.label {b.radio_button + " " + b.text }
-                    th 
-                      = f.number_field :alcohol, min: '0', max: '100'
-                      |  %
+              .row
+                label How to Make
+                = f.text_area :recipe_desc, placeholder:"作り方を入力", class:"form-control"
 
+                table.table
+                  thead
+                    tr
+                      th 技法
+                      th テイスト
+                      th スタイル
+                      th TPO
+                      th 
+                        | アルコール度数
+                        = link_to " ※", public_end_user_terms_path
+
+                      / ModalWindow何故か表示されない為、保留
+                        #myModal.modal.fade aria-hidden="true"
+                          .modal-dialog
+                            .modal-content
+                              .modal-header
+                                p head
+                              .modal-body
+                                p text
                   
-            = f.submit "レシピを投稿する",class: "btn btn-success"
+                  tbody
+                    tr
+                      th = f.collection_radio_buttons(:technique_name, Cocktail.technique_names, :first,:first) do |b|
+                        label.radio-vertical
+                          = b.label {b.radio_button + " " + b.text }
+                      th = f.collection_radio_buttons(:taste_name, Cocktail.taste_names, :first,:first) do |b|
+                        label.radio-vertical
+                          = b.label {b.radio_button + " " + b.text }
+                      th = f.collection_radio_buttons(:style_name, Cocktail.style_names, :first,:first) do |b|
+                        label.radio-vertical
+                          = b.label {b.radio_button + " " + b.text }
+                      th = f.collection_radio_buttons(:tpo_name, Cocktail.tpo_names, :first,:first) do |b|
+                        label.radio-vertical
+                          = b.label {b.radio_button + " " + b.text }
+                      th 
+                        = f.number_field :alcohol, min: '0', max: '100'
+                        |  %
+
+                    
+              = f.submit "レシピを投稿する",class: "btn btn-success"
