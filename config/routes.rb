@@ -16,13 +16,12 @@ Rails.application.routes.draw do
     get 'homes/about' => 'homes#about', as: 'end_user_about'
     get 'homes/terms' => 'homes#terms', as: 'end_user_terms'
     
-    resource :end_users, only:[:edit,:show,:update] do
+    resources :end_users, only:[:edit,:show,:update] do
       member do
         patch :withdraw
-        get :following, :followers
       end
+      resource :relationships, only: [:create, :destroy]
     end
-    resources :relationships, only: [:create, :destroy]
     
     resources :cocktails do
       resource :favorites, only: [:create, :destroy]

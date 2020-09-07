@@ -35,7 +35,7 @@ html
                 a.nav-link.dropdown-toggle aria-expanded="false" aria-haspopup="true" data-toggle="dropdown" href="javascript:;" id="navbarDropdownMenuLink"
                   = current_end_user.name
                 .dropdown-menu aria-labelledby="navbarDropdownMenuLink"
-                  .dropdown-item = link_to 'マイページ', public_end_users_path
+                  .dropdown-item = link_to 'マイページ', public_end_user_path(current_end_user)
                   .dropdown-item = link_to 'マイレシピ作成',  new_public_cocktail_path
                   .dropdown-item = link_to 'ログアウト', destroy_end_user_session_path, method: :delete
             - elsif admin_signed_in?

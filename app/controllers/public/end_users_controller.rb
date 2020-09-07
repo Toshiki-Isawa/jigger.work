@@ -2,8 +2,10 @@ class Public::EndUsersController < ApplicationController
   before_action :set_end_user
 
   def show
-    @my_recipes = Cocktail.where(end_user_id: @end_user.id)
-    @favorite_cocktails = @end_user.favorite_cocktails
+    @user = EndUser.find(params[:id])
+    @recipes = Cocktail.where(end_user_id: @user.id)
+    @favorite_cocktails = @user.favorite_cocktails
+    @follow_users = @user.followings
   end
 
   def edit
