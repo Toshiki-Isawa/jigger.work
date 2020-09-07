@@ -9,8 +9,7 @@
     - if @cocktail.image_id.nil? || @cocktail.image_id.exclude?("http")
       = attachment_image_tag @cocktail, :image, fallback:"default.jpeg", width:"350",height:"400", class:"img-raised rounded cocktail-img"
     - else
-      = link_to @cocktail.image_id
-        img.cocktail-img src="#{@cocktail.image_id}" alt="img" width="350" height="400" class="img-raised rounded cocktail-img"
+      img.cocktail-img src="#{@cocktail.image_id}" alt="img" width="350" height="400" class="img-raised rounded cocktail-img"
 
     div id="favorites_buttons_#{@cocktail.id}"
       = render partial: "public/favorites/favorite", locals: { cocktail: @cocktail}
