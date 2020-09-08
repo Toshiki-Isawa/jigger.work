@@ -8,17 +8,34 @@ EndUser.create!(
     },
 
     {
-      name: 'second',
+      name: 'A',
       birth_date: '2005-12-13',
-      email: '2@2',
-      password: '222222',
+      email: 'a@a',
+      password: 'aaaaaa',
     },
-
     {
-      name: 'third',
+      name: 'B',
       birth_date: '1991-11-05',
-      email: '3@3',
-      password: '333333',
+      email: 'b@b',
+      password: 'bbbbbb',
+    },
+    {
+      name: 'C',
+      birth_date: '1991-11-05',
+      email: 'c@c',
+      password: 'cccccc',
+    },
+    {
+      name: 'D',
+      birth_date: '1991-11-05',
+      email: 'd@d',
+      password: 'dddddd',
+    },
+    {
+      name: 'E',
+      birth_date: '1991-11-05',
+      email: 'e@e',
+      password: 'eeeeee',
     },
   ]
 )

@@ -30,7 +30,9 @@
           th = @cocktail.technique_name
           th = @cocktail.taste_name
           th = @cocktail.style_name
-          th = @cocktail.alcohol
+          th
+           = @cocktail.alcohol
+           |  %
           th = @cocktail.tpo_name
 
     .row

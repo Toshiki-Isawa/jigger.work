@@ -1,6 +1,7 @@
 class Admins::CocktailsController < ApplicationController
   before_action :authenticate_admin!
   before_action :set_cocktail, only:[:show, :edit, :update, :destroy]
+  require 'matrix'
 
   def index
     @cocktails = Cocktail.all
@@ -105,6 +106,38 @@ class Admins::CocktailsController < ApplicationController
     @cocktails = Cocktail.includes(:ingredient_relations).where(ingredient_relations: {ingredient_id: search_ingredient.id})
 
     render 'admins/cocktails/index'
+  end
+
+  def similar_cocktail
+    # Favoriteテーブルからマトリクスを作成
+    cocktails = Cocktail.find(Favorite.group(:cocktail_id).pluck(:cocktail_id))
+    favorite_matrix = {}
+    cocktails.each do |cocktail|
+      cocktail_id = Array.new(cocktails.count, 0)
+      # 渡されたカクテルをお気に入り登録しているユーザーを抽出
+      EndUser.find(Favorite.group(:end_user_id).where(cocktail_id: cocktail.id ).pluck(:end_user_id)).each do |user|
+        # ユーザー群に対してカクテルをお気に入り登録しているか判定し、trueなら加算処理を行う
+        cocktails.each_with_index do |f,index|
+          if f.favorited_by?(user)
+            cocktail_id[index] += 1
+          end
+        end
+      end
+      favorite_matrix.store("#{cocktail.name}", cocktail_id)
+    end
+
+    normalized_vectors = {}
+    favorite_matrix.each do |gk, gv|
+      normalized_vectors[gk] = Vector.elements(gv).normalize
+    end
+
+    # 組み合わせごとのコサイン類似度を出力
+    normalized_vectors.keys.combination(2) do |v1k, v2k|
+      puts "#{v1k} - #{v2k} = #{normalized_vectors[v1k].inner_product(normalized_vectors[v2k])}"
+    end
+
+    redirect_to admins_top_path
+
   end
 
   private

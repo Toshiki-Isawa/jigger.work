@@ -28,10 +28,10 @@ jQuery(function() {
 		loader.fadeOut();
 	});
 
-	//ページの読み込みが完了してなくても4秒後にアニメーションを非表示にする
+	//ページの読み込みが完了してなくても3秒後にアニメーションを非表示にする
 	setTimeout(function() {
 		loader.fadeOut();
-	},4000);
+	},3000);
 });
 
 // MyPage-Tabbutton

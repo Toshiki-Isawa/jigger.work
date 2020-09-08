@@ -66,7 +66,7 @@ footer {
 
 // Cocktails masonry
 .masonry {
-  columns: 5;
+  columns: 4;
   column-gap: 16px;
   @media (max-width: 1200px) {
     columns: 3;
@@ -175,7 +175,7 @@ footer {
   text-align: center;
   }
 
-  //  Loading-animation
+//  Loading-animation
 .loader-wrap {
   position: fixed;
   display: flex;
