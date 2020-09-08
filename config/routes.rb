@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   root 'public/homes#top'
+  get '/search' => 'search#search'
 
   # EndUser側ルーティング
   devise_scope :public do
