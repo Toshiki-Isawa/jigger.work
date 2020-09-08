@@ -10,4 +10,9 @@ class Admins::IngredientsController < ApplicationController
 
   def destroy
   end
+
+  def search
+    @ingredients = Ingredient.where(type_name: params[:name])
+    render 'admins/ingredients/index'
+  end
 end

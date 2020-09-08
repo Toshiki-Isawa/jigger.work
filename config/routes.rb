@@ -30,7 +30,9 @@ Rails.application.routes.draw do
       end
     end
     
-    resources :ingredients, only:[:index,:show]
+    resources :ingredients, only:[:index,:show] do
+      post :search, on: :collection
+    end
   end
 
   # Admin側ルーティング
@@ -55,7 +57,9 @@ Rails.application.routes.draw do
         post :search
       end
     end
-    resources :ingredients, only: [:index, :create, :destroy]
+    resources :ingredients, only: [:index, :create, :destroy] do
+      post :search, on: :collection
+    end
   end
     
 

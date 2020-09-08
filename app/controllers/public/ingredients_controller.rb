@@ -5,4 +5,9 @@ class Public::IngredientsController < ApplicationController
 
   def show
   end
+
+  def search
+    @ingredients = Ingredient.where(type_name: params[:name])
+    render 'public/ingredients/index'
+  end
 end

@@ -321,3 +321,27 @@ footer {
   }
 }
 // --------------------------------
+
+// 材料一覧ページ
+.ingredient-type-box {
+  height: 40xp;
+  line-height: 40px;
+}
+
+.ingredient-index {
+  overflow: hidden;
+  justify-content: space-around;
+  display: flex;
+  flex-wrap: wrap;
+}
+.ingredient-box {
+  height: 70px;
+  width: 200px;
+  font-size: 15px;
+  padding: 0.5em 1em;
+  margin: 2em 0;
+  color: #232323;
+  background: #f4f4f4;
+  border-left: solid 10px #5bb7ae;
+  text-decoration: none;
+}
