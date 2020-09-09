@@ -12,6 +12,20 @@ class Public::CocktailsController < ApplicationController
     if params[:search_key] == "base"
       @cocktails = Cocktail.where(base_name: params[:name])
       @page_title = "#{params[:name]}ベースの"
+    elsif params[:search_key] == "alcohol"
+      if params[:name] == "strong"
+        @cocktails = Cocktail.where(alcohol: 25..Float::INFINITY)
+        @page_title = "アルコール度数25%以上の"
+      elsif params[:name] == "normal"
+        @cocktails = Cocktail.where(alcohol: 10..25)
+        @page_title = "アルコール度数10%〜25%の"
+      elsif params[:name] == "weak"
+        @cocktails = Cocktail.where(alcohol: -Float::INFINITY..10)
+        @page_title = "アルコール度数10%〜25%の"
+      elsif params[:name] == "none"
+        @cocktails = Cocktail.where(alcohol: 0)
+        @page_title = "ノンアルコール"
+      end
     elsif params[:search_key] == "technique"
       @cocktails = Cocktail.where(technique_name: params[:name])
       @page_title = "#{params[:name]}"
