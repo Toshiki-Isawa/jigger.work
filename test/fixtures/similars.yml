@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  cocktail1: 1
+  cocktail2: 1
+  value: 1.5
+
+two:
+  cocktail1: 1
+  cocktail2: 1
+  value: 1.5
