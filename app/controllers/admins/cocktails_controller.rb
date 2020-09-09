@@ -144,7 +144,7 @@ class Admins::CocktailsController < ApplicationController
 
     # 組み合わせごとのコサイン類似度（ベクトルの内積）を出力
     normalized_vectors.keys.combination(2) do |v1k, v2k|
-      puts "cocktail_id:#{v1k}とcocktail_id:#{v2k}の類似度は#{normalized_vectors[v1k].inner_product(normalized_vectors[v2k])}"
+      # puts "cocktail_id:#{v1k}とcocktail_id:#{v2k}の類似度は#{normalized_vectors[v1k].inner_product(normalized_vectors[v2k])}"
       if similar_cocktail = Similar.find_by(cocktail1: v1k, cocktail2: v2k)
         similar_cocktail.value = normalized_vectors[v1k].inner_product(normalized_vectors[v2k])
         similar_cocktail.save
@@ -157,7 +157,7 @@ class Admins::CocktailsController < ApplicationController
       end
     end
 
-    flash[:notice] = "類似テーブルを更新しました。"
+    flash[:notice] = "SimilarTableを更新しました。"
     redirect_to admins_top_path
 
   end
