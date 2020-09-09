@@ -60,3 +60,26 @@
         = link_to  public_end_user_path(@cocktail.end_user_id)
           = attachment_image_tag @cocktail.end_user, :image, format: 'jpeg', class: "img-raised rounded-circle img-responsive", fallback: "no_image.png"
           h4 = @cocktail.end_user.name
+    
+    .row
+      .col-12
+        - if @similar_cocktails.presence
+          h4 似ているカクテル（類似度順：ユーザーのお気に入りデータを元に算出）
+          .row
+            - @similar_cocktails.each do |cocktail|
+              .col-4
+                = link_to public_cocktail_path(cocktail.id)
+                  .card.mb-3 style="max-width: 500px"
+                    .row.no-gutters
+                      .col-md-5
+                        - if cocktail.image_id.nil? || cocktail.image_id.exclude?("http")
+                          = attachment_image_tag cocktail, :image, fallback:"default.jpeg", class:"rounded card-img cocktail-img"
+                        - else
+                          img.cocktail-img src="#{cocktail.image_id}" alt="img" class="rounded card-img" width="130px" height="170px"
+                      .col-md-7
+                        .card-body
+                          h5.card-title = cocktail.name
+                          p.card-text = "Base:#{cocktail.base_name}"
+                          p.card-text = "Taste:#{cocktail.taste_name}"
+                          p.card-text = "Style:#{cocktail.style_name}"
+                          p.card-text = "Alcohol:#{cocktail.alcohol}%"

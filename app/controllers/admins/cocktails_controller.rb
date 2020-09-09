@@ -8,6 +8,16 @@ class Admins::CocktailsController < ApplicationController
   end
   
   def show
+    similar_table = Similar.where(cocktail1: @cocktail.id).or(Similar.where(cocktail2: @cocktail.id)).order("value DESC").limit(3).pluck(:cocktail1,:cocktail2)
+    @similar_cocktails = []
+    similar_table.each do |ids|
+      ids.each do |id|
+        unless id == @cocktail.id
+          similar_cocktail = Cocktail.find(id)
+          @similar_cocktails.push(similar_cocktail)
+        end
+      end
+    end
   end
 
   def new
@@ -109,7 +119,7 @@ class Admins::CocktailsController < ApplicationController
   end
 
   def similar_cocktail
-    # Favoriteテーブルからマトリクスを作成
+    # Favoriteテーブルから各カクテル毎の集団ベクトルマトリクスを作成
     cocktails = Cocktail.find(Favorite.group(:cocktail_id).pluck(:cocktail_id))
     favorite_matrix = {}
     cocktails.each do |cocktail|
@@ -123,19 +133,31 @@ class Admins::CocktailsController < ApplicationController
           end
         end
       end
-      favorite_matrix.store("#{cocktail.name}", cocktail_id)
+      favorite_matrix.store("#{cocktail.id}", cocktail_id)
     end
 
+    # favorite_matrixテーブルを正規化
     normalized_vectors = {}
     favorite_matrix.each do |gk, gv|
       normalized_vectors[gk] = Vector.elements(gv).normalize
     end
 
-    # 組み合わせごとのコサイン類似度を出力
+    # 組み合わせごとのコサイン類似度（ベクトルの内積）を出力
     normalized_vectors.keys.combination(2) do |v1k, v2k|
-      puts "#{v1k} - #{v2k} = #{normalized_vectors[v1k].inner_product(normalized_vectors[v2k])}"
+      puts "cocktail_id:#{v1k}とcocktail_id:#{v2k}の類似度は#{normalized_vectors[v1k].inner_product(normalized_vectors[v2k])}"
+      if similar_cocktail = Similar.find_by(cocktail1: v1k, cocktail2: v2k)
+        similar_cocktail.value = normalized_vectors[v1k].inner_product(normalized_vectors[v2k])
+        similar_cocktail.save
+      else
+        similar_cocktail = Similar.new
+        similar_cocktail.cocktail1 = v1k
+        similar_cocktail.cocktail2 = v2k
+        similar_cocktail.value = normalized_vectors[v1k].inner_product(normalized_vectors[v2k])
+        similar_cocktail.save
+      end
     end
 
+    flash[:notice] = "類似テーブルを更新しました。"
     redirect_to admins_top_path
 
   end

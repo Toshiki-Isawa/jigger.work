@@ -33,8 +33,7 @@
           th = @cocktail.tpo_name
     .row
       .col-9
-        h2
-          | How to Make
+        h2 How to Make
         h4
           br
           = @cocktail.recipe_desc
@@ -57,3 +56,26 @@
         = link_to  admins_end_user_path(@cocktail.end_user_id)
           = attachment_image_tag @cocktail.end_user, :image, format: 'jpeg', class: "img-raised rounded-circle img-responsive", fallback: "no_image.png"
           h4 = @cocktail.end_user.name
+
+    .row
+      .col-10
+        - if @similar_cocktails.presence
+          h4 似ているカクテル（類似度順）
+          table.table
+            thead
+              tr
+                th Name
+                th Base
+                th Taste
+                th Style
+                th Alcohol
+            tbody
+              - @similar_cocktails.each do |cocktail|
+                tr
+                  th = link_to cocktail.name, admins_cocktail_path(cocktail.id)
+                  th = cocktail.base_name
+                  th = cocktail.taste_name
+                  th = cocktail.style_name
+                  th
+                    = cocktail.alcohol
+                    | %

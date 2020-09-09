@@ -36,6 +36,16 @@ class Public::CocktailsController < ApplicationController
   end
 
   def show
+    similar_table = Similar.where(cocktail1: @cocktail.id).or(Similar.where(cocktail2: @cocktail.id)).order("value DESC").limit(3).pluck(:cocktail1,:cocktail2)
+    @similar_cocktails = []
+    similar_table.each do |ids|
+      ids.each do |id|
+        unless id == @cocktail.id
+          similar_cocktail = Cocktail.find(id)
+          @similar_cocktails.push(similar_cocktail)
+        end
+      end
+    end
   end
 
   def new
