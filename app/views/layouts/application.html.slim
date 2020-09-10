@@ -23,20 +23,26 @@ html
           #navbarNavDropdown.collapse.navbar-collapse
             ul.navbar-nav
               - if admin_signed_in?
-                li.nav-item = link_to 'TOP', admins_top_path
-                li.nav-item = link_to admins_cocktails_path
-                  i.fas.fa-cocktail  カクテル一覧
-                li.nav-item = link_to admins_ingredients_path
-                  i.fas.fa-grip-horizontal  材料一覧
-                li.nav-item = link_to admins_end_users_path
-                  i.fas.fa-users  ユーザー一覧
+                li.nav-item = link_to 'TOP', admins_top_path, class:"nav-link btn btn-link"
+                li.nav-item = link_to admins_cocktails_path, class:"nav-link btn btn-link"
+                  i.fas.fa-cocktail.fa-2x
+                  |  カクテル一覧
+                li.nav-item = link_to admins_ingredients_path, class:"nav-link btn btn-link"
+                  i.fas.fa-grip-horizontal.fa-2x
+                  |  材料一覧
+                li.nav-item = link_to admins_end_users_path, class:"nav-link btn btn-link"
+                  i.fas.fa-users.fa-2x
+                  |  ユーザー一覧
               - else
-                li.nav-item = link_to public_terms_path
-                  i.fas.fa-book  カクテル用語一覧
-                li.nav-item = link_to  public_cocktails_path
-                  i.fas.fa-cocktail  カクテル一覧
-                li.nav-item = link_to public_ingredients_path
-                  i.fas.fa-grip-horizontal  材料一覧
+                li.nav-item = link_to public_terms_path, class:"nav-link btn btn-link"
+                  i.fas.fa-book.fa-lg
+                  |  カクテル用語一覧
+                li.nav-item = link_to  public_cocktails_path, class:"nav-link btn btn-link"
+                  i.fas.fa-cocktail.fa-lg
+                  |  カクテル一覧
+                li.nav-item = link_to public_ingredients_path, class:"nav-link btn btn-link"
+                  i.fas.fa-grip-horizontal.fa-lg
+                  |  材料一覧
 
             
             ul.navbar-nav.navbar-right
@@ -59,6 +65,9 @@ html
                 = f.button :type => "submit", class:"btn btn-white btn-raised btn-fab btn-round"
                   = icon('fas', 'search')
 
+        = link_to contacts_path, class:"btn btn-white btn-raised btn-fab btn-round contact-icon"
+          = icon('fas', 'envelope')
+
     - if flash.any?
       - flash.each do |key,value|
         - key = "success" if key == "notice"
@@ -72,5 +81,6 @@ html
     
       footer
         p.text-center 2020 Jigger.work
+        / = link_to "お問い合わせはこちら", contacts_path, class:"btn btn-info contact-path"
     
     script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"
