@@ -26,4 +26,12 @@ class EndUser < ApplicationRecord
   def inactive_message
     "このアカウントは退会されています"
   end
+
+  def self.guest
+    find_or_create_by!(email: 'guest@example.com') do |end_user|
+      end_user.password = SecureRandom.urlsafe_base64
+      end_user.name = 'Guest'
+      end_user.birth_date = '1990-01-01'
+    end
+  end
 end

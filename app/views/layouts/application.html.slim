@@ -25,13 +25,13 @@ html
               - if admin_signed_in?
                 li.nav-item = link_to 'TOP', admins_top_path, class:"nav-link btn btn-link"
                 li.nav-item = link_to admins_cocktails_path, class:"nav-link btn btn-link"
-                  i.fas.fa-cocktail.fa-2x
+                  i.fas.fa-cocktail.fa-lg
                   |  カクテル一覧
                 li.nav-item = link_to admins_ingredients_path, class:"nav-link btn btn-link"
-                  i.fas.fa-grip-horizontal.fa-2x
+                  i.fas.fa-grip-horizontal.fa-lg
                   |  材料一覧
                 li.nav-item = link_to admins_end_users_path, class:"nav-link btn btn-link"
-                  i.fas.fa-users.fa-2x
+                  i.fas.fa-users.fa-lg
                   |  ユーザー一覧
               - else
                 li.nav-item = link_to public_terms_path, class:"nav-link btn btn-link"
@@ -57,6 +57,7 @@ html
               - elsif admin_signed_in?
                 li.nav-item = link_to 'ログアウト', destroy_admin_session_path, method: :delete
               - else
+                .nav-item = link_to 'ゲストログイン(閲覧用)',  guest_sign_in_path, method: :post
                 .nav-item = link_to 'ログイン', new_end_user_session_path
                 .nav-item = link_to '新規登録', new_end_user_registration_path
 

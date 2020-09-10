@@ -1,5 +1,6 @@
 class Public::EndUsersController < ApplicationController
   before_action :set_end_user
+  before_action :check_guest, only: [:update,:withdraw]
 
   def show
     @user = EndUser.find(params[:id])
@@ -20,12 +21,18 @@ class Public::EndUsersController < ApplicationController
     end  
   end
 
-
   def withdraw
     @end_user.update(is_active: false)
     reset_session
     flash[:notice] = "ご利用ありがとうございました。"
     redirect_to public_end_user_top_path
+  end
+
+  def check_guest
+    if @end_user.email == 'guest@example.com'
+      redirect_to root_path
+      flash[:alert] = 'ゲストユーザーの変更・退会はできません。'
+    end
   end
 
   private

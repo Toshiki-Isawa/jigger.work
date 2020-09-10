@@ -24,4 +24,11 @@ class Public::Devise::SessionsController < Devise::SessionsController
   # def configure_sign_in_params
   #   devise_parameter_sanitizer.permit(:sign_in, keys: [:attribute])
   # end
+
+  def new_guest
+    end_user = EndUser.guest
+    sign_in end_user
+    redirect_to root_path
+    flash[:notice] = "ゲストユーザーとしてログインしました。"
+  end
 end
