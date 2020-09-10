@@ -5,12 +5,13 @@ Rails.application.routes.draw do
   post 'contacts' => 'contacts#create'
   
   # Public側ルーティング
-  devise_scope :public do
-    devise_for :end_users, controllers: {
-      registrations: 'public/devise/registrations',
-      passwords:'public/devise/passwords',
-      sessions:'public/devise/sessions',
-    }
+  devise_for :end_users, controllers: {
+    registrations: 'public/devise/registrations',
+    passwords:'public/devise/passwords',
+    sessions:'public/devise/sessions',
+  }
+  devise_scope :end_user do
+    post 'guest_sign_in' => 'public/devise/sessions#new_guest'
   end
 
   namespace :public do
@@ -26,9 +27,7 @@ Rails.application.routes.draw do
     
     resources :cocktails do
       resource :favorites, only: [:create, :destroy]
-      collection do
-        post :search
-      end
+      post :search, on: :collection
     end
     
     resources :ingredients, only:[:index,:show] do
@@ -64,7 +63,5 @@ Rails.application.routes.draw do
     end
   end
     
-
-
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

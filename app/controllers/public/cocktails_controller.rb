@@ -80,7 +80,7 @@ class Public::CocktailsController < ApplicationController
 
     if @cocktail.save
       flash[:notice] = "レシピを投稿しました"
-      redirect_to public_end_users_path
+      redirect_to public_end_user_path
     else
       render 'new'
     end
@@ -90,7 +90,7 @@ class Public::CocktailsController < ApplicationController
     @cocktail.ingredient_relations.destroy_all
     if @cocktail.update(cocktail_params)
       flash[:notice] = "カクテル情報を変更しました"
-      redirect_to public_end_users_path
+      redirect_to public_end_user_path
     else
       render :edit
     end
