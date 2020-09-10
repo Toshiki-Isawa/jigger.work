@@ -1,0 +1,18 @@
+.container
+  .card style="width: 60rem;"
+    .card-header.card-header-success
+      h3.card-title.text-center お問い合わせ
+    .card-body
+      = form_with model:@contact, url: contacts_path do |f|
+
+        = render 'shared/error_messages', model: f.object
+          
+        .form-group
+          strong メールアドレス
+          = f.text_field :email, placeholder: "30文字以内", class:"form-control"
+
+        .form-group
+          strong 内容
+          = f.text_area :message, placeholder: "200文字以内", class:"form-control"
+
+        = f.submit '送信する', class:"btn btn-info btn-round"

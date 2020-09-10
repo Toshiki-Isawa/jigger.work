@@ -1,7 +1,9 @@
 Rails.application.routes.draw do
   root 'public/homes#top'
   get '/search' => 'search#search'
-
+  get 'contacts' => 'contacts#new'
+  post 'contacts' => 'contacts#create'
+  
   # Public側ルーティング
   devise_scope :public do
     devise_for :end_users, controllers: {
