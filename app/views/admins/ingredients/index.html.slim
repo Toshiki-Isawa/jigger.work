@@ -1,0 +1,12 @@
+.row.justify-content-center
+  .col-10
+    .navbar.ingredient-type-box
+      ul.nav
+        li 絞り込み：
+        li = link_to "全て", admins_ingredients_path, class:"nav-item nav-link btn btn-secondary"
+        - Ingredient.type_names.keys.each do |type_name|
+          li = link_to "#{type_name}", search_admins_ingredients_path(:name => type_name), method: :post, class:"nav-item nav-link btn btn-secondary"
+    
+    .ingredient-index
+      - @ingredients.each do |ingredient|
+          = link_to ingredient.name, search_admins_cocktails_path(:name => "#{ingredient.name}", :search_key => "ingredient"), method: :post, class:"ingredient-box img-raised"

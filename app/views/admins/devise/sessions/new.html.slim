@@ -1,0 +1,18 @@
+.section.section-signup
+  .row
+    .col-lg-5.mx-auto
+      .card.card-login
+        .form
+          .card-header.card-header-primary.text-center
+            h4.card-title Login
+          .card-body
+            = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
+              = render 'shared/error_messages', model: f.object
+              .form-group
+                = f.label :name, "管理者Name"
+                = f.text_field :name, autofocus: true, autocomplete: 'name', class: 'form-control'
+              .form-group
+                = f.label :password, "パスワード"
+                = f.password_field :password, autocomplete: 'current-password', class: 'form-control'
+              .form-group
+                = f.submit "sign in", class: 'btn btn-primary'

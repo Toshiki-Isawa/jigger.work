@@ -12,4 +12,10 @@
  *
  *= require_tree .
  *= require_self
+ *= require toastr
  */
+
+ @import 'bootstrap-sprockets';
+ @import 'bootstrap';
+ @import "font-awesome-sprockets";
+ @import "font-awesome";

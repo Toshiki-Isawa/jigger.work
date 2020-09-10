@@ -1,0 +1,29 @@
+.row.justify-content-center
+  .col-10
+    h1
+      | ユーザー一覧
+
+    table.table
+      thead
+        tr
+          th 
+          th ユーザー名
+          th メールアドレス
+          th 誕生日
+          th 投稿レシピ数
+          th ステータス
+      tbody
+        - @end_users.each do |end_user|
+          tr
+            th = attachment_image_tag end_user, :image, format: 'jpeg', class: "img-raised rounded-circle img-responsive", fallback: "no_image.png", size: "50x50"
+            th = link_to end_user.name, admins_end_user_path(end_user.id)
+            th = end_user.email
+            th = end_user.birth_date
+            th = end_user.cocktails.size
+            th
+              - if end_user.is_active
+                | 有効
+                = link_to "BAN", withdraw_admins_end_user_path(end_user.id), method: :patch, class:"btn btn-danger", data:{confirm:'本当に凍結しますか？'}
+              - else
+                | 退会済み
+                = link_to "復帰", unfreeze_admins_end_user_path(end_user.id), method: :patch, class:"btn btn-success", data:{confirm:'本当に復帰しますか？'}

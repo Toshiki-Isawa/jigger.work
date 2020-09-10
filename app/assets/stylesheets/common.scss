@@ -1,0 +1,445 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+html,body {
+  height: 100vh;
+}
+
+main {
+  min-height: 100%;
+  width: 100vw;
+  padding-top: 70px;
+  padding-bottom: 60px;
+  position: relative;
+}
+
+.wrapper {
+  max-width: 100vw;
+}
+
+// main-visual
+.top-content {
+  margin-top: -70px;
+  z-index: -999;
+}
+.top-img{
+  height: 100vh;
+	width :100vw;
+  object-fit: cover;
+}
+.top-content h4 {
+  position: absolute;
+  color: white;
+  top: 40%;
+  left: 50%;
+  -ms-transform: translate(-50%,-50%);
+  -webkit-transform: translate(-50%,-50%);
+  transform: translate(-50%,-50%);
+  line-height: 100px;
+  font-family: 'Economica', sans-serif;
+  font-size: 70px;
+  text-shadow: 2px 8px 6px rgba(0,0,0,0.2),
+               0px -5px 16px rgba(255,255,255,0.3);
+  box-shadow: 0 0 8px gray;
+  width: 300px;
+}
+.top-content p {
+  position: absolute;
+  color: white;
+  top: 55%;
+  left: 50%;
+  -ms-transform: translate(-50%,-50%);
+  -webkit-transform: translate(-50%,-50%);
+  transform: translate(-50%,-50%);
+  font-weight: bold;
+  font-family: "Sawarabi Mincho";
+  text-shadow: 2px 8px 6px rgba(0,0,0,0.2),
+               0px -5px 16px rgba(255,255,255,0.3);
+}
+
+// 以下を入れるとtopページ右の余白が消える
+.wrapper button {
+  top: 120%;
+  left: 50%;
+}
+
+// ヘッダー
+.nav-item {
+  padding: 0 10px;
+  font-size: 10px;
+}
+.contact-icon {
+  position: absolute;
+  right: 20px;
+}
+
+footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 80px;
+  line-height: 70px;
+}
+
+.contact-path {
+  position: absolute;
+  top: -30%;
+  left: 40%
+}
+
+.cocktail-img {
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+.profile-page {
+  margin-top: 170px;
+}
+
+.radio-vertical {
+  display: block;
+}
+
+.sidebar {
+  border-right: 1px solid rgba(0,0,0,.1);
+  position: sticky;
+  top: 70px;
+  bottom: 50px;
+  margin-left: 20px;
+  max-height: calc(100vh - 10rem);
+  overflow-y: scroll;
+  line-height: 1em;
+}
+
+.mytabs {
+  width: 70%;
+  margin: 10px auto;
+  position: relative;
+}
+
+// Cocktails masonry
+.masonry {
+  columns: 4;
+  column-gap: 16px;
+  @media (max-width: 1200px) {
+    columns: 3;
+  }
+  @media (max-width: 992px) {
+    columns: 2;
+  }
+  @media (max-width: 768px) {columns: 1;}
+  .grid {
+    display: inline-block;
+    margin-bottom: 16px;
+    position: relative;
+    &:before {
+      border-radius: 5px;
+      content:'';
+      position:absolute;
+      top:0;
+      right:0;
+      bottom:0;
+      left:0;
+      background-color:rgba(0,0,0,.1);
+    }
+    img {
+      width: 100%;
+      border-radius: 5px;
+    }
+    &__title {
+      font-size: 20px;
+      font-weight:bold;
+      color: white;
+      margin: 10px 0px 10px 10px;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      overflow: hidden;
+      background-color: rgba(0,0,0,.3);
+      border-radius: 5px;
+      padding: 5px;
+    }
+    &__author {
+      font-size: 16px;
+      font-weight:300;
+      margin-left: 10px;
+      color: white;
+    }
+    &__link {
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 0;
+      bottom: 0;
+      text-decoration: none;
+    }
+    &__body {
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 0;
+      bottom: 0;
+      padding: 30px 30px;
+      color: #fff;
+      display: flex;
+      flex-direction: column
+    }
+    &__tag {
+      background-color:rgba(255,255,255,.6);
+      color: #333;
+      border-radius:5px;
+      padding: 5px 15px;
+      margin-bottom: 5px;
+    }
+  }
+}
+.mt-auto {
+  margin-top:auto;
+}
+
+// Page-top button
+#page_top{
+  width: 40px;
+  height: 40px;
+  position: fixed;
+  right: 0;
+  bottom: 10px;
+  background: #616161;
+  opacity: 0.6;
+  }
+  #page_top a{
+  position: relative;
+  display: block;
+  width: 40px;
+  height: 40px;
+  text-decoration: none;
+  }
+  
+  #page_top a::after{
+  content: '▲';
+  font-size: 14px;
+  font-weight: bold;
+  color: #fff;
+  position: absolute;
+  top: 10px;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  margin: auto;
+  text-align: center;
+  }
+
+//  Loading-animation
+.loader-wrap {
+  position: fixed;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  background: #fff;
+  top: 0;
+  left: 0;
+  z-index: 9999;
+}
+
+.breeding-rhombus-spinner {
+  height: 65px;
+  width: 65px;
+  position: relative;
+  transform: rotate(45deg);
+}
+
+.breeding-rhombus-spinner, .breeding-rhombus-spinner * {
+  box-sizing: border-box;
+}
+
+.breeding-rhombus-spinner .rhombus {
+  height: calc(65px / 7.5);
+  width: calc(65px / 7.5);
+  animation-duration: 2000ms;
+  top: calc(65px / 2.3077);
+  left: calc(65px / 2.3077);
+  background-color: #ff1d5e;
+  position: absolute;
+  animation-iteration-count: infinite;
+}
+
+.breeding-rhombus-spinner .rhombus:nth-child(2n+0) {
+   margin-right: 0;
+ }
+
+.breeding-rhombus-spinner .rhombus.child-1 {
+  animation-name: breeding-rhombus-spinner-animation-child-1;
+  animation-delay: calc(100ms * 1);
+}
+
+.breeding-rhombus-spinner .rhombus.child-2 {
+  animation-name: breeding-rhombus-spinner-animation-child-2;
+  animation-delay: calc(100ms * 2);
+}
+
+.breeding-rhombus-spinner .rhombus.child-3 {
+  animation-name: breeding-rhombus-spinner-animation-child-3;
+  animation-delay: calc(100ms * 3);
+}
+
+.breeding-rhombus-spinner .rhombus.child-4 {
+  animation-name: breeding-rhombus-spinner-animation-child-4;
+  animation-delay: calc(100ms * 4);
+}
+
+.breeding-rhombus-spinner .rhombus.child-5 {
+  animation-name: breeding-rhombus-spinner-animation-child-5;
+  animation-delay: calc(100ms * 5);
+}
+
+.breeding-rhombus-spinner .rhombus.child-6 {
+  animation-name: breeding-rhombus-spinner-animation-child-6;
+  animation-delay: calc(100ms * 6);
+}
+
+.breeding-rhombus-spinner .rhombus.child-7 {
+  animation-name: breeding-rhombus-spinner-animation-child-7;
+  animation-delay: calc(100ms * 7);
+}
+
+.breeding-rhombus-spinner .rhombus.child-8 {
+  animation-name: breeding-rhombus-spinner-animation-child-8;
+  animation-delay: calc(100ms * 8);
+}
+
+.breeding-rhombus-spinner .rhombus.big {
+  height: calc(65px / 3);
+  width: calc(65px / 3);
+  animation-duration: 2000ms;
+  top: calc(65px / 3);
+  left: calc(65px / 3);
+  background-color: #ff1d5e;
+  animation: breeding-rhombus-spinner-animation-child-big 2s infinite;
+  animation-delay: 0.5s;
+}
+
+
+@keyframes breeding-rhombus-spinner-animation-child-1 {
+  50% {
+    transform: translate(-325%, -325%);
+  }
+}
+
+@keyframes breeding-rhombus-spinner-animation-child-2 {
+  50% {
+    transform: translate(0, -325%);
+  }
+}
+
+@keyframes breeding-rhombus-spinner-animation-child-3 {
+  50% {
+    transform: translate(325%, -325%);
+  }
+}
+
+@keyframes breeding-rhombus-spinner-animation-child-4 {
+  50% {
+    transform: translate(325%, 0);
+  }
+}
+
+@keyframes breeding-rhombus-spinner-animation-child-5 {
+  50% {
+    transform: translate(325%, 325%);
+  }
+}
+
+@keyframes breeding-rhombus-spinner-animation-child-6 {
+  50% {
+    transform: translate(0, 325%);
+  }
+}
+
+@keyframes breeding-rhombus-spinner-animation-child-7 {
+  50% {
+    transform: translate(-325%, 325%);
+  }
+}
+
+@keyframes breeding-rhombus-spinner-animation-child-8 {
+  50% {
+    transform: translate(-325%, 0);
+  }
+}
+
+@keyframes breeding-rhombus-spinner-animation-child-big {
+  50% {
+    transform: scale(0.5);
+  }
+}
+// --------------------------------
+
+// 材料一覧ページ
+.ingredient-type-box {
+  height: 40xp;
+  line-height: 40px;
+  font-size: 18px;
+}
+
+.ingredient-index {
+  overflow: hidden;
+  justify-content: space-around;
+  display: flex;
+  flex-wrap: wrap;
+}
+.ingredient-box {
+  height: 70px;
+  width: 200px;
+  font-size: 15px;
+  padding: 0.5em 1em;
+  margin: 2em 0;
+  color: #232323;
+  background: #f4f4f4;
+  border-left: solid 10px #5bb7ae;
+  text-decoration: none;
+}
+
+// 用語一覧ページ
+.term-page-header {
+  height: 200px;
+  background: linear-gradient( 135deg, rgba(25, 26, 25, 0.5), rgba(255, 253, 254, 0)), url("https://images.unsplash.com/photo-1519170644683-24494cb5fe63?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1650&q=80");
+  background-size: cover;
+}
+
+.term-content {
+  margin: 0 auto;
+}
+
+.term-title {
+  color: #333333;
+}
+.term-title:first-letter {
+  font-size: 2em;
+  color: #393939;
+}
+
+.term-name {
+  position: relative;
+  display: inline-block;
+  padding: 0 55px;
+}
+
+.term-name:before, .term-name:after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  display: inline-block;
+  width: 45px;
+  height: 1px;
+  background-color: black;
+}
+
+.term-name:before {
+  left:0;
+}
+.term-name:after {
+  right: 0;
+}

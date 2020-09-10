@@ -1,0 +1,9 @@
+- if end_user_signed_in?
+  - if cocktail.favorited_by?(current_end_user)
+    = link_to public_cocktail_favorites_path(cocktail), method: :delete, remote: true
+      .btn.btn-danger
+        i.fas.fa-paprclip お気に入り済み
+  - else
+    = link_to public_cocktail_favorites_path(cocktail), method: :post, remote: true
+      .btn.btn-light
+        i.fas.fa-paperclip お気に入り登録

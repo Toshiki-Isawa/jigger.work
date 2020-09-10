@@ -1,0 +1,81 @@
+.row.justify-content-center
+  .col-lg-3
+    h3 = @cocktail.name
+    p = @cocktail.cocktail_desc
+    h4
+      = link_to "edit", edit_admins_cocktail_path(@cocktail.id), class:"btn btn-info"
+      = link_to "delete", admins_cocktail_path(@cocktail.id), method: :delete,class:"btn btn-danger"
+
+    - if @cocktail.image_id.nil? || @cocktail.image_id.exclude?("http")
+      = attachment_image_tag @cocktail, :image, fallback:"default.jpeg", width:"350",height:"400", class:"img-raised rounded cocktail-img"
+    - else
+      img.cocktail-img src="#{@cocktail.image_id}" alt="img" width="350" height="400" class="img-raised rounded cocktail-img"
+
+  .col-lg-7
+    table.table
+      thead
+        tr
+          th Base
+          th Technique
+          th Taste
+          th Style
+          th Alcohol
+          th TPO
+      tobody
+        tr
+          th = @cocktail.base_name
+          th = @cocktail.technique_name
+          th = @cocktail.taste_name
+          th = @cocktail.style_name
+          th
+           = @cocktail.alcohol
+           | %
+          th = @cocktail.tpo_name
+    .row
+      .col-9
+        h2 How to Make
+        h4
+          br
+          = @cocktail.recipe_desc
+        h3 Recipe
+        table.table
+          thead
+            tr
+              th 材料
+              th 量
+              th 単位
+          tbody
+            - @cocktail.ingredient_relations.each do |recipe|
+              tr
+                th = recipe.ingredient.name
+                th = recipe.amount
+                th = recipe.unit
+
+      .col-3.text-center
+        h3 投稿者
+        = link_to  admins_end_user_path(@cocktail.end_user_id)
+          = attachment_image_tag @cocktail.end_user, :image, format: 'jpeg', class: "img-raised rounded-circle img-responsive", fallback: "no_image.png"
+          h4 = @cocktail.end_user.name
+
+    .row
+      .col-10
+        - if @similar_cocktails.presence
+          h4 似ているカクテル（類似度順）
+          table.table
+            thead
+              tr
+                th Name
+                th Base
+                th Taste
+                th Style
+                th Alcohol
+            tbody
+              - @similar_cocktails.each do |cocktail|
+                tr
+                  th = link_to cocktail.name, admins_cocktail_path(cocktail.id)
+                  th = cocktail.base_name
+                  th = cocktail.taste_name
+                  th = cocktail.style_name
+                  th
+                    = cocktail.alcohol
+                    | %

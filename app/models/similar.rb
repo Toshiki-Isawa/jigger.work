@@ -1,0 +1,2 @@
+class Similar < ApplicationRecord
+end
