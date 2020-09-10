@@ -381,6 +381,7 @@ footer {
 .ingredient-type-box {
   height: 40xp;
   line-height: 40px;
+  font-size: 18px;
 }
 
 .ingredient-index {
@@ -399,4 +400,46 @@ footer {
   background: #f4f4f4;
   border-left: solid 10px #5bb7ae;
   text-decoration: none;
+}
+
+// 用語一覧ページ
+.term-page-header {
+  height: 200px;
+  background: linear-gradient( 135deg, rgba(25, 26, 25, 0.5), rgba(255, 253, 254, 0)), url("https://images.unsplash.com/photo-1519170644683-24494cb5fe63?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1650&q=80");
+  background-size: cover;
+}
+
+.term-content {
+  margin: 0 auto;
+}
+
+.term-title {
+  color: #333333;
+}
+.term-title:first-letter {
+  font-size: 2em;
+  color: #393939;
+}
+
+.term-name {
+  position: relative;
+  display: inline-block;
+  padding: 0 55px;
+}
+
+.term-name:before, .term-name:after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  display: inline-block;
+  width: 45px;
+  height: 1px;
+  background-color: black;
+}
+
+.term-name:before {
+  left:0;
+}
+.term-name:after {
+  right: 0;
 }
