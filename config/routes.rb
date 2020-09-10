@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   root 'public/homes#top'
   get '/search' => 'search#search'
 
-  # EndUser側ルーティング
+  # Public側ルーティング
   devise_scope :public do
     devise_for :end_users, controllers: {
       registrations: 'public/devise/registrations',
@@ -11,11 +11,9 @@ Rails.application.routes.draw do
     }
   end
 
-
   namespace :public do
-    get 'homes/top' => 'homes#top', as: 'end_user_top'
-    get 'homes/about' => 'homes#about', as: 'end_user_about'
-    get 'homes/terms' => 'homes#terms', as: 'end_user_terms'
+    get 'homes/top' => 'homes#top', as: 'top'
+    get 'homes/terms' => 'homes#terms', as: 'terms'
     
     resources :end_users, only:[:edit,:show,:update] do
       member do
