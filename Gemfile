@@ -78,3 +78,7 @@ gem 'slim-rails'
 gem 'html2slim'
 gem 'cocoon'
 gem 'kaminari'
+
+group :production do
+  gem 'mysql2'
+end
