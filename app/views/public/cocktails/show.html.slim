@@ -1,85 +1,84 @@
-.row.justify-content-center
-  .col-lg-3
-    h3 = @cocktail.name
-    p = @cocktail.cocktail_desc
-    - if end_user_signed_in? && @cocktail.end_user_id == current_end_user.id
-      = link_to "edit", edit_public_cocktail_path(@cocktail.id), class:"btn btn-info"
-      = link_to "delete", public_cocktail_path(@cocktail.id), method: :delete,class:"btn btn-danger", data:{confirm:'本当に削除しますか？'}
+.card.card-content style="width: 95%;"
+  .row.justify-content-center
+    .col-lg-3.cocktail-show
+      h3.parenthses = @cocktail.name
+      p.blockquote = @cocktail.cocktail_desc
 
-    - if @cocktail.image_id.nil? || @cocktail.image_id.exclude?("http")
-      = attachment_image_tag @cocktail, :image, fallback:"default.jpeg", width:"350",height:"400", class:"img-raised rounded cocktail-img"
-    - else
-      img.cocktail-img src="#{@cocktail.image_id}" alt="img" width="350" height="400" class="img-raised rounded cocktail-img"
+      - if @cocktail.image_id.nil? || @cocktail.image_id.exclude?("http")
+        = attachment_image_tag @cocktail, :image, fallback:"default.jpeg", width:"300",height:"400", class:"img-raised rounded cocktail-img"
+      - else
+        img.cocktail-img src="#{@cocktail.image_id}" alt="img" width="300" height="400" class="img-raised rounded cocktail-img"
 
-    div id="favorites_buttons_#{@cocktail.id}"
-      = render partial: "public/favorites/favorite", locals: { cocktail: @cocktail}
+      div id="favorites_buttons_#{@cocktail.id}"
+        = render partial: "public/favorites/favorite", locals: { cocktail: @cocktail}
 
-  .col-lg-7
-    table.table
-      thead
-        tr
-          th Base
-          th Technique
-          th Taste
-          th Style
-          th Alcohol
-          th TPO
-      tobody
-        tr
-          th = @cocktail.base_name
-          th = @cocktail.technique_name
-          th = @cocktail.taste_name
-          th = @cocktail.style_name
-          th
-           = @cocktail.alcohol
-           |  %
-          th = @cocktail.tpo_name
+    .col-lg-8
+      table.table
+        thead
+          tr
+            th Base
+            th Technique
+            th Taste
+            th Style
+            th Alcohol
+            th TPO
+        tobody
+          tr
+            th = @cocktail.base_name
+            th = @cocktail.technique_name
+            th = @cocktail.taste_name
+            th = @cocktail.style_name
+            th
+              = @cocktail.alcohol
+              |  %
+            th = @cocktail.tpo_name
 
-    .row
-      .col-9
-        h2 How to Make
-        h4
+      .row
+        .col-9
+          h3.name-title How to Make
+          h4.blockquote = @cocktail.recipe_desc
           br
-          = @cocktail.recipe_desc
-        br
-        table.table
-          thead
-            tr
-              th 材料
-              th 量
-              th 単位
-          tbody
-          - @cocktail.ingredient_relations.each do |recipe|
-            tr
-              th = recipe.ingredient.name
-              th = recipe.amount
-              th = recipe.unit
+          table.table
+            thead
+              tr
+                th 材料
+                th 量
+                th 単位
+            tbody
+            - @cocktail.ingredient_relations.each do |recipe|
+              tr
+                th = recipe.ingredient.name
+                th = recipe.amount
+                th = recipe.unit
 
-      .col-3.text-center
-        h3 投稿者
-        = link_to  public_end_user_path(@cocktail.end_user_id)
-          = attachment_image_tag @cocktail.end_user, :image, format: 'jpeg', class: "img-raised rounded-circle img-responsive", fallback: "no_image.png"
-          h4 = @cocktail.end_user.name
-    
-    .row
-      .col-12
-        - if @similar_cocktails.presence
-          h4 似ているカクテル（類似度順：ユーザーのお気に入りデータを元に算出）
-          .row
-            - @similar_cocktails.each do |cocktail|
-              .col-4
-                = link_to public_cocktail_path(cocktail.id)
-                  .card.mb-3 style="max-width: 500px"
-                    .row.no-gutters
-                      .col-md-5
-                        - if cocktail.image_id.nil? || cocktail.image_id.exclude?("http")
-                          = attachment_image_tag cocktail, :image, fallback:"default.jpeg", class:"rounded card-img cocktail-img"
-                        - else
-                          img.cocktail-img src="#{cocktail.image_id}" alt="img" class="rounded card-img" width="130px" height="170px"
-                      .col-md-7
-                        .card-body
-                          h5.card-title = cocktail.name
-                          p.card-text = "Base:#{cocktail.base_name}"
-                          p.card-text = "Taste:#{cocktail.taste_name}"
-                          p.card-text = "Style:#{cocktail.style_name}"
-                          p.card-text = "Alcohol:#{cocktail.alcohol}%"
+        .col-3.text-center
+          h3 投稿者
+          = link_to  public_end_user_path(@cocktail.end_user_id)
+            = attachment_image_tag @cocktail.end_user, :image, format: 'jpeg', class: "img-raised rounded-circle img-responsive", fallback: "no_image.png"
+            h4 = @cocktail.end_user.name
+          - if end_user_signed_in? && @cocktail.end_user_id == current_end_user.id
+            = link_to "レシピ編集", edit_public_cocktail_path(@cocktail.id), class:"btn btn-info"
+            = link_to "レシピ削除", public_cocktail_path(@cocktail.id), method: :delete,class:"btn btn-danger", data:{confirm:'本当に削除しますか？'}
+      
+      .row
+        .col-12
+          - if @similar_cocktails.presence
+            h4 おすすめの類似レシピ
+            .row
+              - @similar_cocktails.each do |cocktail|
+                .col-4
+                  = link_to public_cocktail_path(cocktail.id)
+                    .card.mb-3 style="max-width: 500px"
+                      .row.no-gutters
+                        .col-md-5
+                          - if cocktail.image_id.nil? || cocktail.image_id.exclude?("http")
+                            = attachment_image_tag cocktail, :image, fallback:"default.jpeg", class:"rounded card-img"
+                          - else
+                            img src="#{cocktail.image_id}" alt="img" class="rounded card-img" width="130px" height="170px"
+                        .col-md-7
+                          .card-body
+                            h5.card-title = cocktail.name
+                            p.card-text = "Base:#{cocktail.base_name}"
+                            p.card-text = "Taste:#{cocktail.taste_name}"
+                            p.card-text = "Style:#{cocktail.style_name}"
+                            p.card-text = "Alcohol:#{cocktail.alcohol}%"

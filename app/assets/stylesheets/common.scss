@@ -66,13 +66,27 @@ main {
 }
 
 // ヘッダー
+.logo {
+  margin: 0 20px;
+  font-size: 20px;
+  font-weight: bold;
+  color: black;
+  text-decoration: none;
+}
 .nav-item {
   padding: 0 10px;
   font-size: 10px;
 }
+// ---------------------
+
 .contact-icon {
   position: absolute;
   right: 20px;
+}
+.contact-path {
+  position: absolute;
+  top: -30%;
+  left: 40%
 }
 
 footer {
@@ -83,20 +97,6 @@ footer {
   line-height: 70px;
 }
 
-.contact-path {
-  position: absolute;
-  top: -30%;
-  left: 40%
-}
-
-.cocktail-img {
-  object-fit: cover;
-  border-radius: 10px;
-}
-
-.profile-page {
-  margin-top: 170px;
-}
 
 .radio-vertical {
   display: block;
@@ -113,11 +113,26 @@ footer {
   line-height: 1em;
 }
 
+// 共通
+.card-content {
+  margin: 0 auto;
+}
+.cocktail-img {
+  object-fit: cover;
+  border-radius: 10px;
+}
+// ---------------------
+
+// UserPage
+.profile-page {
+  margin-top: 170px;
+}
 .mytabs {
   width: 70%;
   margin: 10px auto;
   position: relative;
 }
+// ---------------------
 
 // Cocktails masonry
 .masonry {
@@ -197,6 +212,7 @@ footer {
 .mt-auto {
   margin-top:auto;
 }
+// ---------------------
 
 // Page-top button
 #page_top{
@@ -229,6 +245,7 @@ footer {
   margin: auto;
   text-align: center;
   }
+// ---------------------
 
 //  Loading-animation
 .loader-wrap {
@@ -401,12 +418,9 @@ footer {
   border-left: solid 10px #5bb7ae;
   text-decoration: none;
 }
+// ---------------------
 
 // 用語一覧ページ
-.term-content {
-  margin: 0 auto;
-}
-
 .term-title {
   color: #333333;
 }
@@ -414,26 +428,71 @@ footer {
   font-size: 2em;
   color: #393939;
 }
+// ---------------------
 
-.term-name {
+// カクテルレシピ詳細画面
+.cocktail-show > .cocktail-img {
+  position: absolute;
+}
+.fav-button {
+  position: relative;
+  top: 10px;
+  left: 10px;
+}
+// ---------------------
+
+// title css
+  // タイトルの左右にバー 
+.name-title {
   position: relative;
   display: inline-block;
   padding: 0 55px;
 }
 
-.term-name:before, .term-name:after {
+.name-title:before, .name-title:after {
   content: '';
   position: absolute;
   top: 50%;
   display: inline-block;
-  width: 45px;
+  width: 35px;
   height: 1px;
   background-color: black;
 }
 
-.term-name:before {
-  left:0;
+.name-title:before {
+  left: 0;
 }
-.term-name:after {
+.name-title:after {
   right: 0;
 }
+
+  //  「タイトル」
+  .parenthses {
+    position: relative;
+    line-height: 1.4;
+    padding:0.25em 1em;
+    display: inline-block;
+  }
+  
+  .parenthses:before, .parenthses:after { 
+    content:'';
+    width: 20px;
+    height: 30px;
+    position: absolute;
+    display: inline-block;
+  }
+  
+  .parenthses:before {
+    border-left: solid 1px #000;
+    border-top: solid 1px #000;
+    top:0;
+    left: 0;
+  }
+  
+  .parenthses:after {
+    border-right: solid 1px #000;
+    border-bottom: solid 1px #000;
+    bottom:0;
+    right: 0;
+  }
+// ---------------------

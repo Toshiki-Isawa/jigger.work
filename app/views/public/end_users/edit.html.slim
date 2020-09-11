@@ -2,7 +2,7 @@
   .main-raised
     .row
       .col-lg-6.offset-md-3
-        = form_with model: @end_user, url: public_end_users_path,  local: true do |f|
+        = form_with model: @end_user, url: public_end_user_path,  local: true do |f|
           .profile
             .avatar
               = attachment_image_tag @end_user, :image, format: 'jpeg', class: "img-raised rounded-circle img-responsive", fallback: "no_image.png", size: "160x160"

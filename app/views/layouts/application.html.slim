@@ -13,8 +13,8 @@ html
   body
     header
       nav.navbar.navbar-fixed-top.navbar-expand-lg
+        = link_to 'Jigger', root_path, class: 'logo'
         .container
-          = link_to 'Jigger', root_path, class: 'navbar-brand'
           button.navbar-toggle.collapsed aria-controls="navbar" aria-expanded="false" data-target="#navbar" data-toggle="collapse" type="button"
             span.sr-pnly Toggle navigation
             span.icon-bar
@@ -34,15 +34,15 @@ html
                   i.fas.fa-users.fa-lg
                   |  ユーザー一覧
               - else
-                li.nav-item = link_to public_terms_path, class:"nav-link btn btn-link"
-                  i.fas.fa-book.fa-lg
-                  |  カクテル用語一覧
                 li.nav-item = link_to  public_cocktails_path, class:"nav-link btn btn-link"
                   i.fas.fa-cocktail.fa-lg
                   |  カクテル一覧
                 li.nav-item = link_to public_ingredients_path, class:"nav-link btn btn-link"
                   i.fas.fa-grip-horizontal.fa-lg
                   |  材料一覧
+                li.nav-item = link_to public_terms_path, class:"nav-link btn btn-link"
+                  i.fas.fa-book.fa-lg
+                  |  カクテル用語一覧
 
             
             ul.navbar-nav.navbar-right

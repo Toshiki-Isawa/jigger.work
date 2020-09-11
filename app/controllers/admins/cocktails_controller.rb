@@ -80,9 +80,6 @@ class Admins::CocktailsController < ApplicationController
         end
       end
       page += 1
-      if save_count > 99 then
-        break
-      end
     end
     flash[:notice] = "#{save_count}件のカクテルを取得しました。"
     redirect_to admins_top_path
@@ -93,19 +90,11 @@ class Admins::CocktailsController < ApplicationController
     count = 0
     cocktails.each do |cocktail|
       if cocktail.image_id.nil?
-        # カクテル名+カクテルで画像検索 100件/1日
-        # google_url = URI.encode("https://www.googleapis.com/customsearch/v1?key=#{ENV['API_key']}&cx=#{ENV['Search_Engine_id']}&searchType=image&q=#{cocktail.name}+カクテル+&lr=lang_ja&safe=off&num=1")
-        # img_response = open(google_url).read
-        # hash = JSON.parse(img_response)
-        # cocktail_imglink = hash["items"][0]["link"]
         cocktail_imglink = "https://source.unsplash.com/featured/?cocktail/#{rand(cocktails.size)}"
         cocktail.image_id = cocktail_imglink
         cocktail.save
         count += 1
       end
-      # if count > 49 then
-      #   break
-      # end
     end
     flash[:notice] = "#{count}件の画像を取得しました。"
     redirect_to admins_cocktails_path
