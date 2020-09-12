@@ -1,3 +1,10 @@
 p id="average-rate-#{@cocktail.id}"
 = render partial: "shared/star", locals: { cocktail: @cocktail }
 p #{@cocktail.rates.count} 件の評価
+
+- if flash.any?
+  - flash.each do |key,value|
+    - key = "success" if key == "notice"
+    - key = "error" if key == "alert"
+    javascript:
+      toastr["#{key}"]("#{value}");
