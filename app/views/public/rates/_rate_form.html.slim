@@ -1,0 +1,16 @@
+= form_with model: [:public, @cocktail, @rate] do |f|
+
+  .error
+    = render 'shared/error_messages', model: f.object
+
+  = f.hidden_field :cocktail_id, {value: cocktail.id}
+
+  #star.form-group
+    = f.label :rate, '評価'
+    = f.hidden_field :rate, id: :review_star
+    = render partial: "shared/star", locals: { cocktail: @cocktail }
+
+  .form-group
+    = f.text_field :comment, class:"form-control", placeholder:'コメントを入力してください'
+  
+  = f.submit '評価する', class:"btn btn-success"

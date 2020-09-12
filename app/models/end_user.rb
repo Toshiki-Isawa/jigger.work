@@ -6,8 +6,11 @@ class EndUser < ApplicationRecord
   attachment :image
 
   has_many :cocktails
+
   has_many :favorites
   has_many :favorite_cocktails, through: :favorites, source: :cocktail
+
+  has_many :rates, dependent: :destroy
 
   has_many :active_relationships, class_name: "Relationship", foreign_key: :following_id
   has_many :followings, through: :active_relationships, source: :follower

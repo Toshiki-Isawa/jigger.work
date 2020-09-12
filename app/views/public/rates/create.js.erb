@@ -1,0 +1,2 @@
+$('#cocktail_rates_<%= @cocktail.id %>').html("<%= j(render partial: 'public/rates/rate_content', locals: {cocktail: @cocktail}) %>");
+$('#average_rate_<%= @cocktail.id %>').html("<%= j(render partial: 'public/rates/average_rate', locals: {cocktail: @cocktail}) %>");

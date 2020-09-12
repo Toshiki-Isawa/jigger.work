@@ -59,6 +59,7 @@ ActiveRecord::Schema.define(version: 2020_09_10_025644) do
     t.date "birth_date", null: false
     t.string "image_id"
     t.boolean "is_active", default: true
+    t.string "introduction"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["email"], name: "index_end_users_on_email", unique: true
@@ -98,7 +99,8 @@ ActiveRecord::Schema.define(version: 2020_09_10_025644) do
   create_table "rates", force: :cascade do |t|
     t.string "end_user_id", null: false
     t.string "cocktail_id", null: false
-    t.integer "rate", null: false
+    t.float "rate", default: 0.0, null: false
+    t.string "comment"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

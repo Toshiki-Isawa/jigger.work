@@ -18,6 +18,7 @@
 //= require_tree .
 //= require cocoon
 //= require toastr
+//= require jquery-raty
 
 // トップページスライド
 $(function() {
