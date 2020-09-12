@@ -1,4 +1,4 @@
-= form_with model: [:public, @cocktail, @rate] do |f|
+= form_with model: [:public, @cocktail, @rate], remote: true do |f|
 
   .error
     = render 'shared/error_messages', model: f.object
