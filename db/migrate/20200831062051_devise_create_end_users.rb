@@ -36,6 +36,7 @@ class DeviseCreateEndUsers < ActiveRecord::Migration[5.2]
       t.date :birth_date, null: false
       t.string :image_id
       t.boolean :is_active, default: true
+      t.string :introduction
 
       t.timestamps null: false
     end

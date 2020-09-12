@@ -3,6 +3,8 @@
     .col-lg-3.cocktail-show
       h3.parenthses = @cocktail.name
       p.blockquote = @cocktail.cocktail_desc
+      div id="average_rate_#{@cocktail.id}"
+        = render 'public/rates/average_rate', cocktail: @cocktail
 
       - if @cocktail.image_id.nil? || @cocktail.image_id.exclude?("http")
         = attachment_image_tag @cocktail, :image, fallback:"default.jpeg", width:"300",height:"400", class:"img-raised rounded cocktail-img"
@@ -82,3 +84,39 @@
                             p.card-text = "Taste:#{cocktail.taste_name}"
                             p.card-text = "Style:#{cocktail.style_name}"
                             p.card-text = "Alcohol:#{cocktail.alcohol}%"
+          - else
+            h4 同じベーススピリッツのレシピ
+            .row
+              -@base_cocktails.each do |cocktail|
+                .col-4
+                  = link_to public_cocktail_path(cocktail.id)
+                    .card.mb-3
+                      .row.no-gutters
+                        .col-md-5
+                          - if cocktail.image_id.nil? || cocktail.image_id.exclude?("http")
+                            = attachment_image_tag cocktail, :image, fallback:"default.jpeg", class:"rounded card-img"
+                          - else
+                            img src="#{cocktail.image_id}" alt="img" class="rounded card-img" width="130px" height="170px"
+                        .col-md-7
+                          .card-body
+                            h5.card-title = cocktail.name
+                            p.card-text = "Base:#{cocktail.base_name}"
+                            p.card-text = "Taste:#{cocktail.taste_name}"
+                            p.card-text = "Style:#{cocktail.style_name}"
+                            p.card-text = "Alcohol:#{cocktail.alcohol}%"
+
+  .rate-content
+
+    .row.justify-content-center
+      .col-3
+        - if end_user_signed_in?
+          = render "public/rates/rate_form", {cocktail: @cocktail, rate: @rate}
+
+      .col-8
+        - if @cocktail.rates.presence
+          h4 評価一覧
+          div id="cocktail_rates_#{ @cocktail.id }"
+            = render 'public/rates/rate_content', cocktail: @cocktail
+
+
+

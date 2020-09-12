@@ -1,0 +1,20 @@
+javascript:
+  $('#average-rate-#{cocktail.id}').raty({
+  size     : 36,
+  starOff:  '#{ asset_path('star-off.png') }',
+  starOn : '#{ asset_path('star-on.png') }',
+  starHalf: '#{ asset_path('star-half.png') }',
+  half: true,
+  readOnly: true,
+  score: "#{cocktail.rates.average(:rate).to_f.round(1)}"
+  });
+
+javascript:
+  $('#star').raty({
+  size     : 36,
+  starOff:  '#{ asset_path('star-off.png') }',
+  starOn : '#{ asset_path('star-on.png') }',
+  starHalf: '#{ asset_path('star-half.png') }',
+  scoreName: 'rate[rate]',
+  half: true,
+  });

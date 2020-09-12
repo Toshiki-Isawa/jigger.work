@@ -23,7 +23,8 @@ class Cocktail < ApplicationRecord
   }
 
   belongs_to :end_user
-  has_many :favorites
+  has_many :favorites, dependent: :destroy
+  has_many :rates, dependent: :destroy
   attachment :image
 
   has_many :ingredient_relations, dependent: :destroy
