@@ -7,15 +7,16 @@
             = attachment_image_tag @user, :image, format: 'jpeg', class: "img-raised rounded-circle img-responsive", fallback: "no_image.png", size: "160x160"
 
           .name
-            h2.title
-             = @user.name
+            h2.title = @user.name
+            = link_to edit_public_end_user_path(@user.id), class:"btn btn-fab btn-info btn-round"
+              i.fas.fa-edit
+            = link_to withdraw_public_end_user_path(@user.id), method: :patch, class:"btn btn-fab btn-danger btn-round", data:{confirm:'本当に退会しますか？'}
+              i.fas.fa-trash-alt
 
             - if end_user_signed_in?
               - if @user == current_end_user
                 h5.email = @user.email
-                span = link_to "edit", edit_public_end_user_path(@user.id), class:"btn"
-                span = link_to "退会する", withdraw_public_end_user_path(@user.id), method: :patch, class:"btn btn-danger", data:{confirm:'本当に退会しますか？'}
-                span = link_to "マイレシピ作成", new_public_cocktail_path, class: "btn btn-success"
+                = link_to "マイレシピ作成", new_public_cocktail_path, class: "btn btn-success"
               - else
                 - if @user.followed_by?(current_end_user)
                   = link_to "フォロー済み", public_end_user_relationships_path(@user.id), method: :delete, class:"btn btn-danger"
@@ -25,7 +26,7 @@
     .description.text-center
       p
       |  An artist of considerable range, Chet Faker — the name taken by Melbourne-raised, Brooklyn-based Nick Murphy — writes, performs and records all of his own music, giving it a warm, intimate feel with a solid groove structure. 
-    
+
     .row
       .col
         .profile-tabs
@@ -39,19 +40,32 @@
             .tab-content
               #myrecipe.content1
                 - if @recipes.presence
-                  .masonry
-                    - @recipes.each do |recipe|
-                      .grid
-                        - if recipe.image_id.nil? || recipe.image_id.exclude?("http")
-                          = attachment_image_tag recipe, :image, fallback:"default.jpeg", class:"img-raised rounded"
-                        - else
-                          img src="#{recipe.image_id}" alt="img" class="img-raised rounded"
-                        .grid__body
-                          .relative
+                    table.table
+                      thead
+                        tr
+                          th
+                          th 名前
+                          th ベース
+                          th テイスト
+                          th スタイル
+                          th アルコール(%)
+                          th キャッチコピー
+                      tbody
+                      - @recipes.each do |recipe|
+                        tr
+                          th
+                            - if recipe.image_id.nil? || recipe.image_id.exclude?("http")
+                              = attachment_image_tag recipe, :image, fallback:"default.jpeg", class:"img-raised rounded", width:"80", height:"80"
+                            - else
+                              img src="#{recipe.image_id}" alt="img" class="img-raised rounded" width="80" height="80"
+                          th 
                             = link_to public_cocktail_path(recipe.id), class:"grid__link"
-                              h1.grid__title = recipe.name
-                          .mt-auto
-                            span.grid__tag ##{recipe.base_name}
+                              = recipe.name
+                          th = recipe.base_name
+                          th = recipe.taste_name
+                          th = recipe.style_name
+                          th = recipe.alcohol
+                          th = recipe.cocktail_desc
                 - else
                   .text-center
                     h4 マイレシピが登録されていません
@@ -88,7 +102,7 @@
                       tr
                       - @follow_users.each do |user|
                         th = attachment_image_tag user, :image, format: 'jpeg', class: "img-raised rounded-circle img-responsive", fallback: "no_image.png", size: "50x50"
-                        th = user.name
+                        th = link_to "#{user.name}", public_end_user_path(user.id)
                         th = user.cocktails.size
                         - if user.followed_by?(current_end_user)
                           th = link_to "フォロー済み", public_end_user_relationships_path(user.id), method: :delete, class:"btn btn-danger"
@@ -96,5 +110,3 @@
                           th = link_to "フォローする", public_end_user_relationships_path(user.id), method: :post, class:"btn btn-success"  
                 - else
                   h4 フォローしているユーザーがいません。
-
-

@@ -27,6 +27,7 @@ Rails.application.routes.draw do
     
     resources :cocktails do
       resource :favorites, only: [:create, :destroy]
+      resources :rates, only: [:create, :destroy]
       post :search, on: :collection
     end
     
@@ -63,5 +64,4 @@ Rails.application.routes.draw do
     end
   end
     
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

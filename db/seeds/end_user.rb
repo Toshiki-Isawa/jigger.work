@@ -5,6 +5,7 @@ EndUser.create!(
       birth_date: '1992-10-29',
       email: '1@1',
       password: '111111',
+      introduction: 'Cocktail-f Liquor様のレシピ投稿アカウントです。'
     },
 
     {
