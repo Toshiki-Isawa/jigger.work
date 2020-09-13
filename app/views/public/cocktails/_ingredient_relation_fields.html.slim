@@ -1,5 +1,12 @@
 tr.nested-fields
     th = f.select :ingredient_id, Ingredient.all.map {|ingredient| [ingredient.name, ingredient.id]}, include_blank: true
+
+    / 材料選択をテキスト入力で入力補完する方法を模索中
+    / th = f.text_field :ingredient_id, list: 'ingredient-list'
+    / datalist id='ingredient-list'
+    /  - Ingredient.all.map{|ingredient| [ingredient.name, ingredient.id]}.each do |i|
+    /     option label="#{i[0]}" value="#{i[1]}"
+
     th = f.number_field :amount, min: '0'
     th = f.select :unit, options_for_select(IngredientRelation.units.keys), class: 'form-control'
     th = link_to_remove_association '削除', f
