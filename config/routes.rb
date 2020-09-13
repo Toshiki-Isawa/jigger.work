@@ -29,6 +29,7 @@ Rails.application.routes.draw do
       resource :favorites, only: [:create, :destroy]
       resources :rates, only: [:create, :destroy]
       post :search, on: :collection
+      get :ranking, on: :collection
     end
     
     resources :ingredients, only:[:index,:show] do

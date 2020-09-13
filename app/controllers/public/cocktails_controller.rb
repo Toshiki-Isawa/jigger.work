@@ -2,9 +2,14 @@ class Public::CocktailsController < ApplicationController
   before_action :authenticate_end_user!, only:[:new, :edit, :create, :update, :destroy]
   before_action :set_end_user
   before_action :set_cocktail, only:[:show, :edit, :update, :destroy]
+  impressionist :actions => [:show], :unique => [:impressionable_id, :ip_address]
 
   def index
     @cocktails = Cocktail.all
+  end
+
+  def ranking
+    @cocktails = Cocktail.order(impressions_count: 'DESC').limit(10)
   end
 
   def search
@@ -76,7 +81,7 @@ class Public::CocktailsController < ApplicationController
     @cocktail = Cocktail.new(cocktail_params)
     @cocktail.end_user_id = @end_user.id
 
-    # トップに登録された材料をベースとして@cocktailに登録
+    # トップに登録された材料をベースとしてCocktailテーブルに登録
     base_id = @cocktail.ingredient_relations[0].ingredient_id
     @cocktail.base_name = Ingredient.find_by(id: base_id).name
 

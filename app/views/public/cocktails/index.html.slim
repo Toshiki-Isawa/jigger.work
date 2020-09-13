@@ -49,10 +49,7 @@
     .masonry
       - @cocktails.each do |cocktail|
         .grid
-          - if cocktail.image_id.nil? || cocktail.image_id.exclude?("http")
-            = attachment_image_tag cocktail, :image, fallback:"default.jpeg", class:"img-raised rounded"
-          - else
-            img.cocktail-img src="#{cocktail.image_id}" alt="cocktail-img" class="img-raised rounded"
+          = attachment_image_tag cocktail, :image, fallback:"default.jpeg", class:"img-raised rounded"
           .grid__body
             .relative
               = link_to public_cocktail_path(cocktail.id), class:"grid__link"

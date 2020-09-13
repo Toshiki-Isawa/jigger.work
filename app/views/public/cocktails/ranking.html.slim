@@ -1,0 +1,27 @@
+.card.card-content style="width: 95%;"
+  table.table.ranking-item
+    thead
+      tr
+        th
+          | 順位
+        th
+          | レシピ名
+        th
+          | 投稿者
+        th
+          | PV数
+
+    tbody
+      - @cocktails.each.with_index(1) do |cocktail, index|
+        tr
+          td
+            = index
+            | 位
+          td
+            = link_to public_cocktail_path(cocktail) do
+              = cocktail.name
+          td
+            = link_to public_end_user_path(cocktail.end_user) do
+              = cocktail.end_user.name
+          td
+            = cocktail.impressions_count
