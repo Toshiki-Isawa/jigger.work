@@ -31,6 +31,8 @@ class Cocktail < ApplicationRecord
   has_many :ingredients, through: :ingredient_relations
   accepts_nested_attributes_for :ingredient_relations, allow_destroy:true
 
+  is_impressionable counter_cache: true
+
   def favorited_by?(end_user)
     favorites.where(end_user_id: end_user.id).exists?
   end

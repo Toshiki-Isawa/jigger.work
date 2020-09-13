@@ -83,6 +83,7 @@ gem 'slim-rails'
 gem 'html2slim'
 gem 'cocoon'
 gem 'kaminari'
+gem 'impressionist', '~>1.6.1'
 
 group :production do
   gem 'mysql2'
