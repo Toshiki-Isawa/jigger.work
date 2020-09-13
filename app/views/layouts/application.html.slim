@@ -56,10 +56,10 @@ html
                     .dropdown-item = link_to 'マイレシピ作成',  new_public_cocktail_path
                     .dropdown-item = link_to 'ログアウト', destroy_end_user_session_path, method: :delete
               - elsif admin_signed_in?
-                p 管理者でログイン中
+                li.nav-item 管理者でログイン中
                 li.nav-item = link_to 'ログアウト', destroy_admin_session_path, method: :delete
               - else
-                .nav-item = link_to 'ゲストログイン(閲覧用)',  guest_sign_in_path, method: :post
+                .nav-item = link_to 'ゲストログイン',  guest_sign_in_path, method: :post
                 .nav-item = link_to 'ログイン', new_end_user_session_path
                 .nav-item = link_to '新規登録', new_end_user_registration_path
 
