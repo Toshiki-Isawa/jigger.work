@@ -81,7 +81,7 @@ class Public::CocktailsController < ApplicationController
     @cocktail = Cocktail.new(cocktail_params)
     @cocktail.end_user_id = @end_user.id
 
-    # トップに登録された材料をベースとして@cocktailに登録
+    # トップに登録された材料をベースとしてCocktailテーブルに登録
     base_id = @cocktail.ingredient_relations[0].ingredient_id
     @cocktail.base_name = Ingredient.find_by(id: base_id).name
 

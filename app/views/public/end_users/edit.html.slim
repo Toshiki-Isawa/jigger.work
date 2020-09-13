@@ -18,10 +18,8 @@
               h5.email
               = f.label :誕生日
               = f.date_select :birth_date, use_month_numbers: true, start_year: 1930, end_year: (Time.now.year - 10),class:"form-control"
+              h5.email
+              = f.label :自己紹介
+              = f.text_field :introduction, class:"form-control"
             
             = f.submit "保存する", class:"btn btn-success"
-
-
-    .description.text-center
-      p
-      |  An artist of considerable range, Chet Faker — the name taken by Melbourne-raised, Brooklyn-based Nick Murphy — writes, performs and records all of his own music, giving it a warm, intimate feel with a solid groove structure. 

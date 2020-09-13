@@ -6,10 +6,7 @@
       div id="average_rate_#{@cocktail.id}"
         = render 'public/rates/average_rate', cocktail: @cocktail
 
-      - if @cocktail.image_id.nil? || @cocktail.image_id.exclude?("http")
-        = attachment_image_tag @cocktail, :image, fallback:"default.jpeg", width:"300",height:"400", class:"img-raised rounded cocktail-img"
-      - else
-        img.cocktail-img src="#{@cocktail.image_id}" alt="img" width="300" height="400" class="img-raised rounded cocktail-img"
+      = attachment_image_tag @cocktail, :image, fallback:"default.jpeg", width:"300",height:"400", class:"img-raised rounded cocktail-img"
 
       div id="favorites_buttons_#{@cocktail.id}"
         = render partial: "public/favorites/favorite", locals: { cocktail: @cocktail}
@@ -73,10 +70,7 @@
                     .card.mb-3 style="max-width: 500px"
                       .row.no-gutters
                         .col-md-5
-                          - if cocktail.image_id.nil? || cocktail.image_id.exclude?("http")
-                            = attachment_image_tag cocktail, :image, fallback:"default.jpeg", class:"rounded card-img"
-                          - else
-                            img src="#{cocktail.image_id}" alt="img" class="rounded card-img" width="130px" height="170px"
+                          = attachment_image_tag cocktail, :image, fallback:"default.jpeg", class:"rounded card-img"
                         .col-md-7
                           .card-body
                             h5.card-title = cocktail.name
@@ -93,10 +87,7 @@
                     .card.mb-3
                       .row.no-gutters
                         .col-md-5
-                          - if cocktail.image_id.nil? || cocktail.image_id.exclude?("http")
-                            = attachment_image_tag cocktail, :image, fallback:"default.jpeg", class:"rounded card-img"
-                          - else
-                            img src="#{cocktail.image_id}" alt="img" class="rounded card-img" width="130px" height="170px"
+                          = attachment_image_tag cocktail, :image, fallback:"default.jpeg", class:"rounded card-img"
                         .col-md-7
                           .card-body
                             h5.card-title = cocktail.name
