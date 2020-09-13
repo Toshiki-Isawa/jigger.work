@@ -2,9 +2,14 @@ class Public::CocktailsController < ApplicationController
   before_action :authenticate_end_user!, only:[:new, :edit, :create, :update, :destroy]
   before_action :set_end_user
   before_action :set_cocktail, only:[:show, :edit, :update, :destroy]
+  impressionist :actions => [:show], :unique => [:impressionable_id, :ip_address]
 
   def index
     @cocktails = Cocktail.all
+  end
+
+  def ranking
+    @cocktails = Cocktail.order(impressions_count: 'DESC').limit(10)
   end
 
   def search
