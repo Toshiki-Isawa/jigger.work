@@ -12,7 +12,7 @@
 
 .sidebar.left.bg-default
   ul.nav.flex-column
-    a.btn.btn-danger href="#" data-action="toggle" data-side="left" CLOSE
+    a.btn.btn-danger.btn-round href="#" data-action="toggle" data-side="left" CLOSE
     h4.left-border ベース
     li = link_to "ジン", search_public_cocktails_path(:name => "ジン", :search_key => "base"), method: :post
     li = link_to "ウォッカ", search_public_cocktails_path(:name => "ウォッカ", :search_key => "base"), method: :post
@@ -50,18 +50,29 @@
       .masonry
         - @cocktails.each do |cocktail|
           .grid
-            = attachment_image_tag cocktail, :image, fallback:"default.jpeg", class:"img-raised rounded"
-            .grid__body
-              .relative
-                = link_to public_cocktail_path(cocktail.id), class:"grid__link"
-                  h1.grid__title = cocktail.name
-                  p.grid__author = EndUser.find_by(id: cocktail.end_user_id).name
-              .mt-auto
-                span.grid__tag ##{cocktail.base_name}
+            figure.effect-zoe
+              = attachment_image_tag cocktail, :image, fallback:"default.jpeg", class:"img-raised rounded"
+              .grid__body
+                .relative
+                  = link_to public_cocktail_path(cocktail.id), class:"grid__link"
+                    h1.grid__title = cocktail.name
+                    p.grid__author = EndUser.find_by(id: cocktail.end_user_id).name
+                    .index-favorite-button id="favorites_buttons_#{cocktail.id}"
+                      = render partial: "public/favorites/favorite", locals: { cocktail: cocktail}
+                .mt-auto
+                  span.grid__tag ##{cocktail.base_name}
+              figcaption
+                p = cocktail.cocktail_desc
+                p.description
+                   = "Technique : #{cocktail.technique_name}"
+                   br
+                   = "Taste : #{cocktail.taste_name}"
+                   br
+                   = "Style : #{cocktail.style_name}"
 
 #show-sidebar
   a.btn href="#" data-action="toggle" data-side="left"
-    i.fas.fa-bars
+    i.fas.fa-bars.fa-2x
 
 #page_top
   a href="#"
