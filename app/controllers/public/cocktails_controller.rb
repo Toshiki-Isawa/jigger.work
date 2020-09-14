@@ -107,7 +107,7 @@ class Public::CocktailsController < ApplicationController
     destroy_name = @cocktail.name
     if @cocktail.destroy
       flash[:notice] = "#{destroy_name}を削除しました"
-      redirect_to public_end_user_path
+      redirect_to public_end_user_path(@end_user)
     end
   end
 end
