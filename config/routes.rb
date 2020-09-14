@@ -32,7 +32,7 @@ Rails.application.routes.draw do
       get :ranking, on: :collection
     end
     
-    resources :ingredients, only:[:index,:show] do
+    resources :ingredients, only:[:index] do
       post :search, on: :collection
     end
   end
