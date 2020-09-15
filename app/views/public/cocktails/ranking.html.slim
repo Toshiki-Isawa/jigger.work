@@ -1,27 +1,105 @@
-.card.card-content style="width: 95%;"
-  table.table.ranking-item
-    thead
-      tr
-        th
-          | 順位
-        th
-          | レシピ名
-        th
-          | 投稿者
-        th
-          | PV数
+.container
+  h4.text-center.top-bottom-border レシピランキング
+  br
+  .row
+    .col
+      .tab-buttons
+        span.content1
+          i.fas.fa-medal  PV
+        span.content2
+          i.far.fa-heart  お気に入り
+        span.content3 
+          i.far.fa-star  評価
+        #lamp.content1
 
-    tbody
-      - @cocktails.each.with_index(1) do |cocktail, index|
-        tr
-          td
-            = index
-            | 位
-          td
-            = link_to public_cocktail_path(cocktail) do
-              = cocktail.name
-          td
-            = link_to public_end_user_path(cocktail.end_user) do
-              = cocktail.end_user.name
-          td
-            = cocktail.impressions_count
+      .tab-content
+        #myrecipe.content1
+          table.table
+            thead
+              tr
+                th
+                  | 順位
+                th
+                  | レシピ名
+                th
+                  | 投稿者
+                th
+                  | PV数
+            tbody
+              - @pv_cocktails.each.with_index(1) do |cocktail, index|
+                tr
+                  td
+                    = index
+                    | 位
+                  td
+                    = link_to public_cocktail_path(cocktail) do
+                      = cocktail.name
+                  td
+                    = link_to public_end_user_path(cocktail.end_user) do
+                      = cocktail.end_user.name
+                  td
+                    = cocktail.impressions_count
+
+        #favorite.content2
+          table.table
+            thead
+              tr
+                th
+                  | 順位
+                th
+                  | レシピ名
+                th
+                  | 投稿者
+                th
+                  | お気に入り数
+            tbody
+              - @favorites_cocktails.each.with_index(1) do |cocktail, index|
+                tr
+                  td
+                    = index
+                    | 位
+                  td
+                    = link_to public_cocktail_path(cocktail) do
+                      = cocktail.name
+                  td
+                    = link_to public_end_user_path(cocktail.end_user) do
+                      = cocktail.end_user.name
+                  td
+                    = cocktail.favorites.count
+
+
+        #follow.content3
+          table.table
+            thead
+              tr
+                th
+                  | 順位
+                th
+                  | レシピ名
+                th
+                  | 投稿者
+                th
+                  | 評価
+                th
+                  | 評価数
+            tbody
+              - @rates_cocktails.each.with_index(1) do |cocktail, index|
+                tr
+                  td
+                    = index
+                    | 位
+                  td
+                    = link_to public_cocktail_path(cocktail) do
+                      = cocktail.name
+                  td
+                    = link_to public_end_user_path(cocktail.end_user) do
+                      = cocktail.end_user.name
+                  td
+                    p id="average-rate-#{cocktail.id}"
+                    = render partial: "shared/star", locals: { cocktail: cocktail }
+                  td
+                    p id="average-rate-#{cocktail.id}"
+                    = render partial: "shared/star", locals: { cocktail: cocktail }
+                  td
+                    = cocktail.rates.count
+

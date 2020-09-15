@@ -135,6 +135,10 @@ footer {
   object-fit: cover;
   border-radius: 10px;
 }
+
+.tab-content {
+  width: 100%;
+}
 // ---------------------
 
 // UserPage
@@ -525,11 +529,16 @@ footer {
     background: transparent;
     border-left: solid 3px #17181a;
   }
+
+  // 上下に線
+  .top-bottom-border {
+    color: #364e96;/*文字色*/
+    padding: 0.5em 0;/*上下の余白*/
+    border-top: solid 2px #364e96;/*上線*/
+    border-bottom: solid 2px #364e96;/*下線*/
+  }
 // ---------------------
 
-.ranking-item {
-  font-size: 15px;
-}
 
 //  一覧ページのホバーエフェクト
 .grid figure {
