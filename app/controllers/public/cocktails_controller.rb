@@ -111,7 +111,6 @@ class Public::CocktailsController < ApplicationController
   end
 
   def update
-    @cocktail.ingredient_relations.destroy_all
     if @cocktail.update(cocktail_params)
       flash[:notice] = "カクテル情報を変更しました"
       redirect_to public_cocktail_path(@cocktail)

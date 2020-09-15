@@ -1,8 +1,9 @@
+ .container
   .card.card-nav-tabs.text-center
     .card-header.card-header-primary
       h5 マイレシピ編集
     .card-body
-      .card-title.text-muted キャッチコピーは入力しなくても投稿可能です
+      .card-title.text-muted キャッチコピーは入力しなくても保存可能です
       = form_with model:[:public,@cocktail], local: true do |f|
         = render 'shared/error_messages', model: f.object
         .row
@@ -27,10 +28,11 @@
                   th 単位
                   th 
               tbody.line-ingredients
-                = f.fields_for :ingredient_relations do |ff|
-                  = render 'ingredient_relation_fields', f: ff
-            .links
-              = link_to_add_association '＋別の材料を追加', f, :ingredient_relations, data:{"association-insertion-node" => "tbody.line-ingredients", "association-insertion-method" => "append"}
+                - @cocktail.ingredient_relations.each do |ingredient_relation|
+                  tr
+                    th = ingredient_relation.ingredient.name
+                    th = ingredient_relation.amount
+                    th = ingredient_relation.unit
               
             .row
               label How to Make
