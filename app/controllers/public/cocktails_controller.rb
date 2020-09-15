@@ -84,6 +84,20 @@ class Public::CocktailsController < ApplicationController
     @cocktail = Cocktail.new(cocktail_params)
     @cocktail.end_user_id = @end_user.id
 
+    # 送信された材料名からDBを検索しIDを返す。登録されてなければ新規に登録する
+    @cocktail.ingredient_relations.zip(cocktail_params[:ingredient_relations_attributes].values) do |i,j|
+      if Ingredient.find_by(name: j[:ingredient_id]).presence
+        i.ingredient_id = Ingredient.find_by(name: j[:ingredient_id]).id
+      else
+        new_ingredient = Ingredient.new
+        new_ingredient.name = j[:ingredient_id]
+        new_ingredient.type_name = "副材料"
+        new_ingredient.alcohol = 0
+        new_ingredient.save
+        i.ingredient_id = Ingredient.find_by(name: j[:ingredient_id]).id
+      end
+    end
+
     # トップに登録された材料をベースとしてCocktailテーブルに登録
     base_id = @cocktail.ingredient_relations[0].ingredient_id
     @cocktail.base_name = Ingredient.find_by(id: base_id).name
@@ -97,7 +111,6 @@ class Public::CocktailsController < ApplicationController
   end
 
   def update
-    @cocktail.ingredient_relations.destroy_all
     if @cocktail.update(cocktail_params)
       flash[:notice] = "カクテル情報を変更しました"
       redirect_to public_cocktail_path(@cocktail)
