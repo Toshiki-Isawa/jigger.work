@@ -4,6 +4,8 @@ lock "~> 3.14.1"
 set :application, "jigger.work"
 set :repo_url, "git@github.com:irles24601/jigger.work.git"
 
+set :whenever_roles,        ->{ :app }
+
 set :deploy_to, "/home/ec2-user/jigger.work"
 set :rbenv_ruby, '2.5.7'
 set :linked_files, %w{config/master.key .env}
