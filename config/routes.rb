@@ -55,7 +55,6 @@ Rails.application.routes.draw do
     resources :cocktails do
       collection do
         get :get_api_cocktails
-        get :get_cocktail_image
         post :search
         get :similar_cocktail
       end
