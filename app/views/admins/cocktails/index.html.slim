@@ -1,22 +1,27 @@
-- if params[:name]
-  h2 「#{params[:name]}」を使ったカクテル
-- else
-  h2 Cocktails
+.container
+  - if params[:name]
+    h2 「#{params[:name]}」を使ったカクテル
+  - else
+    h2 Cocktails
 
-.cocktail-index
-  table.table.table-hover
-    thead
-      tr
-        th id
-        th name
-        th base
-        th taste
-        th alcohol(%)
-    tbody
-      - @cocktails.each do |cocktail|
-           tr
-            th = cocktail.id
-            th = link_to cocktail.name, admins_cocktail_path(cocktail.id)
-            th = cocktail.base_name
-            th = cocktail.taste_name
-            th = cocktail.alcohol
+  .cocktail-index
+    table.table.table-hover
+      thead
+        tr
+          th id
+          th name
+          th base
+          th taste
+          th alcohol(%)
+          th favorites
+          th PV
+      tbody
+        - @cocktails.each do |cocktail|
+            tr
+              th = cocktail.id
+              th = link_to cocktail.name, admins_cocktail_path(cocktail.id)
+              th = cocktail.base_name
+              th = cocktail.taste_name
+              th = cocktail.alcohol
+              th = cocktail.favorites.count
+              th = cocktail.impressions_count

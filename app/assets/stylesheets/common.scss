@@ -21,49 +21,69 @@ main {
 
 // main-visual
 .top-content {
-  margin-top: -70px;
-  z-index: -999;
+  position: relative;
+  width: 100%;
+  height: 95vh;
+  margin-top: -15px;
+  background-color: #000;
 }
-.top-img{
+#bg-video{
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  min-width: 100%;
+  min-height: 100%;
+  width: 100vh;
   height: 100vh;
-	width :100vw;
-  object-fit: cover;
-}
-.top-content h4 {
+  z-index: -100;
+  background: url('mixkit-pouring-ice-poster.png') no-repeat;
+  background-size: cover;
+ }
+.top-content .header-left {
   position: absolute;
+  z-index: 10;
   color: white;
-  top: 40%;
-  left: 50%;
-  -ms-transform: translate(-50%,-50%);
-  -webkit-transform: translate(-50%,-50%);
-  transform: translate(-50%,-50%);
-  line-height: 100px;
-  font-family: 'Economica', sans-serif;
-  font-size: 70px;
-  text-shadow: 2px 8px 6px rgba(0,0,0,0.2),
-               0px -5px 16px rgba(255,255,255,0.3);
-  box-shadow: 0 0 8px gray;
-  width: 300px;
+  top: 20%;
+  left: 5%;
 }
-.top-content p {
+.top-content .header-right {
   position: absolute;
+  z-index: 10;
   color: white;
-  top: 55%;
-  left: 50%;
-  -ms-transform: translate(-50%,-50%);
-  -webkit-transform: translate(-50%,-50%);
-  transform: translate(-50%,-50%);
+  top: 20%;
+  right: 5%;
+}
+.top-button {
+  margin: 0 auto;
+}
+.header-left .btn-shine {
+  color: #FFF;
+  background-color: rgba(0, 0, 0, 0.3);
+  display: inline-block;
+  font-size: 25px;
   font-weight: bold;
-  font-family: "Sawarabi Mincho";
-  text-shadow: 2px 8px 6px rgba(0,0,0,0.2),
-               0px -5px 16px rgba(255,255,255,0.3);
+  line-height: 50px;
+  width: 300px;
+  position: relative;
+  text-decoration: none;
+  text-align: center;
+  text-transform: uppercase;
+  border: 2px solid transparent;
+  outline: 2px solid;
+  outline-color: rgba(255, 255, 255, 0.5);
+  outline-offset: 0px;
+  text-shadow: none;
+  transition: all 1.2s cubic-bezier(0.2, 1, 0.2, 1);
+  margin: 15px 0 15px 70px;
 }
-
-// 以下を入れるとtopページ右の余白が消える
-.wrapper button {
-  top: 120%;
-  left: 50%;
+.btn-shine:hover {
+  border-color: #FFF;
+  box-shadow: inset 0 0 20px rgba(255, 255, 255, 0.5), 0 0 20px rgba(255, 255, 255, 0.2);
+  outline-color: transparent;
+  outline-offset: 12px;
+  text-shadow: 2px 2px 3px #000;
 }
+// -------------------------------
 
 // ヘッダー
 .logo {

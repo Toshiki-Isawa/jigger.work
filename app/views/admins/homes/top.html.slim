@@ -1,34 +1,145 @@
-h1
-  | Admins::Homes#top
-p
-  | Find me in app/views/admins/homes/top.html.erb
+.container
+  .row
+    .col-4
+      table.table
+        h4 メインベースレシピ数
+        thead
+          tr
+            th ジャンル
+            th レシピ数
+        tr
+          th ジン
+          th = @cocktails.where(base_name: "ジン").size
+        tr
+          th ウォッカ
+          th = @cocktails.where(base_name: "ウォッカ").size
+        tr
+          th  テキーラ
+          th = @cocktails.where(base_name: "テキーラ").size
+        tr
+          th  ラム
+          th = @cocktails.where(base_name: "ラム").size
+        tr
+          th  ウイスキー
+          th = @cocktails.where(base_name: "ウイスキー").size
+        tr
+          th レシピ総数
+          th = @cocktails.size
+
+    .col-7
+      table.table
+        h4 データの更新
+        thead
+          tr
+            th 概要
+            th
+            th 前回更新日
+        tbody
+          tr
+            th Cocktail-fのレシピを更新
+            th = link_to "更新", get_api_cocktails_admins_cocktails_path, class:"btn btn-primary"
+            th = Cocktail.where(end_user_id: 1).last.created_at
+          tr
+            th レシピ類似度の更新
+            th = link_to "更新", similar_cocktail_admins_cocktails_path, class:"btn btn-primary"
+            th = Similar.all.last.updated_at 
+
+  h4 ランキング
+  .row
+    .col
+      .tab-buttons
+        span.content1
+          i.fas.fa-medal  PV
+        span.content2
+          i.far.fa-heart  お気に入り
+        span.content3 
+          i.far.fa-star  評価
+        #lamp.content1
+
+      .tab-content
+        #myrecipe.content1
+          table.table
+            thead
+              tr
+                th
+                  | 順位
+                th
+                  | レシピ名
+                th
+                  | 投稿者
+                th
+                  | PV数
+            tbody
+              - @pv_cocktails.each.with_index(1) do |cocktail, index|
+                tr
+                  td
+                    = index
+                    | 位
+                  td
+                    = link_to public_cocktail_path(cocktail) do
+                      = cocktail.name
+                  td
+                    = link_to public_end_user_path(cocktail.end_user) do
+                      = cocktail.end_user.name
+                  td
+                    = cocktail.impressions_count
+
+        #favorite.content2
+          table.table
+            thead
+              tr
+                th
+                  | 順位
+                th
+                  | レシピ名
+                th
+                  | 投稿者
+                th
+                  | お気に入り数
+            tbody
+              - @favorites_cocktails.each.with_index(1) do |cocktail, index|
+                tr
+                  td
+                    = index
+                    | 位
+                  td
+                    = link_to public_cocktail_path(cocktail) do
+                      = cocktail.name
+                  td
+                    = link_to public_end_user_path(cocktail.end_user) do
+                      = cocktail.end_user.name
+                  td
+                    = cocktail.favorites.count
 
 
-p
- | レシピ数：
- = @cocktails.size
-br
-p
- | ジン：
- = @cocktails.where(base_name: "ジン").size
-br
-p
- | ウォッカ：
- = @cocktails.where(base_name: "ウォッカ").size
-br
-p
- | テキーラ：
- = @cocktails.where(base_name: "テキーラ").size
-br
-p
- | ラム：
- = @cocktails.where(base_name: "ラム").size
-br
-p
- | ウイスキー：
- = @cocktails.where(base_name: "ウイスキー").size
-br
-
-= link_to "API cocktail GET", get_api_cocktails_admins_cocktails_path, class:"btn btn-primary"
-= link_to "Cocktail Image GET", get_cocktail_image_admins_cocktails_path, class:"btn btn-info"
-= link_to "SimilarCocktail", similar_cocktail_admins_cocktails_path, class:"btn btn-primary"
+        #follow.content3
+          table.table
+            thead
+              tr
+                th
+                  | 順位
+                th
+                  | レシピ名
+                th
+                  | 投稿者
+                th
+                  | 評価
+                th
+                  | 評価数
+            tbody
+              - @rates_cocktails.each.with_index(1) do |cocktail, index|
+                tr
+                  td
+                    = index
+                    | 位
+                  td
+                    = link_to public_cocktail_path(cocktail) do
+                      = cocktail.name
+                  td
+                    = link_to public_end_user_path(cocktail.end_user) do
+                      = cocktail.end_user.name
+                  td
+                    p id="average-rate-#{cocktail.id}"
+                    = render partial: "shared/star", locals: { cocktail: cocktail }
+                  td
+                    = cocktail.rates.count

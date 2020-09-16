@@ -19,19 +19,6 @@
 //= require cocoon
 //= require toastr
 
-// トップページスライド
-$(function() {
-  $('.top-content').slick({
-      dots: true,
-      autoplay: true,
-      autoplaySpeed: 5000,
-      fade: true,
-  });
-
-  $('.slick-dots li').on('mouseover', function() {
-    $('.top-content').slick('goTo', $(this).index());
-  });
-});
 
 // Loading-animation
 jQuery(function() {
@@ -858,7 +845,7 @@ $(document).ready(function () {
       $(".sidebar." + cSide).sidebar({side: cSide});
   }
 
-  // ボタンのクリックにより...
+  // ボタンのクリックで開閉アクション
   $(".btn[data-action]").on("click", function () {
       var $this = $(this);
       var action = $this.attr("data-action");
