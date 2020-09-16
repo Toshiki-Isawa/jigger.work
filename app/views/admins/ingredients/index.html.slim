@@ -1,12 +1,35 @@
-.row.justify-content-center
-  .col-10
-    .navbar.ingredient-type-box
-      ul.nav
-        li 絞り込み：
-        li = link_to "全て", admins_ingredients_path, class:"nav-item nav-link btn btn-secondary"
-        - Ingredient.type_names.keys.each do |type_name|
-          li = link_to "#{type_name}", search_admins_ingredients_path(:name => type_name), method: :post, class:"nav-item nav-link btn btn-secondary"
-    
-    .ingredient-index
-      - @ingredients.each do |ingredient|
-          = link_to ingredient.name, search_admins_cocktails_path(:name => "#{ingredient.name}", :search_key => "ingredient"), method: :post, class:"ingredient-box img-raised"
+.container
+  .row.justify-content-center
+    .col-10
+      .navbar.ingredient-type-box
+        ul.nav
+          li 絞り込み：
+          li = link_to "全て", admins_ingredients_path, class:"nav-item nav-link btn btn-secondary"
+          - Ingredient.type_names.keys.each do |type_name|
+            li = link_to "#{type_name}", search_admins_ingredients_path(:name => type_name), method: :post, class:"nav-item nav-link btn btn-secondary"
+      
+      .row
+        = form_with model:[:admins,@new_ingredient], local: true do |f|
+
+          = f.text_field :name, placeholder:"材料名を入力", class:"form-control"
+          = f.select :type_name, options_for_select(Ingredient.type_names.keys), class: 'form-control'
+          = f.number_field :alcohol, min: '0', max: '99'
+          = f.submit "追加",class: "btn btn-success"
+      
+      table.table
+        thead
+          tr
+            th 材料名
+            th タイプ
+            th アルコール度数(%)
+            th 
+            th 
+        tbody
+          - @ingredients.each do |ingredient|
+            tr
+              th = link_to ingredient.name, search_admins_cocktails_path(:name => "#{ingredient.name}", :search_key => "ingredient"), method: :post
+              = form_with model: [:admins,ingredient], local: true do |fi|
+                th = fi.select :type_name, options_for_select(Ingredient.type_names.keys, ingredient.type_name), class: 'form-control'
+                th = fi.number_field :alcohol, value: ingredient.alcohol
+                th = fi.submit "変更", class:"btn btn-info"
+              th = link_to "削除", admins_ingredient_path(ingredient.id), method: :delete,class:"btn btn-danger"
