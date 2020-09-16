@@ -858,7 +858,7 @@ $(document).ready(function () {
       $(".sidebar." + cSide).sidebar({side: cSide});
   }
 
-  // ボタンのクリックにより...
+  // ボタンのクリックで開閉アクション
   $(".btn[data-action]").on("click", function () {
       var $this = $(this);
       var action = $this.attr("data-action");
