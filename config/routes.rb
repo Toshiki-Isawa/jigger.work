@@ -60,7 +60,7 @@ Rails.application.routes.draw do
         get :similar_cocktail
       end
     end
-    resources :ingredients, only: [:index, :create, :destroy] do
+    resources :ingredients, only: [:index, :create, :update, :destroy] do
       post :search, on: :collection
     end
   end
