@@ -1,17 +1,16 @@
 .top-content
-  = video_tag "https://assets.mixkit.co/videos/preview/mixkit-pouring-ice-and-lemonade-into-a-glass-on-black-background-9418-large.mp4", loop: true, autoplay: true, muted: true
+  = video_tag "https://assets.mixkit.co/videos/preview/mixkit-pouring-ice-and-lemonade-into-a-glass-on-black-background-9418-large.mp4", loop: true, autoplay: true, muted: true, id: "bg-video"
   .header-left
-    h3.display-2.text-center Jigger.
-    p.text-center
-      | このサイトはカクテルレシピ検索・投稿サイトです。
-      br ログインをしなくてもレシピの閲覧・検索は可能ですが、
-      | 是非、あなたのオリジナルカクテルを投稿してレシピを広めましょう。
+    .text-center.site-title Jigger.
+    .contents
+      h3.name-title-white Welcome
+      p.header-content
+        | このサイトはカクテルレシピ検索・投稿サイトです。
+        br ログインをするとレシピの投稿やお気に入りレストを作成できます。
+        | あなたのオリジナルレシピを広めてみませんか？
     .top-button
       = link_to "20歳以上", public_cocktails_path, class:"btn-shine"
-      br
       = link_to "20歳未満", search_public_cocktails_path(:name => "none", :search_key => "alcohol"), method: :post, class:"btn-shine"
-  
-  .header-right
 
 .main.main-raised
   .section

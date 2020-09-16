@@ -20,24 +20,27 @@ main {
 }
 
 // main-visual
+.site-title {
+  font-family: 'Economica', sans-serif;
+  font-size: 50px;
+  margin: 20px;
+}
 .top-content {
   position: relative;
   width: 100%;
   height: 95vh;
   margin-top: -15px;
   background-color: #000;
+  overflow: hidden;
 }
 #bg-video{
-  position: fixed;
-  left: 0;
-  bottom: 0;
-  min-width: 100%;
+  position: absolute;
+  left: 30%;
+  bottom: 3%;
+  min-width: 80%;
   min-height: 100%;
-  width: 100vh;
+  width: 80vh;
   height: 100vh;
-  z-index: -100;
-  background: url('mixkit-pouring-ice-poster.png') no-repeat;
-  background-size: cover;
  }
 .top-content .header-left {
   position: absolute;
@@ -53,9 +56,6 @@ main {
   top: 20%;
   right: 5%;
 }
-.top-button {
-  margin: 0 auto;
-}
 .header-left .btn-shine {
   color: #FFF;
   background-color: rgba(0, 0, 0, 0.3);
@@ -63,7 +63,7 @@ main {
   font-size: 25px;
   font-weight: bold;
   line-height: 50px;
-  width: 300px;
+  width: 250px;
   position: relative;
   text-decoration: none;
   text-align: center;
@@ -74,7 +74,7 @@ main {
   outline-offset: 0px;
   text-shadow: none;
   transition: all 1.2s cubic-bezier(0.2, 1, 0.2, 1);
-  margin: 15px 0 15px 70px;
+  margin: 15px 15px;
 }
 .btn-shine:hover {
   border-color: #FFF;
@@ -82,6 +82,11 @@ main {
   outline-color: transparent;
   outline-offset: 12px;
   text-shadow: 2px 2px 3px #000;
+}
+.header-left .contents {
+  margin-left: 40px;
+  line-height: 35px;
+  font-weight: bold;
 }
 // -------------------------------
 
@@ -491,12 +496,12 @@ table {
 
 // 見出し css
   // タイトルの左右にバー 
+  // 黒
 .name-title {
   position: relative;
   display: inline-block;
   padding: 0 55px;
 }
-
 .name-title:before, .name-title:after {
   content: '';
   position: absolute;
@@ -506,12 +511,29 @@ table {
   height: 1px;
   background-color: black;
 }
-
 .name-title:before {
   left: 0;
 }
 .name-title:after {
   right: 0;
+}
+// 左にだけ白いボーダー
+.name-title-white {
+  position: relative;
+  display: inline-block;
+  padding: 0 85px;
+}
+.name-title-white:before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  display: inline-block;
+  width: 75px;
+  height: 1px;
+  background-color: white;
+}
+.name-title-white:before {
+  left: 0;
 }
 
   //  「タイトル」
