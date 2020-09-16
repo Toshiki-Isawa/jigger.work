@@ -6,10 +6,7 @@
       = link_to "edit", edit_admins_cocktail_path(@cocktail.id), class:"btn btn-info"
       = link_to "delete", admins_cocktail_path(@cocktail.id), method: :delete,class:"btn btn-danger"
 
-    - if @cocktail.image_id.nil? || @cocktail.image_id.exclude?("http")
       = attachment_image_tag @cocktail, :image, fallback:"default.jpeg", width:"350",height:"400", class:"img-raised rounded cocktail-img"
-    - else
-      img.cocktail-img src="#{@cocktail.image_id}" alt="img" width="350" height="400" class="img-raised rounded cocktail-img"
 
   .col-lg-7
     table.table
