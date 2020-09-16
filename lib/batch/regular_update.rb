@@ -1,46 +1,8 @@
-class Admins::CocktailsController < ApplicationController
-  before_action :authenticate_admin!
-  before_action :set_cocktail, only:[:show, :edit, :update, :destroy]
+class Batch::RegularUpdate
   require 'matrix'
 
-  def index
-    @cocktails = Cocktail.all
-  end
-  
-  def show
-    similar_table = Similar.where(cocktail1: @cocktail.id).or(Similar.where(cocktail2: @cocktail.id)).order("value DESC").limit(3).pluck(:cocktail1,:cocktail2)
-    @similar_cocktails = []
-    similar_table.each do |ids|
-      ids.each do |id|
-        unless id == @cocktail.id
-          similar_cocktail = Cocktail.find(id)
-          @similar_cocktails.push(similar_cocktail)
-        end
-      end
-    end
-  end
-
-  def new
-  end
-
-  def edit
-  end
-
-  def create
-  end
-
-  def update
-  end
-
-  def destroy
-    destroy_name = @cocktail.name
-    if @cocktail.destroy
-      flash[:notice] = "#{destroy_name}を削除しました"
-      redirect_to admins_cocktails_path
-    end
-  end
-
-  def get_api_cocktails
+  # cocktail-fのレシピを更新
+  def self.api_cocktails
     # cocktail-fのカクテル一覧(1ページ目)を取得
     response = open("https://cocktail-f.com/api/v1/cocktails").read
     hash = JSON.parse(response)
@@ -81,18 +43,11 @@ class Admins::CocktailsController < ApplicationController
       end
       page += 1
     end
-    flash[:notice] = "#{save_count}件のカクテルを取得しました。"
-    redirect_to admins_top_path
+    p "カクテルレシピを更新しました"
   end
 
-  def search
-    search_ingredient = Ingredient.find_by(name: params[:name])
-    @cocktails = Cocktail.includes(:ingredient_relations).where(ingredient_relations: {ingredient_id: search_ingredient.id})
-
-    render 'admins/cocktails/index'
-  end
-
-  def similar_cocktail
+  # 類似度テーブルの更新
+  def self.similar_table
     # Favoriteテーブルから各カクテル毎の集団ベクトルマトリクスを作成
     cocktails = Cocktail.find(Favorite.group(:cocktail_id).pluck(:cocktail_id))
     favorite_matrix = {}
@@ -130,16 +85,7 @@ class Admins::CocktailsController < ApplicationController
         similar_cocktail.save
       end
     end
-
-    flash[:notice] = "SimilarTableを更新しました。"
-    redirect_to admins_top_path
-
-  end
-
-  private
-
-  def set_cocktail
-    @cocktail = Cocktail.find(params[:id])
+    p "類似テーブルを更新しました"
   end
 
 end
