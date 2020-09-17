@@ -1,0 +1,40 @@
+= form_with(scope: :search, url:  multiple_search_public_cocktails_path, method: :post, local: true) do |f|
+
+  .form-group
+    = f.label :keyword, "カクテル名・説明文"
+    = f.text_field :keyword, placeholder: 'カクテル名', class: 'form-control'
+
+  .form-group
+    = f.label :base_name, "ベース"
+    = f.text_field :base_name, placeholder: 'ベース名', class: 'form-control'
+
+  .form-group
+    = f.label :technique_name, "技法"
+    br
+    = f.select :technique_name, options_for_select(Cocktail.technique_names.keys), include_blank: true, class: 'form-control'
+
+  .form-group
+    = f.label :taste_name, "味わい"
+    br
+    = f.select :taste_name, options_for_select(Cocktail.taste_names.keys), include_blank: true, class: 'form-control'
+
+  .form-group
+    = f.label :style_name, "スタイル"
+    br
+    = f.select :style_name, options_for_select(Cocktail.style_names.keys), include_blank: true, class: 'form-control'
+
+  .form-group
+    = f.label :tpo_name, "TPO"
+    br
+    = f.select :tpo_name, options_for_select(Cocktail.tpo_names.keys), include_blank: true, class: 'form-control'
+
+  .form-group
+    = f.label :alcohol, "アルコール度数(%)"
+    br
+    = f.number_field :alcohol_from, class:'alcohol'
+    | ~
+    = f.number_field :alcohol_to, class:'alcohol'
+
+  .form-group
+    = f.button :type => "submit", class:"btn btn-white btn-raised btn-fab btn-round"
+      = icon('fas', 'search')

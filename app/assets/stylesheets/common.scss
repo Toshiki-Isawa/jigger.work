@@ -147,13 +147,18 @@ footer {
   top: 0;
   left: 0;
   bottom: 0;
-  width: 200px; /*この値は調節してください。*/
-  background: #fff; /*背景色も好みに応じにて調節してください。*/
+  width: 400px;
+  background: #fff;
 }
 #show-sidebar{
   position: fixed;
   top: 70px;
   left: 0;
+}
+#sidebar-close {
+  position: absolute;
+  right: 0;
+  z-index: 15;
 }
 
 // 共通
@@ -175,6 +180,9 @@ table {
 }
 ol, ul {
   list-style: none;
+}
+input.alcohol {
+  width: 40%;
 }
 // ---------------------
 
