@@ -24,3 +24,10 @@
     - if rate.end_user == current_end_user
       = link_to public_cocktail_rate_path(rate.cocktail, rate), method: :delete, remote: true, data: {confirm: '本当に削除しますか？'}
         i.fas.fa-backspace.fa-2x
+  
+- if flash.any?
+  - flash.each do |key,value|
+    - key = "success" if key == "notice"
+    - key = "error" if key == "alert"
+    javascript:
+      toastr["#{key}"]("#{value}");
