@@ -79,7 +79,7 @@
                             p.card-text = "Style:#{cocktail.style_name}"
                             p.card-text = "Alcohol:#{cocktail.alcohol}%"
           - else
-            h4 同じベーススピリッツのレシピ
+            h4 同じベースのレシピ
             .row
               -@base_cocktails.each do |cocktail|
                 .col-4
@@ -90,7 +90,7 @@
                           = attachment_image_tag cocktail, :image, fallback:"default.jpeg", class:"rounded card-img"
                         .col-md-7
                           .card-body
-                            h5.card-title = cocktail.name
+                            p.card-title = cocktail.name
                             p.card-text = "Base:#{cocktail.base_name}"
                             p.card-text = "Taste:#{cocktail.taste_name}"
                             p.card-text = "Style:#{cocktail.style_name}"
@@ -108,6 +108,7 @@
           h4 評価一覧
           div id="cocktail_rates_#{ @cocktail.id }"
             = render 'public/rates/rate_content', cocktail: @cocktail
-
+        
+= render 'shared/sidebar'
 
 
