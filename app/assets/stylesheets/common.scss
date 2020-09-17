@@ -166,6 +166,12 @@ footer {
 table {
   font-size: 14px;
 }
+.no-decoration:hover {
+  text-decoration: none;
+}
+ol, ul {
+  list-style: none;
+}
 // ---------------------
 
 // UserPage
@@ -480,6 +486,54 @@ table {
 .term-title:first-letter {
   font-size: 2em;
   color: #393939;
+}
+// ---------------------
+
+// ランキングページ
+.ranking-list {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+}
+.ranking-item {
+  width: 33.33%;
+  height: 350px;
+  padding: 0 4vw;
+  position: relative;
+  margin-bottom: 0px;
+}
+.ranking-item-inner-top {
+  display: flex;
+  -webkit-box-pack: justify;
+  justify-content: space-between;
+}
+.ranking-info {
+  display: flex;
+  font-size: 15px;
+}
+.cocktail-info {
+  display: flex;
+  -webkit-box-pack: justify;
+  justify-content: space-between;
+}
+.badge {
+  margin-right: 8px;
+}
+.alc_tags {
+  display: flex;
+}
+.alc_tag_item {
+  border: 1px solid rgba(14,35,31,0.54);
+  color: rgba(14,35,31,0.54);
+  line-height: 24px;
+  height: 24px;
+  padding: 0 6px;
+}
+.ranking-item:nth-child(3n-1) {
+  margin-top: 60px;
+}
+.ranking-item:nth-child(3n) {
+  margin-top: 120px;
 }
 // ---------------------
 

@@ -83,9 +83,9 @@
             .row
               -@base_cocktails.each do |cocktail|
                 .col-4
-                  = link_to public_cocktail_path(cocktail.id)
-                    .card.mb-3
-                      .row.no-gutters
+                  = link_to public_cocktail_path(cocktail.id), class:"no-decoration" do
+                    .card
+                      .row
                         .col-md-5
                           = attachment_image_tag cocktail, :image, fallback:"default.jpeg", class:"rounded card-img"
                         .col-md-7
