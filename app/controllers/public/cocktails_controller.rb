@@ -57,6 +57,12 @@ class Public::CocktailsController < ApplicationController
     render 'public/cocktails/index'
   end
 
+  def multiple_search
+    @search_params = cocktail_search_params
+    @cocktails = Cocktail.search(@search_params)
+    render 'public/cocktails/index'
+  end
+
   def show
     similar_table = Similar.where(cocktail1: @cocktail.id).or(Similar.where(cocktail2: @cocktail.id)).order("value DESC").limit(3).pluck(:cocktail1,:cocktail2)
     @similar_cocktails = []
@@ -140,4 +146,8 @@ private
 
   def cocktail_params
     params.require(:cocktail).permit(:name,:base_name,:technique_name,:taste_name,:style_name,:alcohol,:tpo_name,:cocktail_desc,:recipe_desc,:image,ingredient_relations_attributes:[:cocktail_id,:ingredient_id,:amount,:unit, :_destroy, ingredient_attributes:[:name, :type_name, :alcohol]])
+  end
+
+  def cocktail_search_params
+    params.fetch(:search, {}).permit(:keyword,:base_name,:technique_name,:taste_name,:style_name,:tpo_name,:alcohol_from,:alcohol_to)
   end
