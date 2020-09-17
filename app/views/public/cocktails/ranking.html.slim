@@ -14,89 +14,76 @@
 
       .tab-content
         #myrecipe.content1
-          table.table
-            thead
-              tr
-                th
-                  | 順位
-                th
-                  | レシピ名
-                th
-                  | 投稿者
-                th
-                  | PV数
-            tbody
-              - @pv_cocktails.each.with_index(1) do |cocktail, index|
-                tr
-                  td
-                    = index
-                    | 位
-                  td
-                    = link_to public_cocktail_path(cocktail) do
-                      = cocktail.name
-                  td
-                    = link_to public_end_user_path(cocktail.end_user) do
-                      = cocktail.end_user.name
-                  td
-                    = cocktail.impressions_count
+          .ranking-list
+            - @pv_cocktails.each.with_index(1) do |cocktail, index|
+                = link_to public_cocktail_path(cocktail), class:"ranking-item no-decoration" do
+                  .ranking-item-inner
+                    .ranking-item-inner-top.term-title
+                      .term-title
+                        = index
+                        | 位
+                      .ranking-info
+                        = cocktail.impressions_count
+                        | PV
+                    = attachment_image_tag @cocktail, :image, fallback:"default.jpeg", width:"250",height:"300", class:"img-raised rounded cocktail-img"
+                    h4 = cocktail.name
+                    .cocktail-info
+                      ul
+                        li.badge.badge-primary = cocktail.base_name
+                        li.badge.badge-light = cocktail.taste_name
+                      ul.alc_tags
+                        li.alc_tag_item
+                          | ALC
+                          = cocktail.alcohol
+                          | %
 
         #favorite.content2
-          table.table
-            thead
-              tr
-                th
-                  | 順位
-                th
-                  | レシピ名
-                th
-                  | 投稿者
-                th
-                  | お気に入り数
-            tbody
-              - @favorites_cocktails.each.with_index(1) do |cocktail, index|
-                tr
-                  td
-                    = index
-                    | 位
-                  td
-                    = link_to public_cocktail_path(cocktail) do
-                      = cocktail.name
-                  td
-                    = link_to public_end_user_path(cocktail.end_user) do
-                      = cocktail.end_user.name
-                  td
-                    = cocktail.favorites.count
+          .ranking-list
+            - @favorites_cocktails.each.with_index(1) do |cocktail, index|
+                = link_to public_cocktail_path(cocktail), class:"ranking-item no-decoration" do
+                  .ranking-item-inner
+                    .ranking-item-inner-top.term-title
+                      .term-title
+                        = index
+                        | 位
+                      .ranking-info
+                        i.fas.fa-heart style="color: red;"
+                         = cocktail.favorites.count
+                    = attachment_image_tag @cocktail, :image, fallback:"default.jpeg", width:"250",height:"300", class:"img-raised rounded cocktail-img"
+                    h4 = cocktail.name
+                    .cocktail-info
+                      ul
+                        li.badge.badge-primary = cocktail.base_name
+                        li.badge.badge-light = cocktail.taste_name
+                      ul.alc_tags
+                        li.alc_tag_item
+                          | ALC
+                          = cocktail.alcohol
+                          | %
 
 
         #follow.content3
-          table.table
-            thead
-              tr
-                th
-                  | 順位
-                th
-                  | レシピ名
-                th
-                  | 投稿者
-                th
-                  | 評価
-                th
-                  | 評価数
-            tbody
-              - @rates_cocktails.each.with_index(1) do |cocktail, index|
-                tr
-                  td
-                    = index
-                    | 位
-                  td
-                    = link_to public_cocktail_path(cocktail) do
-                      = cocktail.name
-                  td
-                    = link_to public_end_user_path(cocktail.end_user) do
-                      = cocktail.end_user.name
-                  td
-                    p id="average-rate-#{cocktail.id}"
-                    = render partial: "shared/star", locals: { cocktail: cocktail }
-                  td
-                    = cocktail.rates.count
-
+          .ranking-list
+            - @rates_cocktails.each.with_index(1) do |cocktail, index|
+                = link_to public_cocktail_path(cocktail), class:"ranking-item no-decoration" do
+                  .ranking-item-inner
+                    .ranking-item-inner-top.term-title
+                      .term-title
+                        = index
+                        | 位
+                      .ranking-info
+                        p id="average-rate-#{cocktail.id}"
+                        = render partial: "shared/star", locals: { cocktail: cocktail }
+                        = cocktail.rates.count
+                        | 件の評価
+                    = attachment_image_tag @cocktail, :image, fallback:"default.jpeg", width:"250",height:"300", class:"img-raised rounded cocktail-img"
+                    h4 = cocktail.name
+                    .cocktail-info
+                      ul
+                        li.badge.badge-primary = cocktail.base_name
+                        li.badge.badge-light = cocktail.taste_name
+                      ul.alc_tags
+                        li.alc_tag_item
+                          | ALC
+                          = cocktail.alcohol
+                          | %
