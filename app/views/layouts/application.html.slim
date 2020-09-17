@@ -56,9 +56,9 @@ html
                     = attachment_image_tag current_end_user, :image, format: 'jpeg', class: "rounded-circle", fallback: "no_image.png", width:"25", height:"25"
                     = current_end_user.name
                   .dropdown-menu aria-labelledby="navbarDropdownMenuLink"
-                    .dropdown-item = link_to 'マイページ', public_end_user_path(current_end_user)
-                    .dropdown-item = link_to 'マイレシピ作成',  new_public_cocktail_path
-                    .dropdown-item = link_to 'ログアウト', destroy_end_user_session_path, method: :delete
+                    = link_to 'マイページ', public_end_user_path(current_end_user), class:"dropdown-item"
+                    = link_to 'マイレシピ作成',  new_public_cocktail_path, class:"dropdown-item"
+                    = link_to 'ログアウト', destroy_end_user_session_path, method: :delete, class:"dropdown-item"
               - elsif admin_signed_in?
                 li.nav-item 管理者でログイン中
                 li.nav-item = link_to 'ログアウト', destroy_admin_session_path, method: :delete
@@ -75,17 +75,18 @@ html
         = link_to contacts_path, class:"btn btn-white btn-raised btn-fab btn-round contact-icon"
           = icon('fas', 'envelope')
 
-    - if flash.any?
-      - flash.each do |key,value|
-        - key = "success" if key == "notice"
-        - key = "error" if key == "alert"
-        javascript:
-          toastr["#{key}"]("#{value}");
 
     main
       .wrapper
         = yield
     
+        - if flash.any?
+          - flash.each do |key,value|
+            - key = "success" if key == "notice"
+            - key = "error" if key == "alert"
+            javascript:
+              toastr["#{key}"]("#{value}");
+
       footer
         p.text-center 2020 Jigger.work
     
