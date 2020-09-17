@@ -6,7 +6,7 @@
       h3.name-title-white Welcome
       p.header-content
         | このサイトはカクテルレシピ検索・投稿サイトです。
-        br ログインをするとレシピの投稿やお気に入りレストを作成できます。
+        br ログインをするとレシピの投稿やお気に入りリストを作成できます。
         | あなたのオリジナルレシピを広めてみませんか？
     .top-button
       = link_to "20歳以上", public_cocktails_path, class:"btn-shine"
@@ -23,18 +23,9 @@
           | 是非、あなただけのマイレシピを広めてみませんか？
 
       h2.title Reference Sites
-      small 本サイトのレシピは以下ウェブサイト様をベースに作成しています。
       br
       .row
-        .col-3.ml-auto
+        .col-3
           img.img-raised.rounded-circle.cocktail-img src="https://images.unsplash.com/photo-1566982100165-a6c300c67f2a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1650&q=80" alt="thumbnail" width="170px" height="170px"
           = link_to "https://cocktail-f.com/"
             h4 Cocktail -f liquor
-        .col-3.ml-auto
-          img.img-raised.rounded-circle.cocktail-img src="data:image/png;base64,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" alt="thumbnail" width="170px" height="170px"
-          = link_to "https://cocktailrecipe.suntory.co.jp/wnb/cocktail/top/temp__top"
-            h4 サントリー公式
-        .col-3.ml-auto
-          img.img-raised.rounded-circle.cocktail-img src="https://images.unsplash.com/photo-1536935663840-b318537c89bc?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1650&q=80" alt="thumbnail" width="170px" height="170px"
-          = link_to "http://www.cocktailtype.com/"
-            h4 カクテルタイプ
