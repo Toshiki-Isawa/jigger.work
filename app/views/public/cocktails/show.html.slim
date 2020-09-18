@@ -96,12 +96,10 @@
                           p = "Alcohol:#{cocktail.alcohol}%"
 
   .rate-content
-
     .row.justify-content-center
       .col-3
         - if end_user_signed_in?
           = render "public/rates/rate_form", {cocktail: @cocktail, rate: @rate}
-
       .col-8
         div id="cocktail_rates_#{ @cocktail.id }"
           = render 'public/rates/rate_content', cocktail: @cocktail

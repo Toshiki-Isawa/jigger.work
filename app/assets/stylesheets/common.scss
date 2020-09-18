@@ -632,6 +632,27 @@ input.alcohol {
   top: 10px;
   left: 10px;
 }
+.rate-content {
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+.rate-content-inner {
+  margin-left: 10px;
+  box-shadow: 0 3px 5px rgba(0, 0, 0, 0.22);
+  padding: 5px 0 0 20px;
+}
+.rate-body {
+  position: relative;
+  margin-left: 20px;
+}
+.rate-text {
+  margin: 20px;
+}
+.rate-delete-btn {
+  position: absolute;
+  right: 0;
+  top: 0;
+}
 // ---------------------
 
 // 見出し css
