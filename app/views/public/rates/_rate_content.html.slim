@@ -1,33 +1,30 @@
-- cocktail.rates.each do |rate|
-  .row.rate-content
-    div id="star-rate-#{rate.id}"
-    = rate.created_at.strftime('%Y/%m/%d')
+- if @cocktail.rates.present?
+  h4 評価一覧
+  - cocktail.rates.each do |rate|
+    .row.rate-content
+      div id="star-rate-#{rate.id}"
+      = rate.created_at.strftime('%Y/%m/%d')
 
-    javascript:
-      $('#star-rate-#{rate.id}').raty({
-      size     : 36,
-      starOff:  '#{ asset_path('star-off.png') }',
-      starOn : '#{ asset_path('star-on.png') }',
-      starHalf: '#{ asset_path('star-half.png') }',
-      scoreName: 'rate[rate]',
-      half: true,
-      readOnly: true,
-      score: #{rate.rate}
-      });
+      javascript:
+        $('#star-rate-#{rate.id}').raty({
+        size     : 36,
+        starOff:  '#{ asset_path('star-off.png') }',
+        starOn : '#{ asset_path('star-on.png') }',
+        starHalf: '#{ asset_path('star-half.png') }',
+        scoreName: 'rate[rate]',
+        half: true,
+        readOnly: true,
+        score: #{rate.rate}
+        });
 
-  .row
-    .rate-body
-      = attachment_image_tag rate.end_user, :image, fallback:"no_image.png", class:"img-raised rounded-circle img-responsive", width:"70",height:"70"
-      h4.text-center = rate.end_user.name
-    .rate-text
-      h4 = rate.comment
-    - if rate.end_user == current_end_user
-      = link_to public_cocktail_rate_path(rate.cocktail, rate), method: :delete, remote: true, data: {confirm: '本当に削除しますか？'}
-        i.fas.fa-backspace.fa-2x
-  
-- if flash.any?
-  - flash.each do |key,value|
-    - key = "success" if key == "notice"
-    - key = "error" if key == "alert"
-    javascript:
-      toastr["#{key}"]("#{value}");
+    .row
+      .rate-body
+        = attachment_image_tag rate.end_user, :image, fallback:"no_image.png", class:"img-raised rounded-circle img-responsive", width:"70",height:"70"
+        h4.text-center = rate.end_user.name
+      .rate-text
+        h4 = rate.comment
+      - if rate.end_user == current_end_user
+        = link_to public_cocktail_rate_path(rate.cocktail, rate), method: :delete, remote: true, data: {confirm: '本当に削除しますか？'}
+          i.fas.fa-backspace.fa-2x
+- else
+  h4 評価がありません

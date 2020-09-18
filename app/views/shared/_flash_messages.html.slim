@@ -1,0 +1,6 @@
+- if flash.any?
+  - flash.each do |key,value|
+    - key = "success" if key == "notice"
+    - key = "error" if key == "alert"
+    javascript:
+      toastr["#{key}"]("#{value}");

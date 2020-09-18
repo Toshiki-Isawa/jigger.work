@@ -104,11 +104,7 @@
           = render "public/rates/rate_form", {cocktail: @cocktail, rate: @rate}
 
       .col-8
-        - if @cocktail.rates.presence
-          h4 評価一覧
-          div id="cocktail_rates_#{ @cocktail.id }"
-            = render 'public/rates/rate_content', cocktail: @cocktail
+        div id="cocktail_rates_#{ @cocktail.id }"
+          = render 'public/rates/rate_content', cocktail: @cocktail
         
 = render 'shared/sidebar'
-
-

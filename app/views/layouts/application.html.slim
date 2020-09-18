@@ -80,13 +80,9 @@ html
     main
       .wrapper
         = yield
-    
-        - if flash.any?
-          - flash.each do |key,value|
-            - key = "success" if key == "notice"
-            - key = "error" if key == "alert"
-            javascript:
-              toastr["#{key}"]("#{value}");
+        
+        #flash_messages
+          = render 'shared/flash_messages'
 
       footer
         p.text-center 2020 Jigger.work
