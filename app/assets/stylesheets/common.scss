@@ -160,6 +160,52 @@ footer {
   right: 0;
   z-index: 15;
 }
+.selectdiv {
+	overflow: hidden;
+	width: 100%;
+	margin: auto;
+	text-align: center;
+}
+.selectdiv select {
+	width: 100%;
+	padding-right: 1em;
+	cursor: pointer;
+	text-indent: 0.01px;
+	text-overflow: ellipsis;
+	border: none;
+	outline: none;
+	background: transparent;
+	background-image: none;
+	box-shadow: none;
+	-webkit-appearance: none;
+	appearance: none;
+}
+.selectdiv select::-ms-expand {
+    display: none;
+}
+.selectdiv.cp_sl01 {
+	position: relative;
+	border: 1px solid #bbbbbb;
+	border-radius: 2px;
+	background: #ffffff;
+}
+.selectdiv.cp_sl01::before {
+	position: absolute;
+	top: 0.8em;
+	right: 0.9em;
+	width: 0;
+	height: 0;
+	padding: 0;
+	content: '';
+	border-left: 6px solid transparent;
+	border-right: 6px solid transparent;
+	border-top: 6px solid #666666;
+	pointer-events: none;
+}
+.selectdiv.cp_sl01 select {
+	padding: 8px 38px 8px 8px;
+	color: #666666;
+}
 
 // 共通
 .card-content {
@@ -175,14 +221,42 @@ footer {
 table {
   font-size: 14px;
 }
+.no-decoration {
+  text-decoration: none;
+  color: black;
+}
 .no-decoration:hover {
   text-decoration: none;
+  color: black;
 }
 ol, ul {
   list-style: none;
 }
 input.alcohol {
   width: 40%;
+}
+.form-group label {
+  font-size: 13px;
+}
+.multiple-search {
+  width: 100%;
+}
+.cocktail_title {
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+.cocktail-box {
+  color: #5d627b;
+  background: white;
+  box-shadow: 0 3px 5px rgba(0, 0, 0, 0.22);
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.3s ease 0s;
+}
+.cocktail-box:hover {
+  box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.25);
+  transform: translateY(-0.1875em);
 }
 // ---------------------
 
@@ -557,6 +631,27 @@ input.alcohol {
   position: relative;
   top: 10px;
   left: 10px;
+}
+.rate-content {
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+.rate-content-inner {
+  margin-left: 10px;
+  box-shadow: 0 3px 5px rgba(0, 0, 0, 0.22);
+  padding: 5px 0 0 20px;
+}
+.rate-body {
+  position: relative;
+  margin-left: 20px;
+}
+.rate-text {
+  margin: 20px;
+}
+.rate-delete-btn {
+  position: absolute;
+  right: 0;
+  top: 0;
 }
 // ---------------------
 
