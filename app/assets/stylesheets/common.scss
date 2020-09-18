@@ -136,8 +136,8 @@ footer {
   border-right: 1px solid rgba(0,0,0,.1);
   position: fixed;
   margin-top: 57px;
-  padding-left: 30px;
-  padding-right: 30px;
+  margin-left: 35px;
+  padding-right: 15px;
   // max-height: calc(100vh - 10rem);
   overflow-y: scroll;
   line-height: 1em;
@@ -147,7 +147,7 @@ footer {
   top: 0;
   left: 0;
   bottom: 0;
-  width: 400px;
+  width: 450px;
   background: #fff;
 }
 #show-sidebar{
@@ -205,6 +205,14 @@ footer {
 .selectdiv.cp_sl01 select {
 	padding: 8px 38px 8px 8px;
 	color: #666666;
+}
+
+.toggle-btn a {
+  height: 100%;
+  width: 50%;
+}
+.toggle-btn i {
+  margin-top: 40vh;
 }
 
 // 共通

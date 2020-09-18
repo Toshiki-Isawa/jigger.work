@@ -1,8 +1,6 @@
 .sidebar.left.bg-default
-  a.btn.btn-round.btn-fab.btn-danger href="#" data-action="toggle" data-side="left" id="sidebar-close"
-    i.fas.fa-times style="color: white;"
   .row
-    .col-6
+    .col-5
       ul.nav.flex-column
         h4.left-border ベース
         li = link_to "ジン", search_public_cocktails_path(:name => "ジン", :search_key => "base"), method: :post
@@ -31,11 +29,12 @@
         - Cocktail.tpo_names.keys.each do |tpo_name|
           li = link_to "#{tpo_name}", search_public_cocktails_path(:name => tpo_name, :search_key => "tpo"), method: :post
   
-    .col-6
+    .col-5
       h4 複数条件検索
       br
       = render 'shared/multiple_search'
 
-#show-sidebar
-  a.btn href="#" data-action="toggle" data-side="left"
-    i.fas.fa-bars.fa-2x
+    .col-2
+      .toggle-btn
+        a.btn.btn-link href="#" data-action="toggle" data-side="left" id="sidebar-close"
+          i.fas.fa-grip-lines-vertical.fa-3x
