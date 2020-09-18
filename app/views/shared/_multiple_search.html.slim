@@ -10,23 +10,23 @@
 
   .form-group
     = f.label :technique_name, "技法"
-    br
-    = f.select :technique_name, options_for_select(Cocktail.technique_names.keys), include_blank: true, class: 'form-control'
+    .selectdiv.cp_sl01
+      = f.select :technique_name, options_for_select(Cocktail.technique_names.keys), include_blank: true, class: ''
 
   .form-group
     = f.label :taste_name, "味わい"
-    br
-    = f.select :taste_name, options_for_select(Cocktail.taste_names.keys), include_blank: true, class: 'form-control'
+    .selectdiv.cp_sl01
+      = f.select :taste_name, options_for_select(Cocktail.taste_names.keys), include_blank: true, class: 'form-control'
 
   .form-group
     = f.label :style_name, "スタイル"
-    br
-    = f.select :style_name, options_for_select(Cocktail.style_names.keys), include_blank: true, class: 'form-control'
+    .selectdiv.cp_sl01
+      = f.select :style_name, options_for_select(Cocktail.style_names.keys), include_blank: true, class: 'form-control'
 
   .form-group
     = f.label :tpo_name, "TPO"
-    br
-    = f.select :tpo_name, options_for_select(Cocktail.tpo_names.keys), include_blank: true, class: 'form-control'
+    .selectdiv.cp_sl01
+      = f.select :tpo_name, options_for_select(Cocktail.tpo_names.keys), include_blank: true, class: 'form-control'
 
   .form-group
     = f.label :alcohol, "アルコール度数(%)"
@@ -36,5 +36,5 @@
     = f.number_field :alcohol_to, class:'alcohol'
 
   .form-group
-    = f.button :type => "submit", class:"btn btn-white btn-raised btn-fab btn-round"
+    = f.button :type => "submit", class:"btn btn-white btn-raised multiple-search"
       = icon('fas', 'search')

@@ -14,7 +14,8 @@ html
   body
     header
       nav.navbar.navbar-fixed-top.navbar-expand-lg
-        = link_to 'Jigger.', root_path, class: 'logo'
+        = link_to root_path, class: 'logo'
+          = image_tag "logo.png", size:"40x40"
         .container
           button.navbar-toggle.collapsed aria-controls="navbar" aria-expanded="false" data-target="#navbar" data-toggle="collapse" type="button"
             span.sr-pnly Toggle navigation
