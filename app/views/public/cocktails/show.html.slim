@@ -66,35 +66,34 @@
             .row
               - @similar_cocktails.each do |cocktail|
                 .col-4
-                  = link_to public_cocktail_path(cocktail.id)
-                    .card.mb-3 style="max-width: 500px"
-                      .row.no-gutters
-                        .col-md-5
-                          = attachment_image_tag cocktail, :image, fallback:"default.jpeg", class:"rounded card-img"
-                        .col-md-7
-                          .card-body
-                            h5.card-title = cocktail.name
-                            p.card-text = "Base:#{cocktail.base_name}"
-                            p.card-text = "Taste:#{cocktail.taste_name}"
-                            p.card-text = "Style:#{cocktail.style_name}"
-                            p.card-text = "Alcohol:#{cocktail.alcohol}%"
+                  = link_to public_cocktail_path(cocktail.id), class:"no-decoration" do
+                    .cocktail-box
+                      .row
+                        .col-5
+                          = attachment_image_tag cocktail, :image, fallback:"default.jpeg", class:"rounded cocktail-img", size:"120x170"
+                        .col-7
+                          h5.cocktail_title = cocktail.name
+                          p = "Base:#{cocktail.base_name}"
+                          p = "Taste:#{cocktail.taste_name}"
+                          p = "Style:#{cocktail.style_name}"
+                          p = "Alcohol:#{cocktail.alcohol}%"
+
           - else
             h4 同じベースのレシピ
             .row
               -@base_cocktails.each do |cocktail|
                 .col-4
                   = link_to public_cocktail_path(cocktail.id), class:"no-decoration" do
-                    .card
+                    .cocktail-box
                       .row
-                        .col-md-5
-                          = attachment_image_tag cocktail, :image, fallback:"default.jpeg", class:"rounded card-img"
-                        .col-md-7
-                          .card-body
-                            p.card-title = cocktail.name
-                            p.card-text = "Base:#{cocktail.base_name}"
-                            p.card-text = "Taste:#{cocktail.taste_name}"
-                            p.card-text = "Style:#{cocktail.style_name}"
-                            p.card-text = "Alcohol:#{cocktail.alcohol}%"
+                        .col-5
+                          = attachment_image_tag cocktail, :image, fallback:"default.jpeg", class:"rounded cocktail-img", size:"120x170"
+                        .col-7
+                          h5.cocktail_title = cocktail.name
+                          p = "Base:#{cocktail.base_name}"
+                          p = "Taste:#{cocktail.taste_name}"
+                          p = "Style:#{cocktail.style_name}"
+                          p = "Alcohol:#{cocktail.alcohol}%"
 
   .rate-content
 

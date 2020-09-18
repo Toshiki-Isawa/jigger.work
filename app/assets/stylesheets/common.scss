@@ -221,8 +221,13 @@ footer {
 table {
   font-size: 14px;
 }
+.no-decoration {
+  text-decoration: none;
+  color: black;
+}
 .no-decoration:hover {
   text-decoration: none;
+  color: black;
 }
 ol, ul {
   list-style: none;
@@ -235,6 +240,23 @@ input.alcohol {
 }
 .multiple-search {
   width: 100%;
+}
+.cocktail_title {
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+.cocktail-box {
+  color: #5d627b;
+  background: white;
+  box-shadow: 0 3px 5px rgba(0, 0, 0, 0.22);
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.3s ease 0s;
+}
+.cocktail-box:hover {
+  box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.25);
+  transform: translateY(-0.1875em);
 }
 // ---------------------
 
