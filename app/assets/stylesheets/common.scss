@@ -13,6 +13,8 @@ main {
   padding-top: 70px;
   padding-bottom: 60px;
   position: relative;
+  background: #fff;
+  z-index: 3;
 }
 
 .wrapper {
@@ -33,7 +35,6 @@ main {
   position: relative;
   width: 100%;
   height: 95vh;
-  margin-top: -15px;
   background-color: #000;
   overflow: hidden;
 }
@@ -48,17 +49,9 @@ main {
  }
 .top-content .header-left {
   position: absolute;
-  z-index: 10;
   color: white;
   top: 20%;
   left: 5%;
-}
-.top-content .header-right {
-  position: absolute;
-  z-index: 10;
-  color: white;
-  top: 20%;
-  right: 5%;
 }
 .header-left .btn-shine {
   color: #FFF;
@@ -95,17 +88,185 @@ main {
 // -------------------------------
 
 // ヘッダー
-.logo {
-  margin: 0 20px;
-  font-size: 20px;
-  font-weight: bold;
+
+header {
+  position: fixed;
+  height: 70px;
   color: black;
+  background-color: transparent;
+  z-index: 1030;
+}
+
+#logo {
+  position: fixed;
+  top: 5px;
+  left: 50%;
+  margin-left: -30px;
+  background-color: #fff;
+  border-radius: 50%;
+}
+
+#search-form {
+  position: fixed;
+  top: 20px;
+  right: 200px;
+}
+
+#user-action {
+  position: fixed;
+  top: 20px;
+  right: 100px;
+}
+
+#nav-toggle {
+  position: fixed;
+  top: 25px;
+  right: 25px;
+  height: 32px;
+  cursor: pointer;
+  
+> div {
+  position: relative;
+  width: 36px;
+}
+span {
+  width: 100%;
+  height: 1px;
+  left: 0;
+  display: block;
+  background: #333;
+  position: absolute;
+  transition: transform .6s ease-in-out, top .5s ease;
+  
+  &:nth-child(1) {
+    top: 0;
+  }
+  &:nth-child(2) {
+    top: 14px;
+  }
+  &:nth-child(3) {
+    top: 28px;
+  }
+}
+
+&:hover span:nth-child(1) {
+  top: 4px;
+}
+&:hover span:nth-child(3) {
+  top: 23px;
+}
+
+}
+
+.open {
+#nav-toggle span {
+  background: #000;
+  
+  &:nth-child(1) {
+    top: 15px;
+    transform: rotate(45deg);
+  }
+  &:nth-child(2) {
+    top: 15px;
+    width: 0;
+    left: 50%;
+  }
+  &:nth-child(3) {
+    top: 15px;
+    transform: rotate(-45deg);
+  }
+}
+}
+
+/* z-index */
+#nav-toggle {
+  z-index: 1000;
+}
+#container {
+  z-index: 900;
+}
+
+#gloval-nav {
+  background: #fff;
+  color: #000;
+  position: fixed;
+  font-family: 'Economica', sans-serif;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 990;
+  text-align: center;
+  display: flex;
+  visibility: hidden;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: 29px;
+  opacity: 0;
+  transition: opacity .6s ease, visibility .6s ease;
+}
+
+
+#gloval-nav {
+a {
+  display: block;
+  color: #000;
   text-decoration: none;
+  padding: 10px 0;
+  transition: color .6s ease;
+  
+  &:hover {
+    color: #666;
+  }
 }
-.nav-item {
-  padding: 0 10px;
-  font-size: 10px;
+
+ul {
+  list-style: none;
+  
+  li {
+    opacity: 0;
+    transform: translateX(200px);
+    transition:  transform .6s ease, opacity .2s ease;
+
+    &:nth-child(2) {
+      transition-delay: .15s;
+    }
+    &:nth-child(3) {
+      transition-delay: .3s;
+    }
+    &:nth-child(4) {
+      transition-delay: .45s;
+    }
+    &:nth-child(5) {
+      transition-delay: .6s;
+    }
+    &:nth-child(6) {
+      transition-delay: .75s;
+    }
+    &:nth-child(7) {
+      transition-delay: .9s;
+    }
+  }
 }
+} 
+
+/* open */
+.open {
+  overflow: hidden;
+
+#gloval-nav {
+  visibility: visible;
+  opacity: 1;
+}
+
+#gloval-nav li {
+  opacity: 1;
+  transform: translateX(0);
+  transition:  transform 1s ease, opacity .9s ease;
+}
+}
+
 // ---------------------
 
 .contact-icon {
@@ -135,8 +296,9 @@ footer {
 .sidebar {
   border-right: 1px solid rgba(0,0,0,.1);
   position: fixed;
-  margin-top: 57px;
-  margin-left: 35px;
+  margin-top: 70px;
+  // margin-left: 35px;
+  padding-top: 15px;
   padding-right: 15px;
   // max-height: calc(100vh - 10rem);
   overflow-y: scroll;
@@ -207,17 +369,30 @@ footer {
 	color: #666666;
 }
 
-.toggle-btn a {
-  height: 100%;
-  width: 50%;
-}
-.toggle-btn i {
-  margin-top: 40vh;
+.toggle-btn {
+  position: fixed;
+  top: 10px;
+  left: 5%;
+  z-index: 99;
 }
 
+
 // 共通
+.main-raised {
+  margin: -60px 30px 0;
+  padding-top: 30px;
+  border-radius: 6px;
+  box-shadow: 0 16px 24px 2px rgba(0,0,0,0.14), 0 6px 30px 5px rgba(0,0,0,0.12), 0 8px 10px -5px rgba(0,0,0,0.2);
+  background-color: #fff;
+  position: relative;
+  z-index: 20;
+}
+.card {
+  box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14), 0 3px 1px -2px rgba(0,0,0,0.2), 0 1px 5px 0 rgba(0,0,0,0.12);
+}
 .card-content {
-  margin: 0 auto;
+  margin: 70px auto;
+  padding-top: 30px;
 }
 .cocktail-img {
   object-fit: cover;
@@ -266,11 +441,35 @@ input.alcohol {
   box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.25);
   transform: translateY(-0.1875em);
 }
+.blockquote {
+  padding: 10px 20px;
+  margin: 0 0 20px;
+  border-left: 5px solid #eee;
+}
 // ---------------------
 
 // UserPage
 .profile-page {
   margin-top: 170px;
+}
+.profile-page .profile {
+  text-align: center;
+}
+.profile-page .profile img {
+  max-width:160px;
+  width:100%;
+  margin:0 auto;
+  transform: translate3d(0,-50%,0)
+}
+.profile-page .profile .name {
+  margin-top: -80px;
+}
+.img-responsive {
+  display: block;
+  height: auto;
+}
+.img-raised {
+  box-shadow: 0 5px 15px -8px rgba(0,0,0,0.24), 0 8px 10px -5px rgba(0,0,0,0.2);
 }
 .mytabs {
   width: 70%;
@@ -542,8 +741,8 @@ input.alcohol {
 // レシピ一覧ページ
 .index-favorite-button {
   position: relative;
-  top: 10px;
-  left: 170px;
+  top: 30%;
+  left: 85%;
 }
 // ---------------------
 
@@ -757,7 +956,8 @@ input.alcohol {
 .grid figure {
 	position: relative;
 	overflow: hidden;
-	cursor: pointer;
+  cursor: pointer;
+  margin: 0 auto;
 }
 
 .grid figure figcaption {
@@ -809,6 +1009,10 @@ figure.effect-zoe p.icon-links a {
 figure.effect-zoe:hover p.icon-links a:hover,
 figure.effect-zoe:hover p.icon-links a:focus {
 	color: #252d31;
+}
+
+figure.effect-zoe p.cocktail-desc {
+	font-size: 70%;
 }
 
 figure.effect-zoe p.description {
