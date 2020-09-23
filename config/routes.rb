@@ -47,7 +47,7 @@ Rails.application.routes.draw do
 
   namespace :admins do
     get 'homes/top' => 'homes#top', as:'top'
-    resources :end_users, only: [:index, :edit, :show, :update] do
+    resources :end_users, only: [:index, :show] do
       member do
         patch :withdraw
         patch :unfreeze
