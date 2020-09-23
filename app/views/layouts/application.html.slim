@@ -25,7 +25,7 @@ html
           #navbarNavDropdown.collapse.navbar-collapse
             ul.navbar-nav
               - if admin_signed_in?
-                li.nav-item = link_to 'TOP', admins_top_path, class:"nav-link btn btn-link"
+                li.nav-item = link_to '管理者TOP', admins_top_path, class:"nav-link btn btn-link"
                 li.nav-item = link_to admins_cocktails_path, class:"nav-link btn btn-link"
                   i.fas.fa-cocktail.fa-lg
                   |  カクテル一覧

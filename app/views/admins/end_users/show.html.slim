@@ -1,4 +1,88 @@
-h1
-  | Admins::EndUsers#show
-p
-  | Find me in app/views/admins/end_users/show.html.erb
+.profile-page
+  .main-raised
+    .row
+      .col-lg-6.offset-md-3
+        .profile
+          .avatar
+            = attachment_image_tag @user, :image, format: 'jpeg', class: "img-raised rounded-circle img-responsive", fallback: "no_image.png", size: "160x160"
+
+          .name
+            h2.title = @user.name
+            = link_to withdraw_admins_end_user_path(@user.id), method: :patch, class:"btn btn-fab btn-danger btn-round", data:{confirm:'本当にBANしますか？'}
+              i.fas.fa-trash-alt
+
+    .description.text-center
+      p = @user.introduction 
+
+    .row
+      .col
+        .profile-tabs
+          .mytabs
+            .tab-buttons
+              span.content1 マイレシピ
+              span.content2 お気に入り
+              span.content3 フォローユーザー
+              #lamp.content1
+
+            .tab-content
+              #myrecipe.content1
+                - if @recipes.presence
+                    table.table
+                      thead
+                        tr
+                          th
+                          th 名前
+                          th ベース
+                          th テイスト
+                          th スタイル
+                          th アルコール(%)
+                          th style="width: 300px;" キャッチコピー
+                      tbody
+                      - @recipes.each do |recipe|
+                        tr
+                          th = attachment_image_tag recipe, :image, fallback:"default.jpeg", class:"cocktail-img img-raised", width:"80", height:"80"
+                          th 
+                            = link_to public_cocktail_path(recipe.id), class:"grid__link"
+                              = recipe.name
+                          th = recipe.base_name
+                          th = recipe.taste_name
+                          th = recipe.style_name
+                          th = recipe.alcohol
+                          th = recipe.cocktail_desc
+                - else
+                  .text-center
+                    h4 マイレシピが登録されていません
+
+              #favorite.content2
+                - if @favorite_cocktails.presence
+                  .masonry
+                    - @favorite_cocktails.each do |cocktail|
+                        .grid
+                          = attachment_image_tag cocktail, :image, fallback:"default.jpeg", class:"img-raised rounded"
+                          .grid__body
+                            .relative
+                              = link_to admins_cocktail_path(cocktail.id), class:"grid__link"
+                                h1.grid__title = cocktail.name
+                            .mt-auto
+                              span.grid__tag ##{cocktail.base_name}
+                - else
+                  h4 お気に入りが登録されていません。
+
+              #follow.content3
+                - if @follow_users.presence
+                  table.table
+                    thead
+                      tr
+                        th 
+                        th ユーザー名
+                        th 投稿レシピ数
+                        th
+                    tbody
+                      tr
+                      - @follow_users.each do |user|
+                        th = attachment_image_tag user, :image, format: 'jpeg', class: "img-raised rounded-circle img-responsive", fallback: "no_image.png", size: "50x50"
+                        th = link_to "#{user.name}", admins_end_user_path(user.id)
+                        th = user.cocktails.size
+
+                - else
+                  h4 フォローしているユーザーがいません。
