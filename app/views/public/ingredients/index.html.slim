@@ -1,12 +1,12 @@
 .card.card-content style="width: 90%;"
   .row.justify-content-center
     .col-10
-      .card-header.navbar.ingredient-type-box
+      .card-header.ingredient-type-box
         ul.nav
           li 絞り込み：
-          li = link_to "全て", public_ingredients_path, class:"nav-item nav-link btn btn-secondary"
+          li = link_to "全て", public_ingredients_path, class:"btn btn-light"
           - Ingredient.type_names.keys.each do |type_name|
-            li = link_to "#{type_name}", search_public_ingredients_path(:name => type_name), method: :post, class:"nav-item nav-link btn btn-secondary"
+            li = link_to "#{type_name}", search_public_ingredients_path(:name => type_name), method: :post, class:"btn btn-light"
       
       .ingredient-index
         - @ingredients.each do |ingredient|

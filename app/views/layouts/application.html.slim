@@ -18,14 +18,14 @@ html
         = link_to root_path
           = image_tag "logo.png", size:"60x60"
       
-      #search-form
+      / #search-form
         = form_with url: search_path, class:"form-inline ml-auto",local: true , method: :get do |f|
           = f.text_field :content ,class:"form-control", placeholder:"カクテル名・材料名"
           = f.button :type => "submit", class:"btn btn-white btn-raised btn-fab btn-round"
             = icon('fas', 'search')
 
       #user-action.dropdown
-        button.btn.dropdown-toggle type="button" id="dropdownMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+        button.btn.btn-link.dropdown-toggle type="button" id="dropdownMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
           i.fas.fa-user.fa-lg
         .dropdown-menu aria-labelledby="dropdownMenu"
           - if end_user_signed_in?
@@ -70,8 +70,6 @@ html
 
       footer
         p.text-center 2020 Jigger.work
-        = link_to contacts_path, class:"btn btn-white btn-raised btn-fab btn-round contact-icon"
-          = icon('fas', 'envelope')
     
     script src="//cdnjs.cloudflare.com/ajax/libs/jquery-sidebar/3.1.0/jquery.sidebar.min.js"
     script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jQuery-Validation-Engine/2.6.4/languages/jquery.validationEngine-ja.min.js" charset="utf-8"
