@@ -1,13 +1,15 @@
 Rails.application.routes.draw do
   root 'public/homes#top'
   get '/search' => 'search#search'
-  get 'contacts' => 'contacts#new'
-  post 'contacts' => 'contacts#create'
+  get 'contacts' => 'contacts#index'
+  get 'contacts/confirm' => redirect("/contacts")
+  get 'contacts/thanks' => redirect("/contacts")
+  post 'contacts/confirm' => 'contacts#confirm'
+  post 'contacts/thanks' => 'contacts#thanks'
   
   # Public側ルーティング
   devise_for :end_users, controllers: {
     registrations: 'public/devise/registrations',
-    passwords:'public/devise/passwords',
     sessions:'public/devise/sessions',
   }
   devise_scope :end_user do
