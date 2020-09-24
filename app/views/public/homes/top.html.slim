@@ -6,8 +6,8 @@
       h3.name-title-white Welcome
       p.header-content
         | このサイトはカクテルレシピ検索・投稿サイトです。
-        br ログインをするとレシピの投稿やお気に入りリストを作成できます。
-        | あなたのオリジナルレシピを広めてみませんか？
+        br あなたのお気に入りカクテルを登録したり、あなただけのレシピを公開できます。
+        | 今日は何を作りますか？
     .top-button
       = link_to "20歳以上", public_cocktails_path, class:"btn-shine"
       = link_to "20歳未満", search_public_cocktails_path(:name => "none", :search_key => "alcohol"), method: :post, class:"btn-shine"
@@ -18,9 +18,17 @@
       h2.title What about Jigger?
       .blockquote
         h4
-          | カクテルやモクテル（ノンアルコールカクテル）のレシピを掲載しています。 
-          br ログインすることでレシピを投稿したり、あなたのお気に入りのレシピを登録することが出来ます。
-          | 是非、あなただけのマイレシピを広めてみませんか？
+          | 「Jigger.work」では、様々なカクテルやモクテル（ノンアルコールカクテル）のレシピを掲載しています。 
+          br お好きな条件での絞り込み機能や、あなたが好きなカクテルに似たカクテルを提案致します。
+          | 投稿レシピの中から、あなたのお気に入りレシピを登録して頂くことで、似ているカクテルの提案精度が上がります。
+          br 是非、会員登録をしてあなたの好みを教えて下さい。
+
+      h2.title How to Use
+      .blockquote
+        h4
+          | 未ログインの状態でもレシピの閲覧・検索が可能です。
+          br ゲストログインを使用して頂くと、レシピ投稿・お気に入り管理・ユーザーフォローの使用感をお試し頂けます。
+          | ※サイト操作の動画を記載
 
       h2.title Reference Sites
       br

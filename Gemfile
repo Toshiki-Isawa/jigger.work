@@ -56,7 +56,6 @@ group :development do
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
   gem 'pry-byebug'
-  gem 'letter_opener'
 end
 
 group :test do
@@ -88,6 +87,7 @@ gem 'cocoon'
 gem 'kaminari'
 gem 'impressionist', '~>1.6.1'
 gem 'whenever', require: false
+gem 'mailcatcher'
 
 group :production do
   gem 'mysql2'

@@ -18,18 +18,7 @@ class Admins::CocktailsController < ApplicationController
         end
       end
     end
-  end
-
-  def new
-  end
-
-  def edit
-  end
-
-  def create
-  end
-
-  def update
+    @base_cocktails = Cocktail.where(base_name: @cocktail.base_name).distinct.where.not(id: @cocktail.id).shuffle.take(3)
   end
 
   def destroy
