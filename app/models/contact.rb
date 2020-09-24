@@ -1,5 +1,8 @@
-class Contact < ApplicationRecord
-  VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
-  validates :email, presence: true, length: {maximum:255}, format: {with: VALID_EMAIL_REGEX}
-  validates :message, presence: true
+class Contact
+  include ActiveModel::Model
+
+  attr_accessor :email, :message
+
+  validates :email,  length: { minimum: 3, :too_short => 'メールアドレスを入力して下さい。'}
+  validates :message, :presence => { :message => '問い合わせ内容を入力して下さい。'}
 end

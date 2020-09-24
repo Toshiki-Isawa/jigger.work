@@ -1,0 +1,24 @@
+.container
+  .row
+    .col-6.ml-auto.mr-auto
+      .card style="width: 60rem;"
+        .card-header.card-header-primary
+          h3.card-title.text-center お問い合わせ内容確認
+        = form_with model: @contact, url: contacts_thanks_path, local: true do |f|
+          .card-body
+            = render 'shared/error_messages', model: f.object
+              
+            .form-group
+              strong メールアドレス
+              br
+              = f.hidden_field :email
+              p = @contact.email
+
+            .form-group
+              strong 内容
+              br
+              = f.hidden_field :message
+              p = @contact.message
+
+          .footer.text-center
+            = f.submit '送信する', class:"btn btn-primary btn-link"
