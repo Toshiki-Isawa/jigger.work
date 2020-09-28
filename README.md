@@ -22,7 +22,7 @@
 可能です。
 
 ## 設計書
-- ER図：https://drive.google.com/file/d/1mijitAWHEuq6wvDZRP4eQiFSQFHuELg6/view?usp=sharing
+- ER図：https://drive.google.com/file/d/16QyIc_TiDdQNt7bMZqKwdRM37k2JfiDV/view?usp=sharing
 - データベース設計：https://docs.google.com/spreadsheets/d/1HKdf40T_zGml8pDR_0ivoPfJKiNJkzMO9nCNTQ-TtDY/edit?usp=sharing
 - 詳細設計：https://docs.google.com/spreadsheets/d/1ml3zO8AkYwl9wHE_pER7QCZoKMnzmxGwneqXcX806n8/edit?usp=sharing
 - 画面遷移図：https://drive.google.com/file/d/1DsNItj1giHDZxoHLb4D6PRURu3L43FIH/view?usp=sharing
