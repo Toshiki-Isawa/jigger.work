@@ -44,7 +44,7 @@ jQuery(function() {
 	},3000);
 });
 
-// MyPage-Tabbutton
+// Tabbutton
 $(function(){
   $('.tab-content>div').hide();
   $('.tab-content>div').first().slideDown();

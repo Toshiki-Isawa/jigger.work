@@ -1,17 +1,23 @@
 class ContactsController < ApplicationController
-  def new
+  def index
     @contact = Contact.new
   end
 
-  def create
+  def confirm
     @contact = Contact.new(contact_params)
-    if @contact.save
-      ContactMailer.contact_mail(@contact).deliver
-      flash[:notice] = 'お問い合わせを受け付けました'
-      redirect_to public_top_path
+    if @contact.valid?
+      render :confirm
     else
-      render :new
+      flash[:alert] = 'お問い合わせに失敗しました'
+      render :index
     end
+  end
+  
+  def thanks
+    @contact = Contact.new(contact_params)
+    ContactMailer.contact_mail(@contact).deliver
+    flash[:notice] = 'お問い合わせを受け付けました'
+    redirect_to root_path
   end
 
   private

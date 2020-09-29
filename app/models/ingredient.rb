@@ -1,4 +1,8 @@
 class Ingredient < ApplicationRecord
+  validates :name, presence: true, uniqueness: true
+  validates :type_name, presence: true
+  validates :alcohol, presence: true
+
   enum type_name: {
     アルコール: 1,
     ノンアルコール: 2,

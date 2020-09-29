@@ -6,12 +6,10 @@ class Admins::EndUsersController < ApplicationController
   end
 
   def show
-  end
-
-  def edit
-  end
-
-  def update
+    @user = EndUser.find(params[:id])
+    @recipes = Cocktail.where(end_user_id: @user.id)
+    @favorite_cocktails = @user.favorite_cocktails
+    @follow_users = @user.followings
   end
 
   def withdraw

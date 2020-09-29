@@ -5,6 +5,15 @@
     max-width: 100vh;
   }
   header {
-    // height: 50px;
+    height: 80px;
+  }
+  #search-form {
+    display: none;
+  }
+  .sidebar.left {
+    width: 100%;
+  }
+  .search-shortcut {
+    display: none;
   }
 }

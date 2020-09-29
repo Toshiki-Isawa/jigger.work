@@ -11,14 +11,13 @@ html
     meta name="viewport" content="width=device-width, initial-scale=1.0"
     link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/jQuery-Validation-Engine/2.6.4/validationEngine.jquery.min.css"
     link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Economica:700"
-    link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css"
   body
     header
       #logo
         = link_to root_path
           = image_tag "logo.png", size:"60x60"
       
-      / #search-form
+      #search-form
         = form_with url: search_path, class:"form-inline ml-auto",local: true , method: :get do |f|
           = f.text_field :content ,class:"form-control", placeholder:"カクテル名・材料名"
           = f.button :type => "submit", class:"btn btn-white btn-raised btn-fab btn-round"
@@ -36,6 +35,7 @@ html
             p 管理者でログイン中
             = link_to 'ログアウト', destroy_admin_session_path, method: :delete, class:"dropdown-item"
           - else
+            = link_to '管理者ログイン',  new_admin_session_path, class:"dropdown-item"
             = link_to 'ゲストログイン',  guest_sign_in_path, method: :post, class:"dropdown-item"
             = link_to 'ログイン', new_end_user_session_path, class:"dropdown-item"
             = link_to '新規登録', new_end_user_registration_path, class:"dropdown-item"
@@ -76,6 +76,4 @@ html
     script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jQuery-Validation-Engine/2.6.4/jquery.validationEngine.min.js" charset="utf-8"
     script src="https://unpkg.com/aos@2.3.1/dist/aos.js"
 
-    javascript:
-      AOS.init();
 

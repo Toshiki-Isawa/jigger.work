@@ -1,0 +1,21 @@
+.container
+  .row
+    .col-6.ml-auto.mr-auto
+      .card style="width: 60rem;"
+        .card-header.card-header-primary
+          h3.card-title.text-center お問い合わせ
+        = form_for @contact, url: contacts_confirm_path do |f|
+          .card-body
+            - if @contact.errors.present?
+              strong 入力内容にエラーがあります
+              = render 'shared/error_messages', model: f.object
+              
+            .form-group
+              strong メールアドレス
+              = f.text_field :email, placeholder: "30文字以内", class:"form-control"
+            .form-group
+              strong 内容
+              = f.text_area :message, placeholder: "500文字以内", class:"form-control"
+              
+          .footer.text-center
+            = f.submit '確認する', class:"btn btn-primary btn-link"

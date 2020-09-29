@@ -8,13 +8,23 @@
           - Ingredient.type_names.keys.each do |type_name|
             li = link_to "#{type_name}", search_admins_ingredients_path(:name => type_name), method: :post, class:"nav-item nav-link btn btn-secondary"
       
-      .row
-        = form_with model:[:admins,@new_ingredient], local: true do |f|
-
-          = f.text_field :name, placeholder:"材料名を入力", class:"form-control"
-          = f.select :type_name, options_for_select(Ingredient.type_names.keys), class: 'form-control'
-          = f.number_field :alcohol, min: '0', max: '99'
-          = f.submit "追加",class: "btn btn-success"
+      table.table
+        thead
+          tr
+            th 材料名
+            th タイプ
+            th アルコール度数(%)
+            th
+            th
+        tbody
+          = form_with model:[:admins,@new_ingredient], class:"form-control",local: true do |f|
+            = render 'shared/error_messages', model: f.object
+            tr
+              th = f.text_field :name, placeholder:"材料名を入力"
+              th = f.select :type_name, options_for_select(Ingredient.type_names.keys)
+              th = f.number_field :alcohol, min: '0', max: '99'
+              th = f.submit "追加",class: "btn btn-success"
+                th
       
       table.table
         thead

@@ -1,17 +1,18 @@
 .card.card-content style="width: 90%;"
   .row.justify-content-center
-    .col-lg-3.cocktail-show
+    .col-lg-3.col-sm-12.cocktail-show
       h5.parenthses = @cocktail.name
       p.blockquote = @cocktail.cocktail_desc
       div id="average_rate_#{@cocktail.id}"
         = render 'public/rates/average_rate', cocktail: @cocktail
 
-      = attachment_image_tag @cocktail, :image, fallback:"default.jpeg", width:"300",height:"400", class:"img-raised rounded cocktail-img"
+      .cocktail-img
+        = attachment_image_tag @cocktail, :image, fallback:"default.jpeg", width:"100%",height:"100%", class:"img-raised rounded"
 
       div id="favorites_buttons_#{@cocktail.id}"
         = render partial: "public/favorites/favorite", locals: { cocktail: @cocktail}
 
-    .col-lg-8
+    .col-lg-8.col-sm-12
       table.table
         thead
           tr
@@ -53,7 +54,7 @@
         .col-3.text-center
           h5 投稿者
           = link_to  public_end_user_path(@cocktail.end_user_id)
-            = attachment_image_tag @cocktail.end_user, :image, format: 'jpeg', class: "img-raised rounded-circle img-responsive", fallback: "no_image.png", width:"190",height:"190"
+            = attachment_image_tag @cocktail.end_user, :image, format: 'jpeg', class: "img-raised rounded-circle img-responsive", fallback: "no_image.png", width:"100%",height:"100%"
             h5 = @cocktail.end_user.name
           - if end_user_signed_in? && @cocktail.end_user_id == current_end_user.id
             = link_to "レシピ編集", edit_public_cocktail_path(@cocktail.id), class:"btn btn-info"

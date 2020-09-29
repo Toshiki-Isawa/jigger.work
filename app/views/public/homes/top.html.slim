@@ -19,21 +19,24 @@
       .blockquote
         h4
           | 「Jigger.work」では、様々なカクテルやモクテル（ノンアルコールカクテル）のレシピを掲載しています。 
-          br お好きな条件での絞り込み機能や、あなたが好きなカクテルに似たカクテルを提案致します。
-          | 投稿レシピの中から、あなたのお気に入りレシピを登録して頂くことで、似ているカクテルの提案精度が上がります。
-          br 是非、会員登録をしてあなたの好みを教えて下さい。
+          br 複数条件での絞り込み機能や、類似度データをもとにして似ているカクテルを表示しています。
+          | 投稿レシピの中から、あなたのお気に入りレシピを登録して頂くことで、似ているカクテルの表示精度が上がります。
+          br 是非、会員登録をしてあなたの好みのカクテルを教えて下さい。
 
       h2.title How to Use
       .blockquote
         h4
           | 未ログインの状態でもレシピの閲覧・検索が可能です。
-          br ゲストログインを使用して頂くと、レシピ投稿・お気に入り管理・ユーザーフォローの使用感をお試し頂けます。
-          | ※サイト操作の動画を記載
+          br また、ゲストログインを使用して頂くと、レシピ投稿・お気に入り管理・ユーザーフォローの使用感をお試し頂けます。
+          br
+          | ゲストログインはこちら
+          = link_to guest_sign_in_path, method: :post
+            i.fas.fa-sign-in-alt
 
       h2.title Reference Sites
       br
       .row
-        .col-3
+        .col-6
           img.img-raised.rounded-circle.cocktail-img src="https://images.unsplash.com/photo-1566982100165-a6c300c67f2a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1650&q=80" alt="thumbnail" width="170px" height="170px"
           = link_to "https://cocktail-f.com/"
             h4 Cocktail -f liquor
