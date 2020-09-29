@@ -1,4 +1,13 @@
 class Cocktail < ApplicationRecord
+  validates :name, presence: true, uniqueness: true, length: { maximum: 20 }
+  validates :cocktail_desc, length: { maximum: 50 }
+  validates :technique_name, presence: true
+  validates :taste_name, presence: true
+  validates :style_name, presence: true
+  validates :alcohol, presence: true
+  validates :tpo_name, presence: true
+  validates :recipe_desc, presence: true
+
   enum technique_name: {
     ビルド: 1,
     ステア: 2,

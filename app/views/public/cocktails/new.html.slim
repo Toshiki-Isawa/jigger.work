@@ -8,7 +8,7 @@
         = render 'shared/error_messages', model: f.object
         .row
           .col-lg-4
-            label レシピタイトル
+            label レシピタイトル（文字数：２０字以内）
             = f.text_field :name, placeholder:"レシピタイトルを入力", class:"form-control"
 
             = attachment_image_tag @cocktail, :image, fallback: "default.jpeg", size:"300x400"
