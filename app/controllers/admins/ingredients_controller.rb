@@ -10,10 +10,13 @@ class Admins::IngredientsController < ApplicationController
     @ingredient = Ingredient.new(ingredient_params)
     if @ingredient.save
       flash[:notice] = '材料を追加しました'
+      redirect_to admins_ingredients_path
     else
-      flash[:notice] = '追加に失敗しました'
+      flash[:alert] = '追加に失敗しました'
+      @ingredients = Ingredient.all
+      @new_ingredient = Ingredient.new
+      render 'index'
     end
-    redirect_to admins_ingredients_path
   end
 
   def update

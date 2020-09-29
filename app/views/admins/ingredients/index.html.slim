@@ -18,6 +18,7 @@
             th
         tbody
           = form_with model:[:admins,@new_ingredient], class:"form-control",local: true do |f|
+            = render 'shared/error_messages', model: f.object
             tr
               th = f.text_field :name, placeholder:"材料名を入力"
               th = f.select :type_name, options_for_select(Ingredient.type_names.keys)
