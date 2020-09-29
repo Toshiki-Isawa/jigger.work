@@ -112,6 +112,7 @@ class Public::CocktailsController < ApplicationController
       flash[:notice] = "レシピを投稿しました"
       redirect_to public_cocktail_path(@cocktail)
     else
+      flash[:alert] = "投稿に失敗しました"
       render 'new'
     end
   end
