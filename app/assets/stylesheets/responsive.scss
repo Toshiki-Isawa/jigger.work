@@ -16,4 +16,9 @@
   .search-shortcut {
     display: none;
   }
+  .cocktail-show > .cocktail-img {
+    height: 400px;
+    width: 90%;
+    object-fit: cover;
+  }
 }

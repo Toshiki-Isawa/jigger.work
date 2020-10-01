@@ -7,7 +7,7 @@
         = render 'public/rates/average_rate', cocktail: @cocktail
 
       .cocktail-img
-        = attachment_image_tag @cocktail, :image, fallback:"default.jpeg", width:"100%",height:"100%", class:"img-raised rounded"
+        = attachment_image_tag @cocktail, :image, fallback:"default.jpeg", width:"100%",height:"100%", class:"img-raised rounded cocktail-img"
 
       div id="favorites_buttons_#{@cocktail.id}"
         = render partial: "public/favorites/favorite", locals: { cocktail: @cocktail}
