@@ -1,4 +1,6 @@
 class IngredientRelation < ApplicationRecord
+  validates :ingredient_id, presence: true
+
   enum unit: {
     ml: 1,
     'tsp.': 2,

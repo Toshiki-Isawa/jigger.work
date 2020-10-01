@@ -94,6 +94,8 @@ class Public::CocktailsController < ApplicationController
     @cocktail.ingredient_relations.zip(cocktail_params[:ingredient_relations_attributes].values) do |i,j|
       if Ingredient.find_by(name: j[:ingredient_id]).presence
         i.ingredient_id = Ingredient.find_by(name: j[:ingredient_id]).id
+      elsif i.ingredient_id.nil?
+        break
       else
         new_ingredient = Ingredient.new
         new_ingredient.name = j[:ingredient_id]
@@ -105,14 +107,16 @@ class Public::CocktailsController < ApplicationController
     end
 
     # トップに登録された材料をベースとしてCocktailテーブルに登録
-    base_id = @cocktail.ingredient_relations[0].ingredient_id
-    @cocktail.base_name = Ingredient.find_by(id: base_id).name
+    if @cocktail.ingredient_relations[0].ingredient_id.presence
+      base_id = @cocktail.ingredient_relations[0].ingredient_id
+      @cocktail.base_name = Ingredient.find_by(id: base_id).name
+    end
 
     if @cocktail.save
       flash[:notice] = "レシピを投稿しました"
       redirect_to public_cocktail_path(@cocktail)
     else
-      flash[:alert] = "投稿に失敗しました"
+      flash.now[:alert] = "投稿に失敗しました"
       render 'new'
     end
   end
@@ -122,7 +126,7 @@ class Public::CocktailsController < ApplicationController
       flash[:notice] = "カクテル情報を変更しました"
       redirect_to public_cocktail_path(@cocktail)
     else
-      render :edit
+      render 'edit'
     end
   end
   
