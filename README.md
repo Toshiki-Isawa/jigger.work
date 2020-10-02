@@ -6,6 +6,7 @@
 全ユーザーのお気に入りデータを解析し、レシピ同士の類似度を算出することでユーザーに類似レシピを提案します。
 
 <img width="1440" alt="jigger cocktails" src="https://user-images.githubusercontent.com/59522269/94928915-525e1080-04ff-11eb-9ac1-6957adfe6be7.png">
+<img width="1440" alt="jigger cocktail show" src="https://user-images.githubusercontent.com/59522269/94930556-8fc39d80-0501-11eb-908a-06c52ddadb21.png">
 
 ### サイトテーマ
 自粛が勧められるコロナ禍の中、以前のようにバーへ足を運べなくなったお酒好きの方へ。
