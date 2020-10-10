@@ -40,3 +40,7 @@
 - フレームワーク：Ruby on Rails
 - JSライブラリ：jQuery
 - 仮想環境：Vagrant,VirtualBox
+
+## AWS構成図
+![image](https://user-images.githubusercontent.com/59522269/95648039-3ebe3580-0b0f-11eb-8780-243fc7079e91.png)
+
