@@ -4,4 +4,7 @@ class Public::HomesController < ApplicationController
 
   def terms
   end
+
+  def policy
+  end
 end
