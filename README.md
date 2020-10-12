@@ -41,6 +41,7 @@
 - JSライブラリ：jQuery
 - 仮想環境：Vagrant,VirtualBox
 
-## AWS構成図
+## AWSインフラ構成
+- 設計書https://docs.google.com/spreadsheets/d/1Klonn1-FawrEMv52VC36DldZsRRnweObUtXfFd-0fgY/edit?usp=sharing
 ![image](https://user-images.githubusercontent.com/59522269/95648039-3ebe3580-0b0f-11eb-8780-243fc7079e91.png)
 
