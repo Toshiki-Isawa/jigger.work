@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   devise_for :end_users, controllers: {
     registrations: 'public/devise/registrations',
     sessions:'public/devise/sessions',
+    omniauth_callbacks: 'public/devise/omniauth_callbacks'
   }
   devise_scope :end_user do
     post 'guest_sign_in' => 'public/devise/sessions#new_guest'

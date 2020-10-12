@@ -16,7 +16,7 @@ class Public::EndUsersController < ApplicationController
   def update
     if @end_user.update(end_user_params)
       flash[:notice] = "登録情報を変更しました"
-      redirect_to public_end_users_path
+      redirect_to public_end_user_path
     else
       render :edit
     end  
