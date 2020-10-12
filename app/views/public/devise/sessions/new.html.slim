@@ -11,6 +11,8 @@
                   i.fab.fa-facebook-square
                 = link_to end_user_google_oauth2_omniauth_authorize_path, class:'btn btn-just-icon btn-link' do
                   i.fab.fa-google-plus
+                = link_to end_user_twitter_omniauth_authorize_path, class:'btn btn-just-icon btn-link' do
+                  i.fab.fa-twitter-square
             .card-body
               = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
                 .form-group

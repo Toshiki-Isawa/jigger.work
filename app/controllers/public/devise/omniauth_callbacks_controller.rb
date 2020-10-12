@@ -36,11 +36,15 @@ class Public::Devise::OmniauthCallbacksController < Devise::OmniauthCallbacksCon
     callback_for(:google)
   end
 
+  def twitter
+    callback_for(:twitter)
+  end
 
   def callback_for(provider)
     @omniauth = request.env['omniauth.auth']
     info = EndUser.find_oauth(@omniauth)
     @end_user = info[:end_user]
+    binding.pry
     if @end_user.persisted? 
       sign_in_and_redirect @end_user, event: :authentication
       set_flash_message(:notice, :success, kind: "#{provider}".capitalize) if is_navigational_format?
