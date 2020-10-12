@@ -3,10 +3,17 @@
     .col-lg-3.cocktail-show
       h3.parenthses = @cocktail.name
       p.blockquote = @cocktail.cocktail_desc
+      .share-button
+        .twitter-it-button.mgr-10
+          = link_to "https://twitter.com/share?url=#{request.url}/&text=#{@cocktail.name}/&hashtags=Jigger", title: 'Twitter', target: '_blank'
+            i.fab.fa-twitter-square.fa-3x
+        .line-it-button.mgr-10 data-lang="ja" data-type="share-a" data-ver="3" data-url="https://jigger.work/public/cocktails/#{@cocktail.id}" data-color="default" data-size="small" data-count="true" style="display: none;"
+          = link_to "https://social-plugins.line.me/lineit/share?url=#{request.url}"
       div id="average_rate_#{@cocktail.id}"
         = render 'public/rates/average_rate', cocktail: @cocktail
 
       = attachment_image_tag @cocktail, :image, fallback:"default.jpeg", width:"300",height:"400", class:"img-raised rounded cocktail-img"
+
 
       div id="favorites_buttons_#{@cocktail.id}"
         = render partial: "public/favorites/favorite", locals: { cocktail: @cocktail}
