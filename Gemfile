@@ -73,6 +73,7 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 # original
 gem "refile", require: "refile/rails", github: 'manfe/refile'
 gem "refile-mini_magick"
+gem "refile-s3"
 gem 'devise'
 gem 'devise-bootstrap-views'
 gem 'bootstrap', '~> 4.1.1'
@@ -88,6 +89,10 @@ gem 'kaminari'
 gem 'impressionist', '~>1.6.1'
 gem 'whenever', require: false
 gem 'mailcatcher'
+gem 'omniauth'
+gem 'omniauth-google-oauth2'
+gem 'omniauth-facebook'
+gem 'omniauth-twitter'
 
 group :production do
   gem 'mysql2'

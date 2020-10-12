@@ -6,6 +6,13 @@
           .form
             .card-header.card-header-primary.text-center
               h4.card-title ユーザーログイン
+              .social-line
+                = link_to end_user_facebook_omniauth_authorize_path, class:'btn btn-just-icon btn-link' do
+                  i.fab.fa-facebook-square
+                = link_to end_user_google_oauth2_omniauth_authorize_path, class:'btn btn-just-icon btn-link' do
+                  i.fab.fa-google-plus
+                = link_to end_user_twitter_omniauth_authorize_path, class:'btn btn-just-icon btn-link' do
+                  i.fab.fa-twitter-square
             .card-body
               = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
                 .form-group
@@ -14,5 +21,5 @@
                 .form-group
                   = f.label :password
                   = f.password_field :password, autocomplete: 'current-password', class: 'form-control'
-                .form-group
+                .form-group.text-center
                   = f.submit  'ログイン', class: 'btn btn-primary'
