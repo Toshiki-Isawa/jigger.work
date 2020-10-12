@@ -89,6 +89,9 @@ gem 'kaminari'
 gem 'impressionist', '~>1.6.1'
 gem 'whenever', require: false
 gem 'mailcatcher'
+gem 'omniauth'
+gem 'omniauth-google-oauth2'
+gem 'omniauth-facebook'
 
 group :production do
   gem 'mysql2'
