@@ -44,5 +44,4 @@
 ## AWSインフラ構成
 - 設計書https://docs.google.com/spreadsheets/d/1Klonn1-FawrEMv52VC36DldZsRRnweObUtXfFd-0fgY/edit?usp=sharing
 
-![AWSインフラ構成図](https://user-images.githubusercontent.com/59522269/95740113-e5990200-0cc6-11eb-9393-7145171b7756.jpg)
-
+![AWSインフラ構成図](https://user-images.githubusercontent.com/59522269/95741991-4413af80-0cca-11eb-8d61-42cda9af9401.jpg)
