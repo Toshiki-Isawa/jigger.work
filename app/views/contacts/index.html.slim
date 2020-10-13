@@ -1,8 +1,8 @@
-.container
+.container-fluid
   .section
-    .row
-      .col-6.ml-auto.mr-auto
-        .card style="width: 60rem;"
+    .row.justify-content-center
+      .col-lg-6.col-sm-10
+        .card
           .card-header.card-header-primary
             h3.card-title.text-center お問い合わせ
           = form_for @contact, url: contacts_confirm_path do |f|
