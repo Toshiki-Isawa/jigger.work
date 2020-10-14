@@ -95,9 +95,9 @@
                       .cocktail-box
                         .row
                           .col-lg-5
-                            = attachment_image_tag cocktail, :image, fallback:"default.jpeg", class:"rounded cocktail-img", size:"120x170"
+                            = attachment_image_tag cocktail, :image, fallback:"default.jpeg", class:"rounded cocktail-img", size:"110x200"
                           .col-lg-7
-                            h5.cocktail_title = cocktail.name
+                            p.cocktail_title = cocktail.name
                             p = "Base:#{cocktail.base_name}"
                             p = "Taste:#{cocktail.taste_name}"
                             p = "Style:#{cocktail.style_name}"
@@ -184,7 +184,7 @@
       p.name-title 同じベースのレシピ
       - @base_cocktails.each do |cocktail|
         = link_to public_cocktail_path(cocktail.id), class:"no-decoration" do
-          .cocktail-box
+          .cocktail-box.mgb-10
             .row
               .col-5
                 = attachment_image_tag cocktail, :image, fallback:"default.jpeg", class:"rounded cocktail-img", size:"140x200"

@@ -26,7 +26,10 @@ html
 
         #user-action.dropdown
           button.btn.btn-link.dropdown-toggle type="button" id="dropdownMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
-            i.fas.fa-user.fa-lg
+            - if end_user_signed_in?
+              = attachment_image_tag current_end_user, :image, format: 'jpeg', class: "rounded-circle", fallback: "no_image.png", width:"40", height:"40"
+            - else
+              i.fas.fa-sign-in-alt.fa-2x
           .dropdown-menu aria-labelledby="dropdownMenu"
             - if end_user_signed_in?
               = link_to 'マイページ', public_end_user_path(current_end_user), class:"dropdown-item"

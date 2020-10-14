@@ -1,7 +1,7 @@
 @media (max-width:960px)
 {
   main {
-    padding-top: 70px;
+    padding-top: 100px;
     max-width: 100vh;
   }
   header {
@@ -10,13 +10,16 @@
   #search-form {
     display: none;
   }
+  #user-action {
+    left: 50px;
+  }
   .sidebar.left {
     width: 100%;
   }
   .search-shortcut {
     display: none;
   }
-  
+
   .index-favorite-button {
     position: relative;
     top: 25px;
@@ -58,7 +61,7 @@
   // ランキングページ
   .ranking-item {
     width: 90%;
-    margin: 0 auto;
+    margin: 30px auto;
     margin-bottom: 90px;
   }
   .ranking-item:nth-child(3n-1) {
@@ -69,7 +72,7 @@
   }
 
   // 用語一覧ページ
-  .term-title {
-    display: none;
-  }
+  // .term-title {
+  //   display: none;
+  // }
 }
