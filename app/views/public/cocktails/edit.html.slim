@@ -20,19 +20,20 @@
             label キャッチコピー（文字数：５０字以内）
             = f.text_field :cocktail_desc, placeholder:"レシピのキャッチコピーを入力", class:"form-control"
 
-            table.table
-              thead
-                tr
-                  th 材料
-                  th 分量
-                  th 単位
-                  th 
-              tbody.line-ingredients
-                - @cocktail.ingredient_relations.each do |ingredient_relation|
+            .table-responsive
+              table.table
+                thead
                   tr
-                    th = ingredient_relation.ingredient.name
-                    th = ingredient_relation.amount
-                    th = ingredient_relation.unit
+                    th 材料
+                    th 分量
+                    th 単位
+                    th 
+                tbody.line-ingredients
+                  - @cocktail.ingredient_relations.each do |ingredient_relation|
+                    tr
+                      th = ingredient_relation.ingredient.name
+                      th = ingredient_relation.amount
+                      th = ingredient_relation.unit
               
             .row
               label How to Make
