@@ -13,58 +13,59 @@ html
     link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Economica:700"
   body
     header
-      #logo
-        = link_to root_path
-          = image_tag "logo.png", size:"50x50"
-      
-      #search-form
-        = form_with url: search_path, class:"form-inline ml-auto",local: true , method: :get do |f|
-          = f.text_field :content ,class:"form-control", placeholder:"カクテル名・材料名"
-          = f.button :type => "submit", class:"btn btn-white btn-raised btn-fab btn-round"
-            = icon('fas', 'search')
+      .header-bar
+        #logo
+          = link_to root_path
+            = image_tag "logo.png", size:"80x80"
+        
+        #search-form
+          = form_with url: search_path, class:"form-inline ml-auto",local: true , method: :get do |f|
+            = f.text_field :content ,class:"form-control", placeholder:"カクテル名・材料名"
+            = f.button :type => "submit", class:"btn btn-white btn-raised btn-fab btn-round"
+              = icon('fas', 'search')
 
-      #user-action.dropdown
-        button.btn.btn-link.dropdown-toggle type="button" id="dropdownMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
-          i.fas.fa-user.fa-lg
-        .dropdown-menu aria-labelledby="dropdownMenu"
-          - if end_user_signed_in?
-            = link_to 'マイページ', public_end_user_path(current_end_user), class:"dropdown-item"
-            = link_to 'マイレシピ',  new_public_cocktail_path, class:"dropdown-item"
-            = link_to 'ログアウト', destroy_end_user_session_path, method: :delete, class:"dropdown-item"
-          - elsif admin_signed_in?
-            p 管理者でログイン中
-            = link_to 'ログアウト', destroy_admin_session_path, method: :delete, class:"dropdown-item"
-          - else
-            = link_to '管理者ログイン',  new_admin_session_path, class:"dropdown-item"
-            = link_to 'ゲストログイン',  guest_sign_in_path, method: :post, class:"dropdown-item"
-            = link_to 'ログイン', new_end_user_session_path, class:"dropdown-item"
-            = link_to '新規登録', new_end_user_registration_path, class:"dropdown-item"
-
-      #nav-toggle
-        div
-          span
-          span
-          span
-
-      #gloval-nav
-        nav
-          ul  
-            - if admin_signed_in?
-              li = link_to 'TOP', admins_top_path
-              li = link_to "カクテル一覧",admins_cocktails_path
-              li = link_to "材料一覧",admins_ingredients_path
-              li = link_to "ユーザー一覧",admins_end_users_path
+        #user-action.dropdown
+          button.btn.btn-link.dropdown-toggle type="button" id="dropdownMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+            i.fas.fa-user.fa-lg
+          .dropdown-menu aria-labelledby="dropdownMenu"
+            - if end_user_signed_in?
+              = link_to 'マイページ', public_end_user_path(current_end_user), class:"dropdown-item"
+              = link_to 'マイレシピ',  new_public_cocktail_path, class:"dropdown-item"
+              = link_to 'ログアウト', destroy_end_user_session_path, method: :delete, class:"dropdown-item"
+            - elsif admin_signed_in?
+              p 管理者でログイン中
+              = link_to 'ログアウト', destroy_admin_session_path, method: :delete, class:"dropdown-item"
             - else
-              li = link_to "Cocktails",public_cocktails_path
-              li = link_to "Ingredients", public_ingredients_path
-              li = link_to "Terms", public_terms_path
-              li = link_to "Ranking",ranking_public_cocktails_path
-              li = link_to "Contact",contacts_path
-              li = link_to "Policy",public_policy_path
+              = link_to '管理者ログイン',  new_admin_session_path, class:"dropdown-item"
+              = link_to 'ゲストログイン',  guest_sign_in_path, method: :post, class:"dropdown-item"
+              = link_to 'ログイン', new_end_user_session_path, class:"dropdown-item"
+              = link_to '新規登録', new_end_user_registration_path, class:"dropdown-item"
 
-      .toggle-btn
-        a.btn href="#" data-action="toggle" data-side="left" id="sidebar-close"
-          i.fas.fa-search.fa-2x
+        #nav-toggle
+          div
+            span
+            span
+            span
+
+        #gloval-nav
+          nav
+            ul  
+              - if admin_signed_in?
+                li = link_to 'TOP', admins_top_path
+                li = link_to "カクテル一覧",admins_cocktails_path
+                li = link_to "材料一覧",admins_ingredients_path
+                li = link_to "ユーザー一覧",admins_end_users_path
+              - else
+                li = link_to "Cocktails",public_cocktails_path
+                li = link_to "Ingredients", public_ingredients_path
+                li = link_to "Terms", public_terms_path
+                li = link_to "Ranking",ranking_public_cocktails_path
+                li = link_to "Contact",contacts_path
+                li = link_to "Policy",public_policy_path
+
+        .toggle-btn
+          a.btn href="#" data-action="toggle" data-side="left" id="sidebar-close"
+            i.fas.fa-search.fa-2x
 
     = render 'shared/sidebar'
 

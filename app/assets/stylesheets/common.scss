@@ -10,7 +10,7 @@ html,body {
 main {
   min-height: 100%;
   width: 100vw;
-  padding-top: 70px;
+  padding-top: 100px;
   padding-bottom: 60px;
   position: relative;
   background: #fff;
@@ -98,15 +98,22 @@ main {
 header {
   position: fixed;
   height: 60px;
-  width: 100vw;
-  color: black;
-  background-color: #fff;
+  width: 100%;
   z-index: 10;
+}
+.header-bar {
+  background-color: white;
+  height: 60px;
+  width: 90vw;
+  border-radius: 45px 45px;
+  margin: 25px auto;
+  box-shadow: 0 0 12px rgba(0, 0, 0, 0.08);
+  position: relative;
 }
 
 #logo {
-  position: fixed;
-  top: 5px;
+  position: absolute;
+  top: -10px;
   left: 50%;
   margin-left: -25px;
   background-color: #fff;
@@ -114,20 +121,20 @@ header {
 }
 
 #search-form {
-  position: fixed;
+  position: absolute;
   top: 10px;
   right: 150px;
 }
 
 #user-action {
-  position: fixed;
+  position: absolute;
   top: 10px;
-  right: 70px;
+  left: 70px;
   color: black;
 }
 
 #nav-toggle {
-  position: fixed;
+  position: absolute;
   top: 15px;
   right: 25px;
   height: 32px;
@@ -183,6 +190,12 @@ header {
     transform: rotate(-45deg);
   }
 }
+}
+
+.toggle-btn {
+  position: absolute;
+  top: 5px;
+  left: 60px;
 }
 
 /* z-index */
@@ -293,7 +306,7 @@ footer {
 .sidebar {
   border-right: 1px solid rgba(0,0,0,.1);
   position: fixed;
-  margin-top: 60px;
+  margin-top: 90px;
   padding: 15px;
   // max-height: calc(100vh - 10rem);
   overflow-y: scroll;
@@ -364,14 +377,6 @@ footer {
 	padding: 8px 38px 8px 8px;
 	color: #666666;
 }
-
-.toggle-btn {
-  position: fixed;
-  top: 10px;
-  left: 60px;
-  text-decoration: none;
-}
-
 
 // 共通
 .main-raised {
@@ -824,7 +829,7 @@ input.alcohol {
   -webkit-box-pack: justify;
   justify-content: space-between;
 }
-.ranking-item-inner h4 {
+.ranking-item-inner h5 {
   margin-top: 10px;
 }
 .ranking-info {

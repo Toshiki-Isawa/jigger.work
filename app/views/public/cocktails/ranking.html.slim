@@ -1,5 +1,5 @@
 .container
-  h4.text-center.top-bottom-border レシピランキング
+  h5.text-center.top-bottom-border レシピランキング
   br
   .row
     .col
@@ -26,7 +26,7 @@
                         = cocktail.impressions_count
                         | PV
                     = attachment_image_tag cocktail, :image, fallback:"default.jpeg", width:"250",height:"300", class:"img-raised rounded cocktail-img"
-                    h4 = cocktail.name
+                    h5 = cocktail.name
                     .cocktail-info
                       ul
                         li.badge.badge-primary = cocktail.base_name
@@ -50,7 +50,7 @@
                         i.fas.fa-heart style="color: red;"
                          = cocktail.favorites.count
                     = attachment_image_tag cocktail, :image, fallback:"default.jpeg", width:"250",height:"300", class:"img-raised rounded cocktail-img"
-                    h4 = cocktail.name
+                    h5 = cocktail.name
                     .cocktail-info
                       ul
                         li.badge.badge-primary = cocktail.base_name
@@ -77,7 +77,7 @@
                         = cocktail.rates.count
                         | 件の評価
                     = attachment_image_tag cocktail, :image, fallback:"default.jpeg", width:"250",height:"300", class:"img-raised rounded cocktail-img"
-                    h4 = cocktail.name
+                    h5 = cocktail.name
                     .cocktail-info
                       ul
                         li.badge.badge-primary = cocktail.base_name
