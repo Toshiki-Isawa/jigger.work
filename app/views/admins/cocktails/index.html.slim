@@ -1,10 +1,10 @@
 .container
   - if params[:name]
-    h2 「#{params[:name]}」を使ったカクテル
+    h5 「#{params[:name]}」を使ったカクテル
   - else
-    h2 Cocktails
+    h5 Cocktails
 
-  .cocktail-index
+  .cocktail-index.table-responsive
     table.table.table-hover
       thead
         tr

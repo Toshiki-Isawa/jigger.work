@@ -1,0 +1,78 @@
+@media (max-width:960px)
+{
+  main {
+    padding-top: 100px;
+    max-width: 100vh;
+  }
+  header {
+    height: 60px;
+  }
+  #search-form {
+    display: none;
+  }
+  #user-action {
+    left: 50px;
+  }
+  .sidebar.left {
+    width: 100%;
+  }
+  .search-shortcut {
+    display: none;
+  }
+
+  .index-favorite-button {
+    position: relative;
+    top: 25px;
+    left: 260px;
+  }
+
+  // レシピ詳細ページ
+  .pc-screen {
+    display: none;
+  }
+  .mobile-screen {
+    display: inline-block;
+    padding: 10px;
+  }
+  .fav-button {
+    position: static;
+  }
+
+  // トップページ
+  #bg-video {
+    display: none;
+  }
+  .top-content {
+    & .header-left {
+      width: 100vw;
+      left: auto;
+  
+      & .contents {
+        margin: 0 auto;
+        font-size: 0.8rem;
+        padding: 0 20px;
+      }
+      & .top-button {
+        text-align: center;
+      }
+    }
+  }
+
+  // ランキングページ
+  .ranking-item {
+    width: 90%;
+    margin: 30px auto;
+    margin-bottom: 90px;
+  }
+  .ranking-item:nth-child(3n-1) {
+    margin-top: 0px;
+  }
+  .ranking-item:nth-child(3n) {
+    margin-top: 0px;
+  }
+
+  // 用語一覧ページ
+  // .term-title {
+  //   display: none;
+  // }
+}

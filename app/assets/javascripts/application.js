@@ -14,11 +14,20 @@
 //= require activestorage
 // turbolinks
 //= require jquery3
+//= require popper
 //= require bootstrap-sprockets
 //= require_tree .
 //= require cocoon
 //= require toastr
 
+//  HeaderMenu
+(function($) {
+  $(function () {
+    $('#nav-toggle').on('click', function() {
+      $('body').toggleClass('open');
+    });
+  });
+})(jQuery);
 
 // Loading-animation
 jQuery(function() {

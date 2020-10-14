@@ -18,7 +18,7 @@
       .col
         .profile-tabs
           .mytabs
-            .tab-buttons
+            .tab-buttons.text-nowrap
               span.content1 マイレシピ
               span.content2 お気に入り
               span.content3 フォローユーザー
@@ -27,8 +27,9 @@
             .tab-content
               #myrecipe.content1
                 - if @recipes.presence
+                  .table-responsive
                     table.table
-                      thead
+                      thead.text-nowrap
                         tr
                           th
                           th 名前
@@ -36,13 +37,13 @@
                           th テイスト
                           th スタイル
                           th アルコール(%)
-                          th style="width: 300px;" キャッチコピー
+                          th キャッチコピー
                       tbody
                       - @recipes.each do |recipe|
                         tr
                           th = attachment_image_tag recipe, :image, fallback:"default.jpeg", class:"cocktail-img img-raised", width:"80", height:"80"
-                          th 
-                            = link_to public_cocktail_path(recipe.id), class:"grid__link"
+                          th.text-nowrap
+                            = link_to admins_cocktail_path(recipe.id), class:"grid__link"
                               = recipe.name
                           th = recipe.base_name
                           th = recipe.taste_name

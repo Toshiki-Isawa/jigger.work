@@ -8,74 +8,69 @@ html
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
     = favicon_link_tag('favicon.ico')
+    meta name="viewport" content="width=device-width, initial-scale=1.0"
     link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/jQuery-Validation-Engine/2.6.4/validationEngine.jquery.min.css"
     link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Economica:700"
   body
     header
-      nav.navbar.navbar-fixed-top.navbar-expand-lg
-        = link_to root_path, class: 'logo'
-          = image_tag "logo.png", size:"40x40"
-        .container
-          button.navbar-toggle.collapsed aria-controls="navbar" aria-expanded="false" data-target="#navbar" data-toggle="collapse" type="button"
-            span.sr-pnly Toggle navigation
-            span.icon-bar
-            span.icon-bar
-            span.icon-bar
-          #navbarNavDropdown.collapse.navbar-collapse
-            ul.navbar-nav
+      .header-bar
+        #logo
+          = link_to root_path
+            = image_tag "logo.png", size:"80x80"
+        
+        #search-form
+          = form_with url: search_path, class:"form-inline ml-auto",local: true , method: :get do |f|
+            = f.text_field :content ,class:"form-control", placeholder:"カクテル名・材料名"
+            = f.button :type => "submit", class:"btn btn-white btn-raised btn-fab btn-round"
+              = icon('fas', 'search')
+
+        #user-action.dropdown
+          button.btn.btn-link.dropdown-toggle type="button" id="dropdownMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+            - if end_user_signed_in?
+              = attachment_image_tag current_end_user, :image, format: 'jpeg', class: "rounded-circle", fallback: "no_image.png", width:"40", height:"40"
+            - else
+              i.fas.fa-sign-in-alt.fa-2x
+          .dropdown-menu aria-labelledby="dropdownMenu"
+            - if end_user_signed_in?
+              = link_to 'マイページ', public_end_user_path(current_end_user), class:"dropdown-item"
+              = link_to 'マイレシピ',  new_public_cocktail_path, class:"dropdown-item"
+              = link_to 'ログアウト', destroy_end_user_session_path, method: :delete, class:"dropdown-item"
+            - elsif admin_signed_in?
+              p 管理者でログイン中
+              = link_to 'ログアウト', destroy_admin_session_path, method: :delete, class:"dropdown-item"
+            - else
+              = link_to '管理者ログイン',  new_admin_session_path, class:"dropdown-item"
+              = link_to 'ゲストログイン',  guest_sign_in_path, method: :post, class:"dropdown-item"
+              = link_to 'ログイン', new_end_user_session_path, class:"dropdown-item"
+              = link_to '新規登録', new_end_user_registration_path, class:"dropdown-item"
+
+        #nav-toggle
+          div
+            span
+            span
+            span
+
+        #gloval-nav
+          nav
+            ul  
               - if admin_signed_in?
-                li.nav-item = link_to '管理者TOP', admins_top_path, class:"nav-link btn btn-link"
-                li.nav-item = link_to admins_cocktails_path, class:"nav-link btn btn-link"
-                  i.fas.fa-cocktail.fa-lg
-                  |  カクテル一覧
-                li.nav-item = link_to admins_ingredients_path, class:"nav-link btn btn-link"
-                  i.fas.fa-grip-horizontal.fa-lg
-                  |  材料一覧
-                li.nav-item = link_to admins_end_users_path, class:"nav-link btn btn-link"
-                  i.fas.fa-users.fa-lg
-                  |  ユーザー一覧
+                li = link_to 'TOP', admins_top_path
+                li = link_to "カクテル一覧",admins_cocktails_path
+                li = link_to "材料一覧",admins_ingredients_path
+                li = link_to "ユーザー一覧",admins_end_users_path
               - else
-                li.nav-item = link_to  public_cocktails_path, class:"nav-link btn btn-link"
-                  i.fas.fa-cocktail.fa-lg
-                  |  カクテル一覧
-                li.nav-item = link_to public_ingredients_path, class:"nav-link btn btn-link"
-                  i.fas.fa-grip-horizontal.fa-lg
-                  |  材料一覧
-                li.nav-item = link_to public_terms_path, class:"nav-link btn btn-link"
-                  i.fas.fa-book.fa-lg
-                  |  カクテル用語一覧
-                li.nav-item = link_to  ranking_public_cocktails_path, class:"nav-link btn btn-link"
-                  i.fas.fa-crown.fa-lg
-                  |  レシピランキング
+                li = link_to "Cocktails",public_cocktails_path
+                li = link_to "Ingredients", public_ingredients_path
+                li = link_to "Terms", public_terms_path
+                li = link_to "Ranking",ranking_public_cocktails_path
+                li = link_to "Contact",contacts_path
+                li = link_to "Policy",public_policy_path
 
-            
-            ul.navbar-nav.navbar-right
-              - if end_user_signed_in?
-                li.dropdown.nav-item
-                  a.nav-link.dropdown-toggle aria-expanded="false" aria-haspopup="true" data-toggle="dropdown" href="javascript:;" id="navbarDropdownMenuLink"
-                    = attachment_image_tag current_end_user, :image, format: 'jpeg', class: "rounded-circle", fallback: "no_image.png", width:"25", height:"25"
-                    = current_end_user.name
-                  .dropdown-menu aria-labelledby="navbarDropdownMenuLink"
-                    = link_to 'マイページ', public_end_user_path(current_end_user), class:"dropdown-item"
-                    = link_to 'マイレシピ作成',  new_public_cocktail_path, class:"dropdown-item"
-                    = link_to 'ログアウト', destroy_end_user_session_path, method: :delete, class:"dropdown-item"
-              - elsif admin_signed_in?
-                li.nav-item 管理者でログイン中
-                li.nav-item = link_to 'ログアウト', destroy_admin_session_path, method: :delete
-              - else
-                .nav-item = link_to '管理者ログイン', new_admin_session_path
-                .nav-item = link_to 'ゲストログイン',  guest_sign_in_path, method: :post
-                .nav-item = link_to 'ログイン', new_end_user_session_path
-                .nav-item = link_to '新規登録', new_end_user_registration_path
+        .toggle-btn
+          a.btn href="#" data-action="toggle" data-side="left" id="sidebar-close"
+            i.fas.fa-search.fa-2x
 
-              = form_with url: search_path, class:"form-inline ml-auto",local: true , method: :get do |f|
-                = f.text_field :content ,class:"form-control", placeholder:"カクテル名・材料名"
-                = f.button :type => "submit", class:"btn btn-white btn-raised btn-fab btn-round"
-                  = icon('fas', 'search')
-
-        = link_to contacts_path, class:"btn btn-white btn-raised btn-fab btn-round contact-icon"
-          = icon('fas', 'envelope')
-
+    = render 'shared/sidebar'
 
     main
       .wrapper
@@ -85,10 +80,8 @@ html
           = render 'shared/flash_messages'
 
       footer
-        p.text-center
-        | ©2020 Jigger.work |  
-        = link_to 'プライバシーポリシー', public_policy_path
-    
+        p.text-center ©2020 Jigger.work
+
     script src="//cdnjs.cloudflare.com/ajax/libs/jquery-sidebar/3.1.0/jquery.sidebar.min.js"
     script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jQuery-Validation-Engine/2.6.4/languages/jquery.validationEngine-ja.min.js" charset="utf-8"
     script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jQuery-Validation-Engine/2.6.4/jquery.validationEngine.min.js" charset="utf-8"
