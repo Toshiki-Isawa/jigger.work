@@ -25,25 +25,29 @@ html
               = icon('fas', 'search')
 
         #user-action.dropdown
-          button.btn.btn-link.dropdown-toggle type="button" id="dropdownMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+          button.dropdown__btn id="dropdown__btn"
             - if end_user_signed_in?
               = attachment_image_tag current_end_user, :image, format: 'jpeg', class: "rounded-circle", fallback: "no_image.png", width:"40", height:"40"
-            - else
-              i.fas.fa-sign-in-alt.fa-2x
-            span.caret
-          .dropdown-menu aria-labelledby="dropdownMenu"
-            - if end_user_signed_in?
-              = link_to 'マイページ', public_end_user_path(current_end_user), class:"dropdown-item"
-              = link_to 'マイレシピ',  new_public_cocktail_path, class:"dropdown-item"
-              = link_to 'ログアウト', destroy_end_user_session_path, method: :delete, class:"dropdown-item"
+              = current_end_user.name
+              i.fas.fa-angle-down.fa-lg.mgl-10
             - elsif admin_signed_in?
-              p 管理者でログイン中
-              = link_to 'ログアウト', destroy_admin_session_path, method: :delete, class:"dropdown-item"
+              管理者
             - else
-              = link_to '管理者ログイン',  new_admin_session_path, class:"dropdown-item"
-              = link_to 'ゲストログイン',  guest_sign_in_path, method: :post, class:"dropdown-item"
-              = link_to 'ログイン', new_end_user_session_path, class:"dropdown-item"
-              = link_to '新規登録', new_end_user_registration_path, class:"dropdown-item"
+              i.fas.fa-sign-in-alt.fa-lg
+          .dropdown__body
+            ul.dropdown__list
+              - if end_user_signed_in?
+                li.dropdown__item = link_to 'マイページ', public_end_user_path(current_end_user), class:"dropdown__item-link"
+                li.dropdown__item = link_to 'マイレシピ',  new_public_cocktail_path, class:"dropdown__item-link"
+                li.dropdown__item = link_to 'ログアウト', destroy_end_user_session_path, method: :delete, class:"dropdown__item-link"
+              - elsif admin_signed_in?
+                li.dropdown__item  管理者でログイン中
+                li.dropdown__item = link_to 'ログアウト', destroy_admin_session_path, method: :delete, class:"dropdown__item-link"
+              - else
+                li.dropdown__item = link_to '管理者ログイン',  new_admin_session_path, class:"dropdown__item-link"
+                li.dropdown__item = link_to 'ゲストログイン',  guest_sign_in_path, method: :post, class:"dropdown__item-link"
+                li.dropdown__item = link_to 'ログイン', new_end_user_session_path, class:"dropdown__item-link"
+                li.dropdown__item = link_to '新規登録', new_end_user_registration_path, class:"dropdown__item-link"
 
         #nav-toggle
           div
