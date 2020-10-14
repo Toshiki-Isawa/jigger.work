@@ -382,6 +382,19 @@ footer {
 }
 
 // 共通
+.row {
+  display: flex;
+}
+.btn-light {
+  color: #212529;
+  background-color: #f8f9fa;
+  border-color: #f8f9fa;
+  &:hover {
+    color: #212529;
+    background-color: #e2e6ea;
+    border-color: #dae0e5;
+  }
+}
 .main-raised {
   margin: -40px 30px 0;
   padding-top: 30px;
@@ -402,7 +415,7 @@ footer {
 }
 .card-content {
   margin: 0 auto;
-  padding-top: 30px;
+  padding: 10px;
 }
 .cocktail-img {
   object-fit: cover;
@@ -455,7 +468,6 @@ input.alcohol {
   padding: 10px 20px;
   margin: 0 0 20px;
   border-left: 5px solid #eee;
-  font-size: 0.8rem !important;
 }
 .nav>li>a {
   position: relative;
@@ -478,6 +490,12 @@ input.alcohol {
 }
 .description {
   color: #999;
+}
+.rounded-circle {
+  border-radius: 50%;
+}
+.justify-content-center {
+  justify-content: center !important;
 }
 // ---------------------
 

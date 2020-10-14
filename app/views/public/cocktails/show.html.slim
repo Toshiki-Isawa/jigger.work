@@ -2,7 +2,7 @@
   .pc-screen
     .row.justify-content-center
       .col-lg-3.cocktail-show
-        h5.parenthses = @cocktail.name
+        h3.parenthses = @cocktail.name
         p.blockquote = @cocktail.cocktail_desc
         .share-button
           .twitter-it-button.mgr-20
@@ -14,7 +14,7 @@
           = render 'public/rates/average_rate', cocktail: @cocktail
 
         .img-content
-          = attachment_image_tag @cocktail, :image, fallback:"default.jpeg", width:"100%", class:"img-raised rounded cocktail-img"
+          = attachment_image_tag @cocktail, :image, fallback:"default.jpeg", width:"90%", class:"img-raised rounded cocktail-img"
 
         div id="favorites_buttons_#{@cocktail.id}"
           = render partial: "public/favorites/favorite", locals: { cocktail: @cocktail}
@@ -42,7 +42,7 @@
 
         .row
           .col-lg-9
-            h5.name-title How to Make
+            h4.name-title How to Make
             p.blockquote = @cocktail.recipe_desc
             br
             table.table
@@ -59,10 +59,10 @@
                   th = recipe.unit
 
           .col-lg-3.text-center
-            h5 投稿者
+            h4 投稿者
             = link_to  public_end_user_path(@cocktail.end_user_id)
               = attachment_image_tag @cocktail.end_user, :image, format: 'jpeg', class: "img-raised rounded-circle", fallback: "no_image.png", width:"100%"
-              h5 = @cocktail.end_user.name
+              h4.no-decoration = @cocktail.end_user.name
             - if end_user_signed_in? && @cocktail.end_user_id == current_end_user.id
               = link_to "レシピ編集", edit_public_cocktail_path(@cocktail.id), class:"btn btn-info"
               = link_to "レシピ削除", public_cocktail_path(@cocktail.id), method: :delete,class:"btn btn-danger", data:{confirm:'本当に削除しますか？'}
@@ -70,7 +70,7 @@
         .row
           .col-lg-12
             - if @similar_cocktails.presence
-              h5 おすすめの類似レシピ
+              h4 おすすめの類似レシピ
               .row
                 - @similar_cocktails.each do |cocktail|
                   .col-lg-4
@@ -78,16 +78,16 @@
                       .cocktail-box
                         .row
                           .col-lg-5
-                            = attachment_image_tag cocktail, :image, fallback:"default.jpeg", class:"rounded cocktail-img", size:"110x200"
+                            = attachment_image_tag cocktail, :image, fallback:"default.jpeg", class:"rounded cocktail-img", size:"110x170"
                           .col-lg-7
-                            p.cocktail_title = cocktail.name
+                            h5.cocktail_title = cocktail.name
                             p = "Base:#{cocktail.base_name}"
                             p = "Taste:#{cocktail.taste_name}"
                             p = "Style:#{cocktail.style_name}"
                             p = "Alcohol:#{cocktail.alcohol}%"
 
             - else
-              h5 同じベースのレシピ
+              h4 同じベースのレシピ
               .row
                 - @base_cocktails.each do |cocktail|
                   .col-lg-4
@@ -95,9 +95,9 @@
                       .cocktail-box
                         .row
                           .col-lg-5
-                            = attachment_image_tag cocktail, :image, fallback:"default.jpeg", class:"rounded cocktail-img", size:"110x200"
+                            = attachment_image_tag cocktail, :image, fallback:"default.jpeg", class:"rounded cocktail-img", size:"110x170"
                           .col-lg-7
-                            p.cocktail_title = cocktail.name
+                            h5.cocktail_title = cocktail.name
                             p = "Base:#{cocktail.base_name}"
                             p = "Taste:#{cocktail.taste_name}"
                             p = "Style:#{cocktail.style_name}"
@@ -113,7 +113,7 @@
             = render 'public/rates/rate_content', cocktail: @cocktail
 
   .mobile-screen
-    h5.text-center = @cocktail.name
+    h3.text-center = @cocktail.name
     p.text-center = @cocktail.cocktail_desc
 
     .share-button.text-center
@@ -126,7 +126,7 @@
     .img-content.text-center
       = attachment_image_tag @cocktail, :image, fallback:"default.jpeg", width:"80%", class:"img-raised rounded cocktail-img"
 
-    .row
+    .row.justify-content-center
       .col
         table.table
           tr
@@ -151,12 +151,12 @@
             th = @cocktail.tpo_name
 
     .text-center
-      h5 投稿者
+      h4 投稿者
       = link_to  public_end_user_path(@cocktail.end_user_id)
         = attachment_image_tag @cocktail.end_user, :image, format: 'jpeg', class: "img-raised rounded-circle", fallback: "no_image.png", width:"30%"
-        p = @cocktail.end_user.name
+        h4 = @cocktail.end_user.name
 
-    p.name-title How to Make
+    h4.name-title How to Make
     p = @cocktail.recipe_desc
     table.table
       - @cocktail.ingredient_relations.each do |recipe|
@@ -166,14 +166,14 @@
           th = recipe.unit
 
     - if @similar_cocktails.presence
-      p.name-title おすすめの類似レシピ
+      h4.name-title おすすめの類似レシピ
       - @similar_cocktails.each do |cocktail|
         = link_to public_cocktail_path(cocktail.id), class:"no-decoration" do
           .cocktail-box.mgb-10
             .row
               .col-5
-                = attachment_image_tag cocktail, :image, fallback:"default.jpeg", class:"rounded cocktail-img", size:"140x200"
-              .col-5
+                = attachment_image_tag cocktail, :image, fallback:"default.jpeg", class:"rounded cocktail-img", size:"140x160"
+              .col-6
                 p.cocktail_title = cocktail.name
                 p = "Base:#{cocktail.base_name}"
                 p = "Taste:#{cocktail.taste_name}"
@@ -181,14 +181,14 @@
                 p = "Alcohol:#{cocktail.alcohol}%"
 
     - else
-      p.name-title 同じベースのレシピ
+      h4.name-title 同じベースのレシピ
       - @base_cocktails.each do |cocktail|
         = link_to public_cocktail_path(cocktail.id), class:"no-decoration" do
           .cocktail-box.mgb-10
             .row
               .col-5
-                = attachment_image_tag cocktail, :image, fallback:"default.jpeg", class:"rounded cocktail-img", size:"140x200"
-              .col-5
+                = attachment_image_tag cocktail, :image, fallback:"default.jpeg", class:"rounded cocktail-img", size:"140x160"
+              .col-6
                 p.cocktail_title = cocktail.name
                 p = "Base:#{cocktail.base_name}"
                 p = "Taste:#{cocktail.taste_name}"
