@@ -1,5 +1,5 @@
 .container
-  h5.text-center.top-bottom-border レシピランキング
+  h4.text-center.top-bottom-border レシピランキング
   br
   .row
     .col
@@ -25,8 +25,8 @@
                       .ranking-info
                         = cocktail.impressions_count
                         | PV
-                    = attachment_image_tag cocktail, :image, fallback:"default.jpeg", width:"250",height:"300", class:"img-raised rounded cocktail-img"
-                    h5 = cocktail.name
+                    = attachment_image_tag cocktail, :image, fallback:"default.jpeg", width:"270",height:"350", class:"img-raised rounded cocktail-img"
+                    h3 = cocktail.name
                     .cocktail-info
                       ul
                         li.badge.badge-primary = cocktail.base_name
@@ -49,8 +49,8 @@
                       .ranking-info
                         i.fas.fa-heart style="color: red;"
                          = cocktail.favorites.count
-                    = attachment_image_tag cocktail, :image, fallback:"default.jpeg", width:"250",height:"300", class:"img-raised rounded cocktail-img"
-                    h5 = cocktail.name
+                    = attachment_image_tag cocktail, :image, fallback:"default.jpeg", width:"270",height:"350", class:"img-raised rounded cocktail-img"
+                    h3 = cocktail.name
                     .cocktail-info
                       ul
                         li.badge.badge-primary = cocktail.base_name
@@ -76,8 +76,8 @@
                         = render partial: "shared/star", locals: { cocktail: cocktail }
                         = cocktail.rates.count
                         | 件の評価
-                    = attachment_image_tag cocktail, :image, fallback:"default.jpeg", width:"250",height:"300", class:"img-raised rounded cocktail-img"
-                    h5 = cocktail.name
+                    = attachment_image_tag cocktail, :image, fallback:"default.jpeg", width:"270",height:"350", class:"img-raised rounded cocktail-img"
+                    h3 = cocktail.name
                     .cocktail-info
                       ul
                         li.badge.badge-primary = cocktail.base_name

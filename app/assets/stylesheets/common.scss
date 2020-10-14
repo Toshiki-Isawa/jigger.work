@@ -198,7 +198,7 @@ header {
 
 .toggle-btn {
   position: absolute;
-  top: 5px;
+  top: 10px;
   left: 60px;
 }
 
@@ -382,7 +382,7 @@ footer {
 }
 
 // 共通
-.row {
+.flex {
   display: flex;
 }
 .btn-light {
@@ -412,6 +412,19 @@ footer {
   color: rgba(0,0,0,0.87);
   background: #fff;
   box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14), 0 3px 1px -2px rgba(0,0,0,0.2), 0 1px 5px 0 rgba(0,0,0,0.12);
+
+  & .card-header {
+    border-radius: 3px;
+    padding: 1rem 15px;
+    margin-left: 15px;
+    margin-right: 15px;
+    margin-top: -30px;
+    border: 0;
+  }
+
+  & .card-body {
+    padding: 1rem 2rem;
+  }
 }
 .card-content {
   margin: 0 auto;
@@ -840,10 +853,10 @@ input.alcohol {
 }
 .ranking-item {
   width: 33.33%;
-  height: 350px;
+  height: 400px;
   padding: 0 4vw;
   position: relative;
-  margin-bottom: 0px;
+  margin-bottom: 30px;
 }
 .ranking-item-inner-top {
   display: flex;
@@ -864,7 +877,7 @@ input.alcohol {
 }
 .badge {
   margin-right: 8px;
-  font-size: 1rem !important;
+  font-size: 1.5rem !important;
 }
 .alc_tags {
   display: flex;

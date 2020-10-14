@@ -1,6 +1,6 @@
 .card.card-content style="width: 90%;"
   .pc-screen
-    .row.justify-content-center
+    .row.justify-content-center.flex
       .col-lg-3.cocktail-show
         h3.parenthses = @cocktail.name
         p.blockquote = @cocktail.cocktail_desc
@@ -67,7 +67,7 @@
               = link_to "レシピ編集", edit_public_cocktail_path(@cocktail.id), class:"btn btn-info"
               = link_to "レシピ削除", public_cocktail_path(@cocktail.id), method: :delete,class:"btn btn-danger", data:{confirm:'本当に削除しますか？'}
         
-        .row
+        .row.flex
           .col-lg-12
             - if @similar_cocktails.presence
               h4 おすすめの類似レシピ
@@ -104,7 +104,7 @@
                             p = "Alcohol:#{cocktail.alcohol}%"
 
     .rate-content
-      .row.justify-content-center
+      .row.justify-content-center.flex
         .col-lg-3
           - if end_user_signed_in?
             = render "public/rates/rate_form", {cocktail: @cocktail, rate: @rate}
@@ -126,7 +126,7 @@
     .img-content.text-center
       = attachment_image_tag @cocktail, :image, fallback:"default.jpeg", width:"80%", class:"img-raised rounded cocktail-img"
 
-    .row.justify-content-center
+    .row.justify-content-center.flex
       .col
         table.table
           tr
@@ -170,7 +170,7 @@
       - @similar_cocktails.each do |cocktail|
         = link_to public_cocktail_path(cocktail.id), class:"no-decoration" do
           .cocktail-box.mgb-10
-            .row
+            .row.flex
               .col-5
                 = attachment_image_tag cocktail, :image, fallback:"default.jpeg", class:"rounded cocktail-img", size:"140x160"
               .col-6
@@ -185,7 +185,7 @@
       - @base_cocktails.each do |cocktail|
         = link_to public_cocktail_path(cocktail.id), class:"no-decoration" do
           .cocktail-box.mgb-10
-            .row
+            .row.flex
               .col-5
                 = attachment_image_tag cocktail, :image, fallback:"default.jpeg", class:"rounded cocktail-img", size:"140x160"
               .col-6
