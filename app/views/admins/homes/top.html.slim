@@ -1,8 +1,8 @@
 .container
   .row
-    .col-4
+    .col-lg-4
       table.table
-        h4 メインベースレシピ数
+        h5 メインベースレシピ数
         thead
           tr
             th ジャンル
@@ -26,9 +26,9 @@
           th レシピ総数
           th = @cocktails.size
 
-    .col-7
+    .col-lg-7
       table.table
-        h4 データの更新
+        h5 データの更新
         thead
           tr
             th 概要
@@ -44,7 +44,7 @@
             th = link_to "更新", similar_cocktail_admins_cocktails_path, class:"btn btn-primary"
             th = Similar.order(:updated_at).last.updated_at.strftime('%Y/%m/%d/%H:%M')
 
-  h4 ランキング
+  h5 ランキング
   .row
     .col
       .tab-buttons

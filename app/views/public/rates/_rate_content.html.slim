@@ -21,12 +21,13 @@
       .row
         .rate-body
           = attachment_image_tag rate.end_user, :image, fallback:"no_image.png", class:"img-raised rounded-circle img-responsive", width:"70",height:"70"
-          h4.text-center = rate.end_user.name
+          p.text-center = rate.end_user.name
         .rate-text
-          h4 = rate.comment
+          p = rate.comment
           - if rate.end_user == current_end_user or admin_signed_in?
-            = link_to "削除",public_cocktail_rate_path(rate.cocktail, rate), method: :delete, remote: true, data: {confirm: '本当に削除しますか？'}, class:"btn btn-danger rate-delete-btn"
+            = link_to public_cocktail_rate_path(rate.cocktail, rate), method: :delete, remote: true, data: {confirm: '本当に削除しますか？'}, class:"rate-delete-btn"
+              i.fas.fa-backspace.fa-2x
 
 
 - else
-  h4 評価がありません
+  h5 評価がありません

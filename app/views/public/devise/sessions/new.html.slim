@@ -8,18 +8,18 @@
               h4.card-title ユーザーログイン
               .social-line
                 = link_to end_user_facebook_omniauth_authorize_path, class:'btn btn-just-icon btn-link' do
-                  i.fab.fa-facebook-square
+                  i.fab.fa-facebook-square.fa-2x
                 = link_to end_user_google_oauth2_omniauth_authorize_path, class:'btn btn-just-icon btn-link' do
-                  i.fab.fa-google-plus
+                  i.fab.fa-google-plus.fa-2x
                 = link_to end_user_twitter_omniauth_authorize_path, class:'btn btn-just-icon btn-link' do
-                  i.fab.fa-twitter-square
+                  i.fab.fa-twitter-square.fa-2x
             .card-body
               = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
                 .form-group
-                  = f.label :name
+                  = f.label :ユーザーネーム
                   = f.text_field :name, autofocus: true, autocomplete: 'name', class: 'form-control'
                 .form-group
-                  = f.label :password
+                  = f.label :パスワード
                   = f.password_field :password, autocomplete: 'current-password', class: 'form-control'
                 .form-group.text-center
                   = f.submit  'ログイン', class: 'btn btn-primary'
