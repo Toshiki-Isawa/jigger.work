@@ -10,8 +10,6 @@
     .rhombus.child-8
     .rhombus.big
 
-= render 'shared/sidebar'
-
 .container
   .row
     .col-lg-12
@@ -23,7 +21,7 @@
         - @cocktails.each do |cocktail|
           .grid
             figure.effect-zoe
-              = attachment_image_tag cocktail, :image, fallback:"default.jpeg", class:"img-raised rounded"
+              = attachment_image_tag cocktail, :image, fallback:"default.jpeg", class:"rounded"
               .grid__body
                 .relative
                   = link_to public_cocktail_path(cocktail.id), class:"grid__link"
@@ -34,7 +32,7 @@
                 .mt-auto
                   span.grid__tag ##{cocktail.base_name}
               figcaption
-                p = cocktail.cocktail_desc
+                p.cocktail-desc = cocktail.cocktail_desc
                 p.description
                    = "Technique : #{cocktail.technique_name}"
                    br

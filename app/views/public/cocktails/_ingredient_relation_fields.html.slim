@@ -1,8 +1,8 @@
 tr.nested-fields
     th = f.text_field :ingredient_id, list: 'ingredient-list'
     datalist id='ingredient-list'
-     - Ingredient.all.map{|ingredient| [ingredient.name, ingredient.id]}.each do |i|
-        option value="#{i[0]}"
+        - Ingredient.all.map{|ingredient| [ingredient.name, ingredient.id]}.each do |i|
+            option value="#{i[0]}"
 
     th = f.number_field :amount, min: '0'
     th = f.select :unit, options_for_select(IngredientRelation.units.keys), class: 'form-control'
