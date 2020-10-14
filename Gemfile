@@ -77,6 +77,7 @@ gem "refile-s3"
 gem 'devise'
 gem 'devise-bootstrap-views'
 gem 'bootstrap', '~> 4.1.1'
+gem 'mini_racer'
 gem 'jquery-rails'
 gem 'dotenv-rails'
 gem 'font-awesome-sass', '~> 5.8.1'
