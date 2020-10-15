@@ -1,5 +1,6 @@
-.sidebar.left.bg-default
-  .row
+.modal.js-modal
+  .modal__bg.js-modal-close
+  .row.modal__content
     .col-lg-6.search-shortcut
       ul.nav.flex-column
         h4.left-border ベース
@@ -33,3 +34,5 @@
       h4 複数条件検索
       br
       = render 'shared/multiple_search'
+    
+    a.js-modal-close href="" 閉じる

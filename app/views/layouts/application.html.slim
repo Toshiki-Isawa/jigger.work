@@ -19,7 +19,7 @@ html
             = image_tag "logo.png", size:"80x80"
         
         #search-form
-          = form_with url: search_path, class:"form-inline ml-auto",local: true , method: :get do |f|
+          = form_with url: search_path, class:"form-inline",local: true , method: :get do |f|
             = f.text_field :content ,class:"form-control", placeholder:"カクテル名・材料名"
             = f.button :type => "submit", class:"btn btn-white btn-raised btn-fab btn-round"
               = icon('fas', 'search')
@@ -72,9 +72,6 @@ html
                 li = link_to "Contact",contacts_path
                 li = link_to "Policy",public_policy_path
 
-        .toggle-btn
-          a.btn href="#" data-action="toggle" data-side="left" id="sidebar-close"
-            i.fas.fa-search.fa-2x
 
         #left-link.pc-screen
           ul.flex
@@ -96,6 +93,9 @@ html
               li = link_to "Terms", public_terms_path, class:"btn-border"
               li = link_to "Policy",public_policy_path, class:"btn-border"
               li = link_to "Contact",contacts_path, class:"btn-border"
+        
+        a.btn.js-modal-open.search-box-toggle href="#"
+          i.fas.fa-search.fa-2x
 
     = render 'shared/sidebar'
 
