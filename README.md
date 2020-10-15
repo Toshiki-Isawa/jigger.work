@@ -4,9 +4,10 @@
 カクテルやモクテル（ノンアルコールカクテル）のレシピ投稿・検索サイトです。
 その時の気分によって、レシピを検索したりオリジナルのレシピを投稿することができます。
 全ユーザーのお気に入りデータを解析し、レシピ同士の類似度を算出することでユーザーに類似レシピを提案します。
+スマートフォンでも閲覧が出来るようにレスポンシブ対応もしています。
 
-<img width="1440" alt="jigger cocktails" src="https://user-images.githubusercontent.com/59522269/94928915-525e1080-04ff-11eb-9ac1-6957adfe6be7.png">
-<img width="1440" alt="jigger cocktail show" src="https://user-images.githubusercontent.com/59522269/94930556-8fc39d80-0501-11eb-908a-06c52ddadb21.png">
+<img width="1440" alt="カクテル一覧" src="https://user-images.githubusercontent.com/59522269/96068012-e5228600-0ed5-11eb-8895-460607e1a8b3.png">
+<img width="1440" alt="カクテル詳細" src="https://user-images.githubusercontent.com/59522269/96068062-07b49f00-0ed6-11eb-9fcd-ea77688d1a90.png">
 
 ### サイトテーマ
 自粛が勧められるコロナ禍の中、以前のようにバーへ足を運べなくなったお酒好きの方へ。
