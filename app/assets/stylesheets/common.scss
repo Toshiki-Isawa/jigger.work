@@ -39,7 +39,7 @@ main {
 .top-content {
   position: relative;
   width: 100vw;
-  height: 95vh;
+  height: 100vh;
   margin-top: -100px;
   background-color: #000;
   overflow: hidden;
@@ -125,16 +125,8 @@ header {
 
 #search-form {
   position: absolute;
-  top: 10px;
+  top: 12px;
   right: 100px;
-}
-
-#user-action {
-  position: absolute;
-  top: 5px;
-  left: 70px;
-  color: black;
-  text-decoration: none;
 }
 
 #nav-toggle {
@@ -198,8 +190,79 @@ header {
 
 .toggle-btn {
   position: absolute;
-  top: 5px;
+  top: 10px;
   left: 60px;
+}
+
+#user-action {
+  position: absolute;
+  top: 5px;
+  left: 70px;
+  color: black;
+  text-decoration: none;
+}
+.dropdown {
+  margin: 0 0 0 auto;
+  position: relative;
+}
+.dropdown__btn {
+  display: inline-block;
+  text-align: center;
+  cursor: pointer;
+  white-space: nowrap;
+  width: 1.5em;
+  height: 50px;
+  padding: 0.2em;
+  background: none;
+  border: 0;
+  &:focus {
+    outline: none;
+  }
+  & .pc-screen {
+    display: inline;
+  }
+}
+.dropdown__btn.is-open::after {
+  content: "";
+  width: 100%;
+  height: 100%;
+  cursor: default;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 4;
+}
+.dropdown__btn.is-open + .dropdown__body {
+  display: block;
+  z-index: 5;
+}
+.dropdown__body {
+  display: none;
+  width: 150px;
+  background: #fff;
+  box-shadow: 0 2px 6px 2px rgba(60,64,67,0.149), 0 1px 2px 0 rgba(60,64,67,0.302);
+  border-radius: 4px;
+  overflow: hidden;
+  position: absolute;
+  top: 55px;
+  left: 0;
+}
+.dropdown__list {
+  margin: 0;
+  padding: 0;
+}
+.dropdown__item {
+  display: block;
+}
+.dropdown__item-link {
+  display: block;
+  padding: 1em 1.2em;
+  font-size: 0.95em;
+  text-decoration: none;
+  color: #444;
+}
+.dropdown__item-link:hover {
+  background: #fbfbfb;
 }
 
 /* z-index */
@@ -382,6 +445,19 @@ footer {
 }
 
 // 共通
+.flex {
+  display: flex;
+}
+.btn-light {
+  color: #212529;
+  background-color: #f8f9fa;
+  border-color: #f8f9fa;
+  &:hover {
+    color: #212529;
+    background-color: #e2e6ea;
+    border-color: #dae0e5;
+  }
+}
 .main-raised {
   margin: -40px 30px 0;
   padding-top: 30px;
@@ -399,10 +475,22 @@ footer {
   color: rgba(0,0,0,0.87);
   background: #fff;
   box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14), 0 3px 1px -2px rgba(0,0,0,0.2), 0 1px 5px 0 rgba(0,0,0,0.12);
+
+  & .card-header {
+    border-radius: 3px;
+    padding: 1rem 15px;
+    margin-left: 15px;
+    margin-right: 15px;
+    border: 0;
+  }
+
+  & .card-body {
+    padding: 1rem 2rem;
+  }
 }
 .card-content {
   margin: 0 auto;
-  padding-top: 30px;
+  padding: 10px;
 }
 .cocktail-img {
   object-fit: cover;
@@ -455,7 +543,6 @@ input.alcohol {
   padding: 10px 20px;
   margin: 0 0 20px;
   border-left: 5px solid #eee;
-  font-size: 0.8rem !important;
 }
 .nav>li>a {
   position: relative;
@@ -478,6 +565,12 @@ input.alcohol {
 }
 .description {
   color: #999;
+}
+.rounded-circle {
+  border-radius: 50%;
+}
+.justify-content-center {
+  justify-content: center !important;
 }
 // ---------------------
 
@@ -822,10 +915,10 @@ input.alcohol {
 }
 .ranking-item {
   width: 33.33%;
-  height: 350px;
+  height: 400px;
   padding: 0 4vw;
   position: relative;
-  margin-bottom: 0px;
+  margin-bottom: 30px;
 }
 .ranking-item-inner-top {
   display: flex;
@@ -846,7 +939,7 @@ input.alcohol {
 }
 .badge {
   margin-right: 8px;
-  font-size: 1rem !important;
+  font-size: 1.5rem !important;
 }
 .alc_tags {
   display: flex;
@@ -1123,6 +1216,9 @@ figure.effect-zoe:hover p.icon-links a:first-child {
 }
 .mgr-20 {
   margin-right: 20px;
+}
+.mgl-5 {
+  margin-left: 5px;
 }
 .mgb-10 {
   margin-bottom: 10px;

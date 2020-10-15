@@ -2,7 +2,7 @@
   h4 評価一覧
   - cocktail.rates.each do |rate|
     .rate-content-inner
-      .row
+      .row.flex
         div id="star-rate-#{rate.id}"
         p = rate.created_at.strftime('%Y/%m/%d')
 
@@ -18,7 +18,7 @@
           score: #{rate.rate}
           });
 
-      .row
+      .row.flex
         .rate-body
           = attachment_image_tag rate.end_user, :image, fallback:"no_image.png", class:"img-raised rounded-circle img-responsive", width:"70",height:"70"
           p.text-center = rate.end_user.name

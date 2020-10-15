@@ -14,7 +14,7 @@
 //= require activestorage
 // turbolinks
 //= require jquery3
-//= require popper
+// require popper
 //= require bootstrap-sprockets
 //= require_tree .
 //= require cocoon
@@ -28,6 +28,17 @@
     });
   });
 })(jQuery);
+
+(function () {
+  document.addEventListener('DOMContentLoaded', function() {
+    const btn = document.getElementById('dropdown__btn');
+    if(btn) {
+      btn.addEventListener('click', function(){
+        this.classList.toggle('is-open');
+      });
+    }
+  });
+}());
 
 // Loading-animation
 jQuery(function() {
