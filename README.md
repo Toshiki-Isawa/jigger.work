@@ -4,10 +4,11 @@
 カクテルやモクテル（ノンアルコールカクテル）のレシピ投稿・検索サイトです。
 その時の気分によって、レシピを検索したりオリジナルのレシピを投稿することができます。
 全ユーザーのお気に入りデータを解析し、レシピ同士の類似度を算出することでユーザーに類似レシピを提案します。
-スマートフォンでも閲覧が出来るようにレスポンシブ対応もしています。
+また、スマートフォンでも閲覧が出来るようにレスポンシブ対応もしています。
 
-<img width="1440" alt="カクテル一覧" src="https://user-images.githubusercontent.com/59522269/96068012-e5228600-0ed5-11eb-8895-460607e1a8b3.png">
-<img width="1440" alt="カクテル詳細" src="https://user-images.githubusercontent.com/59522269/96068062-07b49f00-0ed6-11eb-9fcd-ea77688d1a90.png">
+<img width="1440" alt="top-page" src="https://user-images.githubusercontent.com/59522269/96080945-3c831f00-0ef3-11eb-8a15-36c241e58c1a.png">
+<img width="1436" alt="index-page" src="https://user-images.githubusercontent.com/59522269/96080973-4573f080-0ef3-11eb-8fdd-429b9149058c.png">
+<img width="1438" alt="show-page" src="https://user-images.githubusercontent.com/59522269/96081002-4f95ef00-0ef3-11eb-855d-19310903ae18.png">
 
 ### サイトテーマ
 自粛が勧められるコロナ禍の中、以前のようにバーへ足を運べなくなったお酒好きの方へ。
