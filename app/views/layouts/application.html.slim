@@ -32,8 +32,10 @@ html
               i.fas.fa-angle-down.fa-lg.mgl-5
             - elsif admin_signed_in?
               .btn Admin
+              i.fas.fa-angle-down.fa-lg
             - else
               i.fas.fa-sign-in-alt.fa-lg
+              p.pc-screen.mgl-5 ログインはこちら
           .dropdown__body
             ul.dropdown__list
               - if end_user_signed_in?
@@ -48,7 +50,7 @@ html
                 li.dropdown__item = link_to 'ログイン', new_end_user_session_path, class:"dropdown__item-link"
                 li.dropdown__item = link_to '新規登録', new_end_user_registration_path, class:"dropdown__item-link"
 
-        #nav-toggle
+        #nav-toggle.mobile-screen
           div
             span
             span
@@ -73,6 +75,27 @@ html
         .toggle-btn
           a.btn href="#" data-action="toggle" data-side="left" id="sidebar-close"
             i.fas.fa-search.fa-2x
+
+        #left-link.pc-screen
+          ul.flex
+            - if admin_signed_in?
+              li = link_to 'TOP', admins_top_path, class:"btn-border"
+              li = link_to "Cocktails",admins_cocktails_path, class:"btn-border"
+              li = link_to "Ingredients",admins_ingredients_path, class:"btn-border"
+              li = link_to "Users",admins_end_users_path, class:"btn-border"
+            - else
+              li = link_to "Cocktails",public_cocktails_path, class:"btn-border"
+              li = link_to "Ingredients", public_ingredients_path, class:"btn-border"
+              li = link_to "Ranking",ranking_public_cocktails_path, class:"btn-border"
+
+        #right-link.pc-screen
+          ul.flex
+            - if admin_signed_in?
+              p.btn 管理者でログイン中
+            - else
+              li = link_to "Terms", public_terms_path, class:"btn-border"
+              li = link_to "Policy",public_policy_path, class:"btn-border"
+              li = link_to "Contact",contacts_path, class:"btn-border"
 
     = render 'shared/sidebar'
 
