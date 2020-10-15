@@ -25,11 +25,11 @@
     top: 25px;
     left: 260px;
   }
+  .pc-screen {
+    display: none !important;
+  }
 
   // レシピ詳細ページ
-  .pc-screen {
-    display: none;
-  }
   .mobile-screen {
     display: inline-block;
     padding: 10px;

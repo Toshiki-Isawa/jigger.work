@@ -1,7 +1,7 @@
 .profile-page
   .main-raised
-    .row
-      .col-lg-6.offset-md-3
+    .row.justify-content-center.flex
+      .col-lg-6
         .profile
           .avatar
             = attachment_image_tag @user, :image, format: 'jpeg', class: "img-raised rounded-circle img-responsive", fallback: "no_image.png", size: "160x160"
@@ -80,7 +80,8 @@
                             .mt-auto
                               span.grid__tag ##{cocktail.base_name}
                 - else
-                  h5 お気に入りが登録されていません。
+                  .text-center
+                    h5 お気に入りが登録されていません。
 
               #follow.content3
                 - if @follow_users.presence
@@ -102,4 +103,5 @@
                         - else  
                           th = link_to "フォローする", public_end_user_relationships_path(user.id), method: :post, class:"btn btn-success"  
                 - else
-                  h5 フォローしているユーザーがいません。
+                  .text-center
+                    h5 フォローしているユーザーがいません。

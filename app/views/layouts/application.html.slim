@@ -28,10 +28,10 @@ html
           button.dropdown__btn id="dropdown__btn"
             - if end_user_signed_in?
               = attachment_image_tag current_end_user, :image, format: 'jpeg', class: "rounded-circle", fallback: "no_image.png", width:"40", height:"40"
-              = current_end_user.name
-              i.fas.fa-angle-down.fa-lg.mgl-10
+              p.pc-screen = current_end_user.name
+              i.fas.fa-angle-down.fa-lg.mgl-5
             - elsif admin_signed_in?
-              管理者
+              .btn Admin
             - else
               i.fas.fa-sign-in-alt.fa-lg
           .dropdown__body
@@ -41,7 +41,6 @@ html
                 li.dropdown__item = link_to 'マイレシピ',  new_public_cocktail_path, class:"dropdown__item-link"
                 li.dropdown__item = link_to 'ログアウト', destroy_end_user_session_path, method: :delete, class:"dropdown__item-link"
               - elsif admin_signed_in?
-                li.dropdown__item  管理者でログイン中
                 li.dropdown__item = link_to 'ログアウト', destroy_admin_session_path, method: :delete, class:"dropdown__item-link"
               - else
                 li.dropdown__item = link_to '管理者ログイン',  new_admin_session_path, class:"dropdown__item-link"

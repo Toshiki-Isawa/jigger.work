@@ -1,10 +1,10 @@
 .container
   .section.section-signup
-    .row
-      .col-lg-5.mx-auto
+    .row.justify-content-center.flex
+      .col-lg-5
         .card.card-login
           .form
-            .card-header.card-header-primary.text-center
+            .card-header.text-center
               h4.card-title 管理者ログイン
             .card-body
               = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
