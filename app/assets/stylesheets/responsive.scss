@@ -71,8 +71,11 @@
     margin-top: 0px;
   }
 
-  // 用語一覧ページ
-  // .term-title {
-  //   display: none;
-  // }
+  .ingredient-type-box ul {
+    display: block;
+  }
+  .ingredient-box {
+    width: 140px;
+    margin: 1em 0;
+  }
 }

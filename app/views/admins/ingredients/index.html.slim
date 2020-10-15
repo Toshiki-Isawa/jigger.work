@@ -1,8 +1,8 @@
 .container
-  .row.justify-content-center.flex
+  .row
     .col-10.table-responsive
       .navbar.ingredient-type-box
-        ul.nav
+        ul.nav.flex.justify-content-center
           li 絞り込み：
           li = link_to "全て", admins_ingredients_path, class:"nav-item nav-link btn btn-light"
           - Ingredient.type_names.keys.each do |type_name|
