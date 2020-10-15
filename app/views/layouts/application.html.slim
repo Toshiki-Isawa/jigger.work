@@ -91,7 +91,7 @@ html
         #right-link.pc-screen
           ul.flex
             - if admin_signed_in?
-              p.btn 管理者でログイン中
+              p.header-text 管理者でログイン中
             - else
               li = link_to "Terms", public_terms_path, class:"btn-border"
               li = link_to "Policy",public_policy_path, class:"btn-border"
