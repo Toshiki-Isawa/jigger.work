@@ -7,8 +7,8 @@
 また、スマートフォンでも閲覧が出来るようにレスポンシブ対応もしています。
 
 <img width="1440" alt="top-page" src="https://user-images.githubusercontent.com/59522269/96080945-3c831f00-0ef3-11eb-8a15-36c241e58c1a.png">
-<img width="1436" alt="index-page" src="https://user-images.githubusercontent.com/59522269/96080973-4573f080-0ef3-11eb-8fdd-429b9149058c.png">
-<img width="1438" alt="show-page" src="https://user-images.githubusercontent.com/59522269/96081002-4f95ef00-0ef3-11eb-855d-19310903ae18.png">
+<img width="1439" alt="index-page" src="https://user-images.githubusercontent.com/59522269/96213881-f7272600-0fb4-11eb-8681-da4adad20788.png">
+<img width="1440" alt="show-page" src="https://user-images.githubusercontent.com/59522269/96213898-00b08e00-0fb5-11eb-81ef-b7319dd6aade.png">
 
 ### サイトテーマ
 自粛が勧められるコロナ禍の中、以前のようにバーへ足を運べなくなったお酒好きの方へ。
