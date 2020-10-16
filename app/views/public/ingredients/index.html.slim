@@ -11,3 +11,8 @@
       .ingredient-index
         - @ingredients.each do |ingredient|
             = link_to ingredient.name, search_public_cocktails_path(:name => "#{ingredient.name}", :search_key => "ingredient"), method: :post, class:"ingredient-box img-raised"
+          
+#new_recipe
+  = link_to new_public_cocktail_path, class:"btn"
+    i.fas.fa-cocktail.fa-2x
+    i.fas.fa-plus
