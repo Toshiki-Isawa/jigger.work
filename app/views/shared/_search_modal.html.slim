@@ -1,0 +1,44 @@
+.modal.js-modal
+  .modal__bg.js-modal-close
+  .modal__content
+    .row
+      .col-lg-3.search-shortcut
+        ul.nav.flex-column
+          h4.left-border ベース
+          li = link_to "ジン", search_public_cocktails_path(:name => "ジン", :search_key => "base"), method: :post
+          li = link_to "ウォッカ", search_public_cocktails_path(:name => "ウォッカ", :search_key => "base"), method: :post
+          li = link_to "テキーラ", search_public_cocktails_path(:name => "テキーラ", :search_key => "base"), method: :post
+          li = link_to "ラム", search_public_cocktails_path(:name => "ラム", :search_key => "base"), method: :post
+          li = link_to "ウイスキー", search_public_cocktails_path(:name => "ウイスキー", :search_key => "base"), method: :post
+          
+          h4.left-border アルコール
+          li = link_to "強い(25%以上)", search_public_cocktails_path(:name => "strong", :search_key => "alcohol"), method: :post
+          li = link_to "普通(10%〜25%)", search_public_cocktails_path(:name => "normal", :search_key => "alcohol"), method: :post
+          li = link_to "弱い(10%以下)", search_public_cocktails_path(:name => "weak", :search_key => "alcohol"), method: :post
+          li = link_to "ノンアルコール", search_public_cocktails_path(:name => "none", :search_key => "alcohol"), method: :post
+          
+          h4.left-border 技法
+          - Cocktail.technique_names.keys.each do |technique_name|
+            li = link_to "#{technique_name}", search_public_cocktails_path(:name => technique_name, :search_key => "technique"), method: :post
+      
+      .col-lg-3.search-shortcut
+        ul.nav.flex-column
+          h4.left-border 味わい
+          - Cocktail.taste_names.keys.each do |taste_name|
+            li = link_to "#{taste_name}", search_public_cocktails_path(:name => taste_name, :search_key => "taste"), method: :post
+          h4.left-border スタイル
+          - Cocktail.style_names.keys.each do |style_name|
+            li = link_to "#{style_name}", search_public_cocktails_path(:name => style_name, :search_key => "style"), method: :post
+          h4.left-border TPO
+          - Cocktail.tpo_names.keys.each do |tpo_name|
+            li = link_to "#{tpo_name}", search_public_cocktails_path(:name => tpo_name, :search_key => "tpo"), method: :post
+
+    
+      .col-lg-4
+        h4 複数条件検索
+        br
+        = render 'shared/multiple_search'
+
+
+      a.js-modal-close.modal-close-btn href=""
+        i.fas.fa-window-close.fa-3x
