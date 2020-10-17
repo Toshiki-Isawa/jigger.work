@@ -23,7 +23,7 @@
 
 //  HeaderMenu
 (function($) {
-  $(function () {
+  document.addEventListener('turbolinks:load',function () {
     $('#nav-toggle').on('click', function() {
       $('body').toggleClass('open');
     });
@@ -40,21 +40,6 @@
     }
   });
 }());
-
-// Loading-animation
-jQuery('turbolinks:load',function() {
-	var loader = $('.loader-wrap');
-
-	//ページの読み込みが完了したらアニメーションを非表示
-	$(window).on('load',function() {
-		loader.fadeOut();
-	});
-
-	//ページの読み込みが完了してなくても3秒後にアニメーションを非表示にする
-	setTimeout(function() {
-		loader.fadeOut();
-	},3000);
-});
 
 // Tabbutton
 $(document).on('turbolinks:load',function(){
@@ -856,7 +841,7 @@ jQuery(function() {
 })(jQuery);
 
 // modal
-$(function(){
+$(document).on('turbolinks:load', function(){
   $('.js-modal-open').on('click',function(){
       $('.js-modal').fadeIn();
       return false;
