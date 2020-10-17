@@ -1,19 +1,20 @@
-.container
-    - @entries.each do |e|
-        - current_end_user == e.end_user ? @class = "current_end_user" : @class = "" 
-        - if e.end_user != current_end_user
-            h5 class="text-left #{@class}" id="#{@class}" style="font-size: 30px;" data-id="#{e.end_user.id}"
-            = link_to "@#{e.end_user.name}", public_end_user_path(e.end_user_id)
-        - else
-            h5 class="text-left #{@class}" id="#{@class}" data-id="#{e.end_user.id}"
+.room-show
+    .main-raised
+        - @entries.each do |e|
+            - current_end_user == e.end_user ? @class = "current_end_user" : @class = "" 
+            - if e.end_user != current_end_user
+                h5 class="text-left #{@class}" id="#{@class}" style="font-size: 30px;" data-id="#{e.end_user.id}"
+                h4 = link_to "@#{e.end_user.name}とのトークルーム", public_end_user_path(e.end_user_id)
+            - else
+                h5 class="text-left #{@class}" id="#{@class}" data-id="#{e.end_user.id}"
 
-    div id="direct_messages" data-room_id="#{@room.id}"
-        = render @direct_messages
+        div id="direct_messages" data-room_id="#{@room.id}"
+            = render @direct_messages
 
-    form
-        label id="target" 新しいメッセージを作成
-        br
-        input type="text" id="chat-input" data-behavior="room_speaker" class="form-control"
+        form.border-top
+            label id="target" 新しいメッセージを作成
+            br
+            input type="text" id="chat-input" data-behavior="room_speaker" class="form-control"
 
 javascript:
     var element = document.getElementById('target'); // 移動させたい位置の要素を取得

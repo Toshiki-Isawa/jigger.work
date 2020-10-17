@@ -1,12 +1,12 @@
 .profile-page
   .main-raised
-    .row
-      .col-lg-6.offset-md-3
+    .row.justify-content-center.flex
+      .col-lg-6
         = form_with model: @end_user, url: public_end_user_path,  local: true do |f|
           .profile
             .avatar
               = attachment_image_tag @end_user, :image, format: 'jpeg', class: "img-raised rounded-circle img-responsive", fallback: "no_image.png", size: "160x160"
-              = f.attachment_field :image, placeholder: "プロフィール画像"
+              = f.attachment_field :image, placeholder: "プロフィール画像", class:"profile-img-edit"
 
             .name
               h2.title

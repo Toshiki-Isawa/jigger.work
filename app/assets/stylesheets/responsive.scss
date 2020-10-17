@@ -28,10 +28,15 @@
 
   #new_recipe {
     position: fixed;
-    bottom: 20px;
+    bottom: 90px;
     left: 20px;
   }
 
+  #direct_messages_btn {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+  }
   // レシピ詳細ページ
   .mobile-screen {
     display: inline-block;

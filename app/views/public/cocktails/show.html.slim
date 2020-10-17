@@ -10,6 +10,7 @@
               i.fab.fa-twitter-square.fa-2x
           .line-it-button.mgr-20 data-lang="ja" data-type="share-a" data-ver="3" data-url="https://jigger.work/public/cocktails/#{@cocktail.id}" data-color="default" data-size="small" data-count="true" style="display: none;"
             = link_to "https://social-plugins.line.me/lineit/share?url=#{request.url}"
+
         div id="average_rate_#{@cocktail.id}"
           = render 'public/rates/average_rate', cocktail: @cocktail
 
