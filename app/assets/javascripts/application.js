@@ -12,8 +12,9 @@
 //
 //= require rails-ujs
 //= require activestorage
-// turbolinks
+//= require turbolinks
 //= require jquery3
+//= require jquery_ujs
 // require popper
 //= require bootstrap-sprockets
 //= require_tree .
@@ -22,7 +23,7 @@
 
 //  HeaderMenu
 (function($) {
-  $(function () {
+  document.addEventListener('turbolinks:load',function () {
     $('#nav-toggle').on('click', function() {
       $('body').toggleClass('open');
     });
@@ -30,7 +31,7 @@
 })(jQuery);
 
 (function () {
-  document.addEventListener('DOMContentLoaded', function() {
+  document.addEventListener('turbolinks:load', function() {
     const btn = document.getElementById('dropdown__btn');
     if(btn) {
       btn.addEventListener('click', function(){
@@ -40,23 +41,8 @@
   });
 }());
 
-// Loading-animation
-jQuery(function() {
-	var loader = $('.loader-wrap');
-
-	//ページの読み込みが完了したらアニメーションを非表示
-	$(window).on('load',function() {
-		loader.fadeOut();
-	});
-
-	//ページの読み込みが完了してなくても3秒後にアニメーションを非表示にする
-	setTimeout(function() {
-		loader.fadeOut();
-	},3000);
-});
-
 // Tabbutton
-$(function(){
+$(document).on('turbolinks:load',function(){
   $('.tab-content>div').hide();
   $('.tab-content>div').first().slideDown();
     $('.tab-buttons span').click(function(){
@@ -855,7 +841,7 @@ jQuery(function() {
 })(jQuery);
 
 // modal
-$(function(){
+$(document).on('turbolinks:load', function(){
   $('.js-modal-open').on('click',function(){
       $('.js-modal').fadeIn();
       return false;
