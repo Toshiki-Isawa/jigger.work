@@ -103,6 +103,10 @@ html
     main
       .wrapper
         = yield
+
+        #direct_messages
+          = link_to rooms_path, class:"btn"
+            i.fas.fa-comments.fa-2x
         
         #flash_messages
           = render 'shared/flash_messages'
