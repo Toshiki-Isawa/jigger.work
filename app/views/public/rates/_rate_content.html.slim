@@ -20,8 +20,9 @@
 
       .row.flex
         .rate-body
-          = attachment_image_tag rate.end_user, :image, fallback:"no_image.png", class:"img-raised rounded-circle img-responsive", width:"70",height:"70"
-          p.text-center = rate.end_user.name
+          = link_to public_end_user_path(rate.end_user_id)
+            = attachment_image_tag rate.end_user, :image, fallback:"no_image.png", class:"img-raised rounded-circle img-responsive", width:"70",height:"70"
+            p.text-center = rate.end_user.name
         .rate-text
           p = rate.comment
           - if rate.end_user == current_end_user or admin_signed_in?

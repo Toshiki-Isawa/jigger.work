@@ -12,8 +12,9 @@
 //
 //= require rails-ujs
 //= require activestorage
-// turbolinks
+//= require turbolinks
 //= require jquery3
+//= require jquery_ujs
 // require popper
 //= require bootstrap-sprockets
 //= require_tree .
@@ -30,7 +31,7 @@
 })(jQuery);
 
 (function () {
-  document.addEventListener('DOMContentLoaded', function() {
+  document.addEventListener('turbolinks:load', function() {
     const btn = document.getElementById('dropdown__btn');
     if(btn) {
       btn.addEventListener('click', function(){
@@ -41,7 +42,7 @@
 }());
 
 // Loading-animation
-jQuery(function() {
+jQuery('turbolinks:load',function() {
 	var loader = $('.loader-wrap');
 
 	//ページの読み込みが完了したらアニメーションを非表示
@@ -56,7 +57,7 @@ jQuery(function() {
 });
 
 // Tabbutton
-$(function(){
+$(document).on('turbolinks:load',function(){
   $('.tab-content>div').hide();
   $('.tab-content>div').first().slideDown();
     $('.tab-buttons span').click(function(){
