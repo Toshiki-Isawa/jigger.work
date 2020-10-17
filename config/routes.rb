@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   get 'contacts/thanks' => redirect("/contacts")
   post 'contacts/confirm' => 'contacts#confirm'
   post 'contacts/thanks' => 'contacts#thanks'
+  resources :rooms
   
   # Public側ルーティング
   devise_for :end_users, controllers: {

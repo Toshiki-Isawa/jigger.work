@@ -8,6 +8,30 @@ class Public::EndUsersController < ApplicationController
     @recipes = Cocktail.where(end_user_id: @user.id)
     @favorite_cocktails = @user.favorite_cocktails
     @follow_users = @user.followings
+
+    if end_user_signed_in?
+      #Entry内のend_user_idがcurrent_end_userと同じEntry
+      @currentUserEntry = Entry.where(end_user_id: current_end_user.id)
+      #Entry内のend_user_idがMYPAGEのparams.idと同じEntry
+      @userEntry = Entry.where(end_user_id: @user.id)
+      #@user.idとcurrent_end_user.idが同じでなければ
+      unless @user.id == current_end_user.id
+        @currentUserEntry.each do |cu|
+          @userEntry.each do |u|
+            #もしcurrent_end_user側のルームidと＠user側のルームidが同じであれば存在するルームに飛ぶ
+            if cu.room_id == u.room_id then
+              @isRoom = true
+              @roomId = cu.room_id
+            end
+          end
+        end
+        #ルームが存在していなければルームとエントリーを作成する
+        unless @isRoom
+          @room = Room.new
+          @entry = Entry.new
+        end
+      end
+    end
   end
 
   def edit

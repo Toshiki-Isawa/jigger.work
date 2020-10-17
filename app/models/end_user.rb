@@ -15,6 +15,9 @@ class EndUser < ApplicationRecord
   has_many :passive_relationships, class_name: "Relationship", foreign_key: :follower_id
   has_many :followers, through: :passive_relationships, source: :following
   has_many :sns_credentials, dependent: :destroy
+  has_many :entries
+  has_many :direct_messages
+  has_many :rooms, through: :entries
 
   def followed_by?(end_user)
     passive_relationships.find_by(following_id: end_user.id).present?
