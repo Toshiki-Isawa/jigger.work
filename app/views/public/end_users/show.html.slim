@@ -8,6 +8,21 @@
 
           .name
             h2.title = @user.name
+            - if end_user_signed_in?
+              - unless @user.id == current_end_user.id
+                  - if @isRoom == true
+                    = link_to room_path(@roomId) do
+                        button.btn.go-chat id="dm_submit"
+                          i.fas.fa-comment-dots.fa-2x
+                          | トークルームへ行く
+                  - else
+                    = form_for @room, url: rooms_path do |f|
+                        = fields_for @entry do |e|
+                            = e.hidden_field :end_user_id, :value=> @user.id
+                        button.btn.go-chat type="submit" id="dm_submit"
+                          i.fas.fa-comment-dots.fa-2x
+                          | トークルームへ行く
+            br
             - if end_user_signed_in? && @user == current_end_user
               = link_to edit_public_end_user_path(@user.id), class:"btn btn-fab btn-info btn-round"
                 i.fas.fa-edit
@@ -23,18 +38,7 @@
               - else  
                 = link_to "フォローする", public_end_user_relationships_path(@user.id), method: :post, class:"btn btn-success"
 
-          - if end_user_signed_in?
-            - unless @user.id == current_end_user.id
-                - if @isRoom == true
-                  = link_to room_path(@roomId) do
-                      button id="dm_submit"
-                        i.fas.fa-envelope
-                - else
-                  = form_for @room, url: rooms_path do |f|
-                      = fields_for @entry do |e|
-                          = e.hidden_field :end_user_id, :value=> @user.id
-                      button type="submit" id="dm_submit"
-                        i.fas.fa-envelope
+    br
 
     .description.text-center
       p = @user.introduction 
