@@ -14,7 +14,7 @@
 
       .tab-content
         #myrecipe.content1
-          .ranking-list
+          .ranking-list data-turbolinks="false"
             - @pv_cocktails.each.with_index(1) do |cocktail, index|
                 = link_to public_cocktail_path(cocktail), class:"ranking-item no-decoration" do
                   .ranking-item-inner
@@ -38,7 +38,7 @@
                           | %
 
         #favorite.content2
-          .ranking-list
+          .ranking-list data-turbolinks="false"
             - @favorites_cocktails.each.with_index(1) do |cocktail, index|
                 = link_to public_cocktail_path(cocktail), class:"ranking-item no-decoration" do
                   .ranking-item-inner
@@ -63,7 +63,7 @@
 
 
         #follow.content3
-          .ranking-list
+          .ranking-list data-turbolinks="false"
             - @rates_cocktails.each.with_index(1) do |cocktail, index|
                 = link_to public_cocktail_path(cocktail), class:"ranking-item no-decoration" do
                   .ranking-item-inner

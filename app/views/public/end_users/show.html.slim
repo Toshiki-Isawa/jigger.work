@@ -71,7 +71,7 @@
                       - @recipes.each do |recipe|
                         tr
                           th = attachment_image_tag recipe, :image, fallback:"default.jpeg", class:"cocktail-img img-raised", width:"80", height:"80"
-                          th
+                          th data-turbolinks="false"
                             = link_to public_cocktail_path(recipe.id), class:"grid__link"
                               = recipe.name
                           th.text-nowrap = recipe.base_name
@@ -91,7 +91,7 @@
                         .grid
                           = attachment_image_tag cocktail, :image, fallback:"default.jpeg", class:"img-raised rounded"
                           .grid__body
-                            .relative
+                            .relative data-turbolinks="false"
                               = link_to public_cocktail_path(cocktail.id), class:"grid__link"
                                 h1.grid__title = cocktail.name
                             .mt-auto

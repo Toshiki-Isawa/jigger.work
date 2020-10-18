@@ -8,8 +8,8 @@
           .twitter-it-button.mgr-20
             = link_to "https://twitter.com/share?url=#{request.url}/&text=#{@cocktail.name}/&hashtags=Jigger", title: 'Twitter', target: '_blank'
               i.fab.fa-twitter-square.fa-2x
-          .line-it-button.mgr-20 data-lang="ja" data-type="share-a" data-ver="3" data-url="https://jigger.work/public/cocktails/#{@cocktail.id}" data-color="default" data-size="small" data-count="true" style="display: none;"
-            = link_to "https://social-plugins.line.me/lineit/share?url=#{request.url}", data: {"turbolinks" => false}
+          .line-it-button.mgr-20 data-lang="ja" data-type="share-a" data-ver="3" data-url="https://jigger.work/public/cocktails/#{@cocktail.id}" data-color="default" data-size="small" data-count="true" style="display: none;" 
+            = link_to "https://social-plugins.line.me/lineit/share?url=#{request.url}"
 
         div id="average_rate_#{@cocktail.id}"
           = render 'public/rates/average_rate', cocktail: @cocktail
@@ -74,7 +74,7 @@
               h4 おすすめの類似レシピ
               .row
                 - @similar_cocktails.each do |cocktail|
-                  .col-lg-4
+                  .col-lg-4 data-turbolinks="false"
                     = link_to public_cocktail_path(cocktail.id), class:"no-decoration" do
                       .cocktail-box
                         .row
@@ -91,7 +91,7 @@
               h4 同じベースのレシピ
               .row
                 - @base_cocktails.each do |cocktail|
-                  .col-lg-4
+                  .col-lg-4 data-turbolinks="false"
                     = link_to public_cocktail_path(cocktail.id), class:"no-decoration" do
                       .cocktail-box
                         .row
