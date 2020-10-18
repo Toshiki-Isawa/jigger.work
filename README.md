@@ -3,11 +3,12 @@
 ## サイト概要
 カクテルやモクテル（ノンアルコールカクテル）のレシピ投稿・検索サイトです。
 登録ユーザーのお気に入りデータを解析し、レシピ同士の類似度を算出しているのでより正確な類似レシピを表示できます。
+チャット機能も実装しているので、お酒好きの仲間を増やす手助けにもどうぞ。
 また、スマートフォンでも閲覧が出来るようにレスポンシブ対応もしています。
 
-<img width="1440" alt="top-page" src="https://user-images.githubusercontent.com/59522269/96080945-3c831f00-0ef3-11eb-8a15-36c241e58c1a.png">
-<img width="1439" alt="index-page" src="https://user-images.githubusercontent.com/59522269/96213881-f7272600-0fb4-11eb-8681-da4adad20788.png">
-<img width="1440" alt="show-page" src="https://user-images.githubusercontent.com/59522269/96213898-00b08e00-0fb5-11eb-81ef-b7319dd6aade.png">
+<img width="1440" alt="top-page" src="https://user-images.githubusercontent.com/59522269/96361882-5c6d4980-1164-11eb-9889-861e08af321c.png">
+<img width="1440" alt="cocktail-index-page" src="https://user-images.githubusercontent.com/59522269/96361898-7dce3580-1164-11eb-8da5-3065a7d5f3f4.png">
+<img width="1440" alt="cocktail-show-page" src="https://user-images.githubusercontent.com/59522269/96361903-8888ca80-1164-11eb-9e32-0366f7d0a7da.png">
 
 ### サイトテーマ
 自粛が勧められるコロナ禍の中、以前のようにバーへ足を運べなくなったお酒好きの方へ。
