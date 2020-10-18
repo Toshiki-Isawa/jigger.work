@@ -527,6 +527,9 @@ input.alcohol {
 .justify-content-center {
   justify-content: center !important;
 }
+.back_button {
+  color: black;
+}
 // ---------------------
 
 // UserPage
@@ -1141,4 +1144,7 @@ figure.effect-zoe:hover p.icon-links a:first-child {
 .border-top {
   border-top: solid 1px black;
   padding-top: 20px;
+}
+.message-box {
+  display: inline-box;
 }
