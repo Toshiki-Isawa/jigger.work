@@ -792,11 +792,12 @@ input.alcohol {
 }
 .rate-content-inner {
   margin-left: 10px;
+  margin-bottom: 10px;
   box-shadow: 0 3px 5px rgba(0, 0, 0, 0.22);
   padding: 5px 0 0 20px;
+  position: relative;
 }
 .rate-body {
-  position: relative;
   margin-left: 20px;
 }
 .rate-text {
@@ -805,8 +806,8 @@ input.alcohol {
 .rate-delete-btn {
   position: absolute;
   color: red;
-  right: 15px;
-  top: 35px;
+  right: 5px;
+  top: 5px;
   transition: color 0.3s;
 
   &:hover {
