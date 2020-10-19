@@ -9,10 +9,12 @@
       thead
         tr
           td ユーザー名
+          td 新着
           td メッセージ
           td 着信日時
           td 
       - @anotherEntries.each do |e|
+        - last_message = DirectMessage.find_by(id: e.room.direct_message_ids.last)
         tbody
           tr
             td
@@ -20,8 +22,13 @@
                 = attachment_image_tag e.end_user, :image, format: 'jpeg', class: "rounded-circle", fallback: "no_image.png", size: "30x30"
                 = e.end_user.name
             td
-              - if  DirectMessage.find_by(id: e.room.direct_message_ids.last).presence
-                - dm = DirectMessage.find_by(id: e.room.direct_message_ids.last).content
+              - if last_message.created_at > last_message.room.entries.find_by(end_user_id: current_end_user.id).last_entry_at
+                p style="color: red;" 有
+              - else
+                p style="color: blue;" 無
+            td
+              - if  last_message.presence
+                - dm = last_message.content
                 = truncate(dm, length: 10)
               - else
                 p メッセージはありません
