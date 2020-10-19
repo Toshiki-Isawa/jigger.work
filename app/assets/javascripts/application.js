@@ -851,3 +851,10 @@ $(document).on('turbolinks:load', function(){
       return false;
   });
 });
+
+// テーブルのカラムにリンクを設定する
+$(document).on('turbolinks:load',function() {
+  $(".clickable-row").css("cursor","pointer").click(function() {
+      location.href = $(this).data("href");
+  });
+});
