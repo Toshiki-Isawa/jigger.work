@@ -24,14 +24,14 @@
 家呑みのお供に。また、好きなレシピを登録しておくことで、バーでカクテルを注文する際に参考にするといった使い方も可能です。
 
 ## 設計書
-- ER図：https://drive.google.com/file/d/16QyIc_TiDdQNt7bMZqKwdRM37k2JfiDV/view?usp=sharing
-- データベース設計：https://docs.google.com/spreadsheets/d/1HKdf40T_zGml8pDR_0ivoPfJKiNJkzMO9nCNTQ-TtDY/edit?usp=sharing
-- 詳細設計：https://docs.google.com/spreadsheets/d/1ml3zO8AkYwl9wHE_pER7QCZoKMnzmxGwneqXcX806n8/edit?usp=sharing
-- 画面遷移図：https://drive.google.com/file/d/1DsNItj1giHDZxoHLb4D6PRURu3L43FIH/view?usp=sharing
-- ワイヤーフレーム：https://drive.google.com/file/d/1LjqIAnjtYU719c0cnWLLIBL-gkA1dJWt/view?usp=sharing
+- [ER図](https://drive.google.com/file/d/16QyIc_TiDdQNt7bMZqKwdRM37k2JfiDV/view?usp=sharing)
+- [データベース設計](https://docs.google.com/spreadsheets/d/1HKdf40T_zGml8pDR_0ivoPfJKiNJkzMO9nCNTQ-TtDY/edit?usp=sharing)
+- [詳細設計](https://docs.google.com/spreadsheets/d/1ml3zO8AkYwl9wHE_pER7QCZoKMnzmxGwneqXcX806n8/edit?usp=sharing)
+- [画面遷移図](https://drive.google.com/file/d/1DsNItj1giHDZxoHLb4D6PRURu3L43FIH/view?usp=sharing)
+- [ワイヤーフレーム](https://drive.google.com/file/d/1LjqIAnjtYU719c0cnWLLIBL-gkA1dJWt/view?usp=sharing)
 
 ### 機能一覧
-<https://docs.google.com/spreadsheets/d/e/2PACX-1vRFK1YLlc_EjQoa_v-gJ_8-2Yx5_XWGg18kcis7NXoMTGeg7wpNb7SUz76EkqR_GYvpOF_24jtnB5Cv/pubhtml>
+- [リスト](https://docs.google.com/spreadsheets/d/e/2PACX-1vRFK1YLlc_EjQoa_v-gJ_8-2Yx5_XWGg18kcis7NXoMTGeg7wpNb7SUz76EkqR_GYvpOF_24jtnB5Cv/pubhtml)
 
 ## 開発環境
 - OS：Linux(CentOS)
@@ -41,6 +41,6 @@
 - 仮想環境：Vagrant,VirtualBox
 
 ## AWSインフラ構成
-- 設計書https://docs.google.com/spreadsheets/d/1Klonn1-FawrEMv52VC36DldZsRRnweObUtXfFd-0fgY/edit?usp=sharing
+- [設計書](https://docs.google.com/spreadsheets/d/1Klonn1-FawrEMv52VC36DldZsRRnweObUtXfFd-0fgY/edit?usp=sharing)
 
 ![AWSインフラ構成図](https://user-images.githubusercontent.com/59522269/95741991-4413af80-0cca-11eb-8d61-42cda9af9401.jpg)
