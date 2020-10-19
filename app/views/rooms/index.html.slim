@@ -3,8 +3,8 @@
     h3.text-center
       | メッセージ一覧
       |  | 
-      | 新着：
-      = DirectMessage.new_message_count(current_end_user)
+      | 新着：#{DirectMessage.new_message_count(current_end_user)}件
+      
     table.table.table-striped
       thead
         tr
