@@ -8,30 +8,28 @@
     table.table.table-striped
       thead
         tr
-          td ユーザー名
-          td 新着
-          td メッセージ
-          td 着信日時
-          td 
+          td User
+          td Message
+          td Arrived at
+          td
       - @anotherEntries.each do |e|
         - last_message = DirectMessage.find_by(id: e.room.direct_message_ids.last)
         tbody
           tr
             td
-              = link_to room_path(e.room.id)
+              = link_to public_end_user_path(e.end_user.id)
                 = attachment_image_tag e.end_user, :image, format: 'jpeg', class: "rounded-circle", fallback: "no_image.png", size: "30x30"
                 = e.end_user.name
             td
-              - if last_message.created_at > last_message.room.entries.find_by(end_user_id: current_end_user.id).last_entry_at
-                p style="color: red;" 有
-              - else
-                p style="color: blue;" 無
-            td
-              - if  last_message.presence
-                - dm = last_message.content
-                = truncate(dm, length: 10)
-              - else
-                p メッセージはありません
+              = link_to room_path(e.room.id)
+                - if  last_message.presence
+                  - dm = last_message.content
+                  = truncate(dm, length: 10)
+                  / last_messageが自分の投稿ではなく、未読の場合はNewバッジを付与する
+                  - if last_message.end_user != current_end_user && last_message.created_at > last_message.room.entries.find_by(end_user_id: current_end_user.id).last_entry_at
+                    span.badge.mgl-5 style="color: white; background-color: red; font-size: 12px !important;" New
+                - else
+                  p メッセージはありません
             td
               h6 style="color: #C0C0C0;"
                 = e.updated_at.strftime("%Y/%m/%d %H:%M")
