@@ -18,6 +18,8 @@ class RoomsController < ApplicationController
     if Entry.where(:end_user_id => current_end_user.id, :room_id => @room.id).present?
       @direct_messages = @room.direct_messages
       @entries = @room.entries
+      # ルームを開いたら入室日時を記録
+      Entry.where(:end_user_id => current_end_user.id, :room_id => @room.id).update(last_entry_at: Time.now)
     else
       redirect_back(fallback_location: root_path)
     end
