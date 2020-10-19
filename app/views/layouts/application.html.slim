@@ -107,6 +107,9 @@ html
         #direct_messages_btn
           = link_to rooms_path, class:"btn"
             i.fas.fa-comments.fa-2x
+            - if end_user_signed_in? && DirectMessage.new_message_count(current_end_user) != 0
+              .new-message-badge
+                = DirectMessage.new_message_count(current_end_user)
         
         #flash_messages
           = render 'shared/flash_messages'
