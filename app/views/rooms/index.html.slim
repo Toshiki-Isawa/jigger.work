@@ -12,7 +12,7 @@
           td
       - @anotherEntries.each do |e|
         - last_message = DirectMessage.find_by(id: e.room.direct_message_ids.last)
-        tbody style="border: 1px solid #d0cbcb;"
+        tbody style="border: 1px solid #dadada;"
           tr.clickable-row data-href="#{room_path(e.room.id)}"
             td
               = attachment_image_tag e.end_user, :image, format: 'jpeg', class: "rounded-circle", fallback: "no_image.png", size: "30x30"
