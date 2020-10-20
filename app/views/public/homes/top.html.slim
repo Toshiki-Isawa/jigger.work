@@ -37,7 +37,10 @@
         = link_to "https://cocktail-f.com/"
           h4 Cocktail -f liquor
   section.top-section.section5 id="section5"
-    <!-- 中略 -->
+    h1 Section 5
+    p Lorem ipsum dolor sit amet, consectetur adipisicing elit. Asperiores
+    | at dolorem, eveniet fugit iste maxime nihil sint. Aperiam dolor in
+    | ipsam nesciunt, nihil odio rem, sit suscipit totam velit voluptate?
 
 nav.pagination id="pagination"
   a id="pagination1" href="#section1"
@@ -47,12 +50,52 @@ nav.pagination id="pagination"
   a id="pagination5" href="#section5"
 
   
+javascript:
+  document.addEventListener('turbolinks:load', function() {
+    
+    // スムーススクロール
+    const paginations = document.querySelectorAll(".pagination a");
+    paginations.forEach(pagination => {
+      pagination.addEventListener("click", e => {
+        e.preventDefault();
+        const targetId = e.target.hash;
+        const target = document.querySelector(targetId);
+        target.scrollIntoView({ behavior: "smooth" });
+      });
+    });
 
-/ .top-content
-/ .main.main-raised
-/   .section
-/     .container
+    // Intersection Observer
+    const sections = document.querySelectorAll(".top-section");
+    const observerRoot = document.querySelector(".fullPageScroll");
+    const options = {
+      root: observerRoot,
+      rootMargin: "-50% 0px",
+      threshold: 0
+    };
+    const observer = new IntersectionObserver(doWhenIntersect, options);
+    sections.forEach(section => {
+      observer.observe(section);
+    });
 
+    // 交差したときに呼び出す関数
+    function doWhenIntersect(entries) {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          activatePagination(entry.target);
+        }
+      });
+    }
 
+    // ページネーションの大きさを変える関数
+    function activatePagination(element) {
+      const currentActiveIndex = document.querySelector("#pagination .active");
+      if (currentActiveIndex !== null) {
+        currentActiveIndex.classList.remove("active");
+      }
+      const newActiveIndex = document.querySelector(`a[href='#${element.id}']`);
+      newActiveIndex.classList.add("active");
+    }
+
+  });
 
 
