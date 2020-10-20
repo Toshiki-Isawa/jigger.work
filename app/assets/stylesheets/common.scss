@@ -126,17 +126,40 @@ main {
 }
 .section2 {
   background-color: white;
+  position: relative;
+  & img {
+    width: 600px;
+    position: absolute;
+  }
+  & .section2-img1 {
+    top: 45%;
+    left: 7%;
+  }
+  & .section2-img2 {
+    top: 45%;
+    left: 52%;
+  }
 }
 .section3 {
   background-color: black;
   color: white;
+  & .section3-img1 {
+    width: 700px;
+    margin-right: 10px;
+  }
+  & .section3-img2 {
+    width: 440px;
+  }
 }
 .section4 {
   background-color: white;
-}
-.section5 {
-  background-color: black;
-  color: white;
+  & .section4-img1 {
+    width: 500px;
+    margin-right: 50px;
+  }
+  & .section4-img2 {
+    width: 517px;
+  }
 }
 .main-text {
   padding: 10px 20px;
@@ -322,7 +345,7 @@ header {
   text-decoration: none;
   color: #444;
   &:hover {
-    background: #fbfbfb;
+    background: #e2e2e2;
     text-decoration: none;
   }
 }
@@ -613,7 +636,7 @@ input.alcohol {
 .profile-img-edit {
   position: absolute;
   top: 10%;
-  right: -5%;
+  right: -15%;
 }
 .go-chat {
   color: black;
@@ -759,7 +782,7 @@ input.alcohol {
   width: 200px;
   font-size: 15px;
   padding: 0.5em 1em;
-  margin: 2em 0;
+  margin: 1em 1em;
   color: #232323;
   background: #f4f4f4;
   border-left: solid 10px #5bb7ae;

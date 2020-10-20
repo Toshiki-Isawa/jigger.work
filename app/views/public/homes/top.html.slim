@@ -19,40 +19,33 @@
       br 複数条件での絞り込み機能や、類似度データをもとにして似ているカクテルを表示しています。
       | 投稿レシピの中から、あなたのお気に入りレシピを登録して頂くことで、似ているカクテルの表示精度が上がります。
       br 是非、会員登録をしてあなたの好みのカクテルを教えて下さい。
+    = image_tag 'cocktail-index-page.png', class:"section2-img1"
+    = image_tag 'cocktail-show-page.png', class:"section2-img2"
   section.top-section.section3 id="section3"
     h2.title How to Use
     p.main-text
       | 未ログインの状態でもレシピの閲覧・検索が可能です。
-      br また、ゲストログインを使用して頂くと、レシピ投稿・お気に入り管理・ユーザーフォローの使用感をお試し頂けます。
-      br
-      | ゲストログインはこちら
-      = link_to guest_sign_in_path, method: :post
-        i.fas.fa-sign-in-alt
+      br 全ての機能を使用する為にはログインが必要です。まずは、ヘッダーからゲストログインを試してみて下さい。
+    = image_tag 'cocktail-search.png', class:"section3-img1"
+    = image_tag 'user-show-page.png', class:"section3-img2"
+
   section.top-section.section4 id="section4"
-    h2.title Reference Sites
-    br
-    .row
-      .col-6
-        img.img-raised.rounded-circle.cocktail-img src="https://images.unsplash.com/photo-1566982100165-a6c300c67f2a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1650&q=80" alt="thumbnail" width="170px" height="170px"
-        = link_to "https://cocktail-f.com/"
-          h4 Cocktail -f liquor
-  section.top-section.section5 id="section5"
-    h1 Section 5
-    p Lorem ipsum dolor sit amet, consectetur adipisicing elit. Asperiores
-    | at dolorem, eveniet fugit iste maxime nihil sint. Aperiam dolor in
-    | ipsam nesciunt, nihil odio rem, sit suscipit totam velit voluptate?
+    h2.title Community
+    p.main-text
+      | トーク機能を使用することでユーザー同士コミュニケーションを取る事ができます。 
+    = image_tag 'talk-room-index.png', class:"section4-img1"
+    = image_tag 'talk-room-show.png', class:"section4-img2"
 
 nav.pagination id="pagination"
   a id="pagination1" href="#section1"
   a id="pagination2" href="#section2"
   a id="pagination3" href="#section3"
   a id="pagination4" href="#section4"
-  a id="pagination5" href="#section5"
 
   
 javascript:
   document.addEventListener('turbolinks:load', function() {
-    
+
     // スムーススクロール
     const paginations = document.querySelectorAll(".pagination a");
     paginations.forEach(pagination => {
