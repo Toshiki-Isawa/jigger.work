@@ -1,124 +1,125 @@
-.profile-page
-  .main-raised
-    .row.justify-content-center.flex
-      .col-lg-6
-        .profile
-          .avatar
-            = attachment_image_tag @user, :image, format: 'jpeg', class: "img-raised rounded-circle img-responsive", fallback: "no_image.png", size: "160x160"
+.container
+  .profile-page
+    .main-raised
+      .row.justify-content-center.flex
+        .col-lg-6
+          .profile
+            .avatar
+              = attachment_image_tag @user, :image, format: 'jpeg', class: "img-raised rounded-circle img-responsive", fallback: "no_image.png", size: "160x160"
 
-          .name
-            h2.title = @user.name
-            - if end_user_signed_in?
-              - unless @user.id == current_end_user.id
-                  - if @isRoom == true
-                    = link_to room_path(@roomId) do
-                        button.btn.go-chat id="dm_submit"
-                          i.fas.fa-comment-dots.fa-2x
-                          | トークルームへ行く
+            .name
+              h2.title = @user.name
+              - if end_user_signed_in?
+                - unless @user.id == current_end_user.id
+                    - if @isRoom == true
+                      = link_to room_path(@roomId) do
+                          button.btn.go-chat id="dm_submit"
+                            i.fas.fa-comment-dots.fa-2x
+                            | トークルームへ行く
+                    - else
+                      = form_for @room, url: rooms_path do |f|
+                          = fields_for @entry do |e|
+                              = e.hidden_field :end_user_id, :value=> @user.id
+                          button.btn.go-chat type="submit" id="dm_submit"
+                            i.fas.fa-comment-dots.fa-2x
+                            | トークルームへ行く
+              br
+              - if end_user_signed_in? && @user == current_end_user
+                = link_to edit_public_end_user_path(@user.id), class:"btn btn-fab btn-info btn-round"
+                  i.fas.fa-edit
+                = link_to withdraw_public_end_user_path(@user.id), method: :patch, class:"btn btn-fab btn-danger btn-round", data:{confirm:'本当に退会しますか？'}
+                  i.fas.fa-trash-alt
+
+              - if end_user_signed_in? && @user == current_end_user
+                  h5.email = @user.email
+                  = link_to "マイレシピ作成", new_public_cocktail_path, class: "btn btn-success"
+              - else
+                - if @user.followed_by?(current_end_user)
+                  = link_to "フォロー済み", public_end_user_relationships_path(@user.id), method: :delete, class:"btn btn-danger"
+                - else  
+                  = link_to "フォローする", public_end_user_relationships_path(@user.id), method: :post, class:"btn btn-success"
+
+      br
+
+      .description.text-center
+        p = @user.introduction 
+
+      .row
+        .col
+          .profile-tabs
+            .mytabs
+              .tab-buttons.text-nowrap
+                span.content1 マイレシピ
+                span.content2 お気に入り
+                span.content3 フォローユーザー
+                #lamp.content1
+
+              .tab-content
+                #myrecipe.content1
+                  - if @recipes.presence
+                    .table-responsive
+                      table.table
+                        thead.text-nowrap
+                          tr
+                            th
+                            th 名前
+                            th ベース
+                            th テイスト
+                            th スタイル
+                            th アルコール(%)
+                            th キャッチコピー
+                        tbody
+                        - @recipes.each do |recipe|
+                          tr
+                            th = attachment_image_tag recipe, :image, fallback:"default.jpeg", class:"cocktail-img img-raised", width:"80", height:"80"
+                            th data-turbolinks="false"
+                              = link_to public_cocktail_path(recipe.id), class:"grid__link"
+                                = recipe.name
+                            th.text-nowrap = recipe.base_name
+                            th = recipe.taste_name
+                            th = recipe.style_name
+                            th = recipe.alcohol
+                            th = recipe.cocktail_desc
                   - else
-                    = form_for @room, url: rooms_path do |f|
-                        = fields_for @entry do |e|
-                            = e.hidden_field :end_user_id, :value=> @user.id
-                        button.btn.go-chat type="submit" id="dm_submit"
-                          i.fas.fa-comment-dots.fa-2x
-                          | トークルームへ行く
-            br
-            - if end_user_signed_in? && @user == current_end_user
-              = link_to edit_public_end_user_path(@user.id), class:"btn btn-fab btn-info btn-round"
-                i.fas.fa-edit
-              = link_to withdraw_public_end_user_path(@user.id), method: :patch, class:"btn btn-fab btn-danger btn-round", data:{confirm:'本当に退会しますか？'}
-                i.fas.fa-trash-alt
+                    .text-center
+                      h5 マイレシピが登録されていません
+                      = link_to "マイレシピ作成", new_public_cocktail_path, class: "btn btn-success"
 
-            - if end_user_signed_in? && @user == current_end_user
-                h5.email = @user.email
-                = link_to "マイレシピ作成", new_public_cocktail_path, class: "btn btn-success"
-            - else
-              - if @user.followed_by?(current_end_user)
-                = link_to "フォロー済み", public_end_user_relationships_path(@user.id), method: :delete, class:"btn btn-danger"
-              - else  
-                = link_to "フォローする", public_end_user_relationships_path(@user.id), method: :post, class:"btn btn-success"
+                #favorite.content2
+                  - if @favorite_cocktails.presence
+                    .masonry
+                      - @favorite_cocktails.each do |cocktail|
+                          .grid
+                            = attachment_image_tag cocktail, :image, fallback:"default.jpeg", class:"img-raised rounded"
+                            .grid__body
+                              .relative data-turbolinks="false"
+                                = link_to public_cocktail_path(cocktail.id), class:"grid__link"
+                                  h1.grid__title = cocktail.name
+                              .mt-auto
+                                span.grid__tag ##{cocktail.base_name}
+                  - else
+                    .text-center
+                      h5 お気に入りが登録されていません。
 
-    br
-
-    .description.text-center
-      p = @user.introduction 
-
-    .row
-      .col
-        .profile-tabs
-          .mytabs
-            .tab-buttons.text-nowrap
-              span.content1 マイレシピ
-              span.content2 お気に入り
-              span.content3 フォローユーザー
-              #lamp.content1
-
-            .tab-content
-              #myrecipe.content1
-                - if @recipes.presence
-                  .table-responsive
+                #follow.content3
+                  - if @follow_users.presence
                     table.table
-                      thead.text-nowrap
+                      thead
                         tr
+                          th 
+                          th ユーザー名
+                          th 投稿レシピ数
                           th
-                          th 名前
-                          th ベース
-                          th テイスト
-                          th スタイル
-                          th アルコール(%)
-                          th キャッチコピー
                       tbody
-                      - @recipes.each do |recipe|
                         tr
-                          th = attachment_image_tag recipe, :image, fallback:"default.jpeg", class:"cocktail-img img-raised", width:"80", height:"80"
-                          th data-turbolinks="false"
-                            = link_to public_cocktail_path(recipe.id), class:"grid__link"
-                              = recipe.name
-                          th.text-nowrap = recipe.base_name
-                          th = recipe.taste_name
-                          th = recipe.style_name
-                          th = recipe.alcohol
-                          th = recipe.cocktail_desc
-                - else
-                  .text-center
-                    h5 マイレシピが登録されていません
-                    = link_to "マイレシピ作成", new_public_cocktail_path, class: "btn btn-success"
-
-              #favorite.content2
-                - if @favorite_cocktails.presence
-                  .masonry
-                    - @favorite_cocktails.each do |cocktail|
-                        .grid
-                          = attachment_image_tag cocktail, :image, fallback:"default.jpeg", class:"img-raised rounded"
-                          .grid__body
-                            .relative data-turbolinks="false"
-                              = link_to public_cocktail_path(cocktail.id), class:"grid__link"
-                                h1.grid__title = cocktail.name
-                            .mt-auto
-                              span.grid__tag ##{cocktail.base_name}
-                - else
-                  .text-center
-                    h5 お気に入りが登録されていません。
-
-              #follow.content3
-                - if @follow_users.presence
-                  table.table
-                    thead
-                      tr
-                        th 
-                        th ユーザー名
-                        th 投稿レシピ数
-                        th
-                    tbody
-                      tr
-                      - @follow_users.each do |user|
-                        th = attachment_image_tag user, :image, format: 'jpeg', class: "img-raised rounded-circle img-responsive", fallback: "no_image.png", size: "50x50"
-                        th = link_to "#{user.name}", public_end_user_path(user.id)
-                        th = user.cocktails.size
-                        - if user.followed_by?(current_end_user)
-                          th = link_to "フォロー済み", public_end_user_relationships_path(user.id), method: :delete, class:"btn btn-danger"
-                        - else  
-                          th = link_to "フォローする", public_end_user_relationships_path(user.id), method: :post, class:"btn btn-success"  
-                - else
-                  .text-center
-                    h5 フォローしているユーザーがいません。
+                        - @follow_users.each do |user|
+                          th = attachment_image_tag user, :image, format: 'jpeg', class: "img-raised rounded-circle img-responsive", fallback: "no_image.png", size: "50x50"
+                          th = link_to "#{user.name}", public_end_user_path(user.id)
+                          th = user.cocktails.size
+                          - if user.followed_by?(current_end_user)
+                            th = link_to "フォロー済み", public_end_user_relationships_path(user.id), method: :delete, class:"btn btn-danger"
+                          - else  
+                            th = link_to "フォローする", public_end_user_relationships_path(user.id), method: :post, class:"btn btn-success"  
+                  - else
+                    .text-center
+                      h5 フォローしているユーザーがいません。
