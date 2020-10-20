@@ -1130,6 +1130,15 @@ figure.effect-zoe:hover p.icon-links a:first-child {
     color: #FFF;
     text-decoration: none;
   }
+  &:active {
+    background-color: black;
+    color: #FFF;
+    text-decoration: none;
+  }
+  &.active {
+    background-color: black;
+    color: #FFF;
+  }
 }
 
 // モーダル
