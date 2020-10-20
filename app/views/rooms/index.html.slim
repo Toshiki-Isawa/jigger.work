@@ -1,27 +1,24 @@
-.room-index
-  .main-raised
-    h3.text-center
-      | メッセージ一覧
-      |  | 
-      | 新着：#{DirectMessage.new_message_count(current_end_user)}件
-      
-    table.table.table-striped
-      thead
-        tr
-          td User
-          td Message
-          td Arrived at
-          td
-      - @anotherEntries.each do |e|
-        - last_message = DirectMessage.find_by(id: e.room.direct_message_ids.last)
-        tbody
+.container
+  .room-index
+    .main-raised
+      h3.text-center トークルーム一覧
+      h5.text-center 新着メッセージ：#{DirectMessage.new_message_count(current_end_user)}件
+        
+      table.table.table-hover
+        thead
           tr
+            td User
+            td Message
+            td Arrived at
             td
-              = link_to public_end_user_path(e.end_user.id)
+        - @anotherEntries.each do |e|
+          - last_message = DirectMessage.find_by(id: e.room.direct_message_ids.last)
+          tbody style="border: 1px solid #dadada;"
+            tr.clickable-row data-href="#{room_path(e.room.id)}"
+              td
                 = attachment_image_tag e.end_user, :image, format: 'jpeg', class: "rounded-circle", fallback: "no_image.png", size: "30x30"
                 = e.end_user.name
-            td
-              = link_to room_path(e.room.id)
+              td style="line-height: 2.3;"
                 - if  last_message.presence
                   - dm = last_message.content
                   = truncate(dm, length: 10)
@@ -30,10 +27,10 @@
                     span.badge.mgl-5 style="color: white; background-color: red; font-size: 12px !important;" New
                 - else
                   p メッセージはありません
-            td
-              h6 style="color: #C0C0C0;"
-                = e.updated_at.strftime("%Y/%m/%d %H:%M")
-            td
-              = link_to room_path(e.room.id), method: :delete do
-                i.fas.fa-trash style="color: black;"
-                
+              td
+                h6 style="color: #C0C0C0;"
+                  = e.updated_at.strftime("%Y/%m/%d %H:%M")
+              td.text-right style="line-height: 2.3;"
+                = link_to room_path(e.room.id), method: :delete, data:{confirm:'トーク履歴は削除をすると復元できませんがよろしいですか？'}
+                  i.fas.fa-trash.fa-lg style="color: black;"
+                  
