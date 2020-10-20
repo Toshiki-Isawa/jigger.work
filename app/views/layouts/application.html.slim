@@ -81,18 +81,18 @@ html
               li = link_to "Ingredients",admins_ingredients_path, class:"btn-border"
               li = link_to "Users",admins_end_users_path, class:"btn-border"
             - else
-              li = link_to "Cocktails",public_cocktails_path, class:"btn-border"
-              li = link_to "Ingredients", public_ingredients_path, class:"btn-border"
-              li = link_to "Ranking",ranking_public_cocktails_path, class:"btn-border"
+              li = link_to "Cocktails",public_cocktails_path, class:"btn-border", id:"linkbtn-cocktail"
+              li = link_to "Ingredients", public_ingredients_path, class:"btn-border", id:"linkbtn-ingredient"
+              li = link_to "Ranking",ranking_public_cocktails_path, class:"btn-border", id:"linkbtn-ranking"
 
         #right-link.pc-screen
           ul.flex
             - if admin_signed_in?
               p.header-text 管理者でログイン中
             - else
-              li = link_to "Terms", public_terms_path, class:"btn-border"
-              li = link_to "Policy",public_policy_path, class:"btn-border"
-              li = link_to "Contact",contacts_path, class:"btn-border"
+              li = link_to "Terms", public_terms_path, class:"btn-border", id:"linkbtn-term"
+              li = link_to "Policy",public_policy_path, class:"btn-border", id:"linkbtn-policy"
+              li = link_to "Contact",contacts_path, class:"btn-border", id:"linkbtn-contact"
         
         .search-box-toggle
           a.btn.js-modal-open href="#"
