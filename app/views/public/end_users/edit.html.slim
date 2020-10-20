@@ -1,25 +1,26 @@
-.profile-page
-  .main-raised
-    .row.justify-content-center.flex
-      .col-lg-6
-        = form_with model: @end_user, url: public_end_user_path,  local: true do |f|
-          .profile
-            .avatar
-              = attachment_image_tag @end_user, :image, format: 'jpeg', class: "img-raised rounded-circle img-responsive", fallback: "no_image.png", size: "160x160"
-              = f.attachment_field :image, placeholder: "プロフィール画像", class:"profile-img-edit"
+.container
+  .profile-page
+    .main-raised
+      .row.justify-content-center.flex
+        .col-lg-6
+          = form_with model: @end_user, url: public_end_user_path,  local: true do |f|
+            .profile
+              .avatar
+                = attachment_image_tag @end_user, :image, format: 'jpeg', class: "img-raised rounded-circle img-responsive", fallback: "no_image.png", size: "160x160"
+                = f.attachment_field :image, placeholder: "プロフィール画像", class:"profile-img-edit"
 
-            .name
-              h2.title
-              = f.label :ユーザーネーム
-              = f.text_field :name, class:"form-control"
-              h5.email
-              = f.label :メールアドレス
-              = f.text_field :email, class:"form-control"
-              h5.email
-              = f.label :誕生日
-              = f.date_select :birth_date, use_month_numbers: true, start_year: 1930, end_year: (Time.now.year - 10),class:"form-control"
-              h5.email
-              = f.label :自己紹介
-              = f.text_field :introduction, class:"form-control"
-            
-            = f.submit "保存する", class:"btn btn-success"
+              .name
+                h2.title
+                = f.label :ユーザーネーム
+                = f.text_field :name, class:"form-control"
+                h5.email
+                = f.label :メールアドレス
+                = f.text_field :email, class:"form-control"
+                h5.email
+                = f.label :誕生日
+                = f.date_select :birth_date, use_month_numbers: true, start_year: 1930, end_year: (Time.now.year - 10),class:"form-control"
+                h5.email
+                = f.label :自己紹介
+                = f.text_field :introduction, class:"form-control"
+              
+              = f.submit "保存する", class:"btn btn-success"

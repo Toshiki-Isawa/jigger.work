@@ -1,8 +1,11 @@
 @media (max-width:960px)
 {
   main {
-    padding-top: 100px;
     max-width: 100vh;
+  }
+  .container {
+    padding-top: 100px;
+    width: 95% !important;
   }
   header {
     height: 60px;
@@ -42,6 +45,55 @@
     width: 100%;
     margin: 5px auto;
   }
+
+  // トップページ
+  #bg-video {
+    display: none;
+  }
+  .top-section {
+    padding-top: 80px;
+  }
+  .section1 {
+    & .header-left {
+      width: 100vw;
+
+      & .contents {
+        margin: 0 auto;
+        font-size: 1.5rem;
+        padding: 0 80px 0 20px;
+      }
+      & .top-button {
+        text-align: center;
+      }
+    }
+  }
+  .section2 {
+    & img {
+      width: 90%;
+    }
+    & .section2-img1 {
+      top: 50%;
+      left: 5%;
+    }
+    & .section2-img2 {
+      top: 75%;
+      left: 5%;
+    }
+  }
+  .section3 {
+    & .section3-img2 {
+      width: 90%;
+    }
+  }
+  .section4 {
+    & .section4-img1 {
+      width: 90%;
+    }
+    & .section4-img2 {
+      width: 90%;
+    }
+  }
+
   // レシピ詳細ページ
   .mobile-screen {
     display: inline-block;
@@ -52,26 +104,6 @@
   .cocktail-box {
     width: 90%;
     margin: 20px auto;
-  }
-
-  // トップページ
-  #bg-video {
-    display: none;
-  }
-  .top-content {
-    & .header-left {
-      width: 100vw;
-      left: auto;
-  
-      & .contents {
-        margin: 0 auto;
-        font-size: 1rem;
-        padding: 0 20px;
-      }
-      & .top-button {
-        text-align: center;
-      }
-    }
   }
 
   // ランキングページ
