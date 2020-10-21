@@ -858,3 +858,17 @@ $(document).on('turbolinks:load',function() {
       location.href = $(this).data("href");
   });
 });
+
+// 無限スクロール
+$(document).on('turbolinks:load', function() {
+  $(window).on('scroll', function() {
+    scrollHeight = $(document).height();
+    scrollPosition = $(window).height() + $(window).scrollTop();
+    if ( (scrollHeight - scrollPosition) / scrollHeight <= 0.05) {
+          $('.jscroll').jscroll({
+            contentSelector: '.masonry',
+            nextSelector: 'a.next',
+          });
+    }
+  });
+})

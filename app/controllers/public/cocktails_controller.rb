@@ -5,7 +5,7 @@ class Public::CocktailsController < ApplicationController
   impressionist :actions => [:show], :unique => [:impressionable_id, :ip_address]
 
   def index
-    @cocktails = Cocktail.all
+    @cocktails = Cocktail.all.page(params[:page]).per(10)
     @new_cocktails = Cocktail.order(created_at: 'DESC').limit(14)
   end
 

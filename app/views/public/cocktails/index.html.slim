@@ -20,7 +20,7 @@
         h2 #{@page_title}カクテル（全#{@cocktails.size}件）
       - else
         h2 Cocktails（全#{@cocktails.size}件）
-      .masonry
+      .masonry.jscroll
         - @cocktails.each do |cocktail|
           .grid
             figure.effect-zoe
@@ -42,6 +42,9 @@
                    = "Taste : #{cocktail.taste_name}"
                    br
                    = "Style : #{cocktail.style_name}"
+
+        br
+        = paginate @cocktails
                    
 #page_top
   a href="#"
@@ -53,3 +56,16 @@
 
 javascript:
   document.querySelector('#linkbtn-cocktail').classList.add('active');
+
+    $(document).on('turbolinks:load', function() {
+    $(window).on('scroll', function() {
+      scrollHeight = $(document).height();
+      scrollPosition = $(window).height() + $(window).scrollTop();
+      if ( (scrollHeight - scrollPosition) / scrollHeight <= 0.05) {
+            $('.jscroll').jscroll({
+              contentSelector: '.masonry',
+              nextSelector: 'span.next:last a',
+            });
+      }
+    });
+  });
