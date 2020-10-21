@@ -17,7 +17,6 @@ class Public::CocktailsController < ApplicationController
   end
 
   def search
-    # サイドバー検索
     if params[:search_key] == "base"
       @cocktails = Cocktail.where(base_name: params[:name])
       @page_title = "#{params[:name]}ベースの"
@@ -54,13 +53,15 @@ class Public::CocktailsController < ApplicationController
       @cocktails = Cocktail.includes(:ingredient_relations).where(ingredient_relations: {ingredient_id: search_ingredient.id})
       @page_title = "#{params[:name]}を使った"
     end
-    
+
+    @new_cocktails = Cocktail.order(created_at: 'DESC').limit(14)
     render 'public/cocktails/index'
   end
 
   def multiple_search
     @search_params = cocktail_search_params
     @cocktails = Cocktail.search(@search_params)
+    @new_cocktails = Cocktail.order(created_at: 'DESC').limit(14)
     render 'public/cocktails/index'
   end
 
