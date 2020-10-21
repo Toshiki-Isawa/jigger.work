@@ -1,3 +1,21 @@
 // Place all the styles related to the rooms controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.room-index {
+  padding-top: 80px;
+}
+.room-show {
+  padding-top: 80px;
+  padding-bottom: 80px;
+}
+.border-top {
+  border-top: solid 1px black;
+  padding-top: 20px;
+}
+.message-box {
+  display: inline-box;
+}
+.back_button {
+  color: black;
+}
