@@ -27,6 +27,7 @@ main {
 
 .container {
   padding-top: 100px;
+  padding-bottom: 50px;
   width: 85% !important;
 }
 
@@ -68,6 +69,7 @@ header {
     position: absolute;
     height: 40px;
     width: 200px;
+    border-color: #2d2b2b;
     border-radius: 45px;
     padding: 0 10px;
     right: 0;
