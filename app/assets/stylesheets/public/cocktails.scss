@@ -1,3 +1,337 @@
 // Place all the styles related to the public::cocktails controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+// Cocktails masonry
+.masonry {
+  columns: 4;
+  column-gap: 16px;
+  @media (max-width: 1200px) {
+    columns: 3;
+  }
+  @media (max-width: 992px) {
+    columns: 2;
+  }
+  @media (max-width: 768px) {columns: 1;}
+  .grid {
+    display: inline-block;
+    margin-bottom: 16px;
+    position: relative;
+    &:before {
+      border-radius: 5px;
+      content:'';
+      position:absolute;
+      top:0;
+      right:0;
+      bottom:0;
+      left:0;
+      background-color:rgba(0,0,0,.1);
+    }
+    img {
+      width: 100%;
+      border-radius: 5px;
+    }
+    &__title {
+      font-size: 20px;
+      font-weight:bold;
+      color: white;
+      margin: 10px 0px 10px 10px;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      overflow: hidden;
+      background-color: rgba(0,0,0,.3);
+      border-radius: 5px;
+      padding: 5px;
+    }
+    &__author {
+      font-size: 16px;
+      font-weight:300;
+      margin-left: 10px;
+      color: white;
+    }
+    &__link {
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 0;
+      bottom: 0;
+      text-decoration: none;
+    }
+    &__body {
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 0;
+      bottom: 0;
+      padding: 30px 30px;
+      color: #fff;
+      display: flex;
+      flex-direction: column
+    }
+    &__tag {
+      background-color:rgba(255,255,255,.6);
+      color: #333;
+      border-radius:5px;
+      padding: 5px 15px;
+      margin-bottom: 5px;
+    }
+  }
+}
+.mt-auto {
+  margin-top:auto;
+}
+// ---------------------
+
+// Page-top button
+#page_top{
+  width: 40px;
+  height: 40px;
+  position: fixed;
+  right: 0;
+  bottom: 10px;
+  background: #616161;
+  opacity: 0.6;
+  }
+  #page_top a{
+  position: relative;
+  display: block;
+  width: 40px;
+  height: 40px;
+  text-decoration: none;
+  }
+  
+  #page_top a::after{
+  content: '▲';
+  font-size: 14px;
+  font-weight: bold;
+  color: #fff;
+  position: absolute;
+  top: 10px;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  margin: auto;
+  text-align: center;
+  }
+// ---------------------
+
+// レシピ一覧ページ
+.index-favorite-button {
+  position: relative;
+  top: 30%;
+  left: 85%;
+}
+//  一覧ページのホバーエフェクト
+.grid figure {
+	position: relative;
+	overflow: hidden;
+  cursor: pointer;
+  margin: 0 auto;
+}
+
+.grid figure figcaption {
+	padding: 2em;
+	color: #000;
+	text-transform: uppercase;
+	font-size: 1.25em;
+	-webkit-backface-visibility: hidden;
+	backface-visibility: hidden;
+}
+
+.grid figure figcaption::before,
+.grid figure figcaption::after {
+	pointer-events: none;
+}
+
+.grid figure figcaption,
+.grid figure figcaption > a {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+}
+
+figure.effect-zoe figcaption {
+	top: auto;
+	bottom: 0;
+	padding: 1em;
+	height: 3.75em;
+	background: #fff;
+	color: #3c4a50;
+	-webkit-transition: -webkit-transform 0.35s;
+	transition: transform 0.35s;
+	-webkit-transform: translate3d(0,100%,0);
+	transform: translate3d(0,100%,0);
+}
+
+figure.effect-zoe h2 {
+	float: left;
+}
+
+figure.effect-zoe p.icon-links a {
+	float: right;
+	color: #3c4a50;
+	font-size: 1.4em;
+}
+
+figure.effect-zoe:hover p.icon-links a:hover,
+figure.effect-zoe:hover p.icon-links a:focus {
+	color: #252d31;
+}
+
+figure.effect-zoe p.cocktail-desc {
+	font-size: 70%;
+}
+
+figure.effect-zoe p.description {
+	position: absolute;
+	bottom: 8em;
+	padding: 1em;
+	color: #fff;
+	text-transform: none;
+	font-size: 90%;
+	opacity: 0;
+	-webkit-transition: opacity 0.35s;
+  transition: opacity 0.35s;
+  background-color: rgba(0,0,0,0.2);
+  border-radius: 5%;
+}
+
+figure.effect-zoe h2,
+figure.effect-zoe p.icon-links a {
+	-webkit-transition: -webkit-transform 0.35s;
+	transition: transform 0.35s;
+	-webkit-transform: translate3d(0,200%,0);
+	transform: translate3d(0,200%,0);
+}
+
+figure.effect-zoe p.icon-links a span::before {
+	display: inline-block;
+	padding: 8px 10px;
+	font-family: 'feathericons';
+	speak: none;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+figure.effect-zoe:hover p.description {
+	opacity: 1;
+}
+
+figure.effect-zoe:hover figcaption,
+figure.effect-zoe:hover h2,
+figure.effect-zoe:hover p.icon-links a {
+	-webkit-transform: translate3d(0,0,0);
+	transform: translate3d(0,0,0);
+}
+
+figure.effect-zoe:hover h2 {
+	-webkit-transition-delay: 0.05s;
+	transition-delay: 0.05s;
+}
+
+figure.effect-zoe:hover p.icon-links a:nth-child(3) {
+	-webkit-transition-delay: 0.1s;
+	transition-delay: 0.1s;
+}
+
+figure.effect-zoe:hover p.icon-links a:nth-child(2) {
+	-webkit-transition-delay: 0.15s;
+	transition-delay: 0.15s;
+}
+
+figure.effect-zoe:hover p.icon-links a:first-child {
+	-webkit-transition-delay: 0.2s;
+	transition-delay: 0.2s;
+}
+// ---------------------
+
+// ランキングページ
+.ranking-list {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+}
+.ranking-item {
+  width: 33.33%;
+  height: 400px;
+  padding: 0 4vw;
+  position: relative;
+  margin-bottom: 30px;
+}
+.ranking-item-inner-top {
+  display: flex;
+  -webkit-box-pack: justify;
+  justify-content: space-between;
+}
+.ranking-item-inner h5 {
+  margin-top: 10px;
+}
+.ranking-info {
+  display: flex;
+  font-size: 15px;
+}
+.cocktail-info {
+  display: flex;
+  -webkit-box-pack: justify;
+  justify-content: space-between;
+}
+.badge {
+  margin-right: 8px;
+  font-size: 1.5rem !important;
+}
+.alc_tags {
+  display: flex;
+}
+.alc_tag_item {
+  border: 1px solid rgba(14,35,31,0.54);
+  color: rgba(14,35,31,0.54);
+  line-height: 24px;
+  height: 24px;
+  padding: 0 6px;
+}
+.ranking-item:nth-child(3n-1) {
+  margin-top: 60px;
+}
+.ranking-item:nth-child(3n) {
+  margin-top: 120px;
+}
+// ---------------------
+
+// カクテルレシピ詳細画面
+.mobile-screen {
+  display: none;
+}
+.cocktail-show > .img-content {
+  position: absolute;
+}
+.rate-content {
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+.rate-content-inner {
+  margin-left: 10px;
+  margin-bottom: 10px;
+  box-shadow: 0 3px 5px rgba(0, 0, 0, 0.22);
+  padding: 5px 0 0 20px;
+  position: relative;
+}
+.rate-body {
+  margin-left: 20px;
+}
+.rate-text {
+  margin: 20px;
+}
+.rate-delete-btn {
+  position: absolute;
+  color: red;
+  right: 5px;
+  top: 5px;
+  transition: color 0.3s;
+
+  &:hover {
+    color: #b30202;
+  }
+}
+// ---------------------

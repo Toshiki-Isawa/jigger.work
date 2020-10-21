@@ -60,3 +60,42 @@
   -webkit-transition: all .3s ease-in;
   -moz-transition: all .3s ease-in;
 }
+
+// ユーザー詳細ページ
+.profile-page {
+  position: relative;
+  margin-top: 100px;
+  & .profile {
+    text-align: center;
+  }
+  & .profile img {
+    max-width:160px;
+    width:100%;
+    margin:0 auto;
+    transform: translate3d(0,-50%,0)
+  }
+  & .profile .name {
+    margin-top: -80px;
+  }
+}
+.img-responsive {
+  display: block;
+  height: auto;
+}
+.img-raised {
+  box-shadow: 0 5px 15px -8px rgba(0,0,0,0.24), 0 8px 10px -5px rgba(0,0,0,0.2);
+}
+.mytabs {
+  width: 80%;
+  margin: 10px auto;
+}
+.profile-img-edit {
+  position: absolute;
+  top: 10%;
+  right: -15%;
+}
+.go-chat {
+  color: black;
+  background-color: transparent;
+}
+// ---------------------

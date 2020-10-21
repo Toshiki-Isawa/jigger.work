@@ -20,9 +20,9 @@ html
         
         #search-form
           = form_with url: search_path, class:"form-inline",local: true , method: :get do |f|
-            = f.text_field :content ,class:"form-control", placeholder:"カクテル名・材料名"
-            = f.button :type => "submit", class:"btn btn-white btn-raised btn-fab btn-round"
-              = icon('fas', 'search')
+            = f.text_field :content ,class:"form-search", placeholder:"カクテル名・材料名"
+            = f.button :type => "submit"
+              i.fas.fa-search
 
         #user-action.dropdown
           button.dropdown__btn id="dropdown__btn"
