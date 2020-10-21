@@ -1,4 +1,19 @@
 .container
+  h2 New Recipe
+  .index-carousel
+      .slider
+        .slide-track data-turbolinks="false"
+          - @new_cocktails.each do |new|
+            = link_to public_cocktail_path(new.id)
+              .slide.cocktail-box
+                .slide-img
+                  = attachment_image_tag new, :image, fallback:"default.jpeg", class:"cocktail-img"
+                .slide-detail
+                  h5.cocktail_title = new.name
+                  .author
+                    = attachment_image_tag new.end_user, :image, class:"rounded-circle", fallback: "no_image.png", width:"50", height:"50"
+                    = new.end_user.name
+          
   .row
     .col-lg-12
       - if params[:name]

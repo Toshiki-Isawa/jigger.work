@@ -171,7 +171,7 @@
         h4.name-title おすすめの類似レシピ
         - @similar_cocktails.each do |cocktail|
           = link_to public_cocktail_path(cocktail.id), class:"no-decoration" do
-            .cocktail-box
+            .cocktail-box style="width: 90%;"
               .row.flex
                 .col-5
                   = attachment_image_tag cocktail, :image, fallback:"default.jpeg", class:"rounded cocktail-img mgr-20", size:"120x160"
@@ -186,7 +186,7 @@
         h4.name-title 同じベースのレシピ
         - @base_cocktails.each do |cocktail|
           = link_to public_cocktail_path(cocktail.id), class:"no-decoration" do
-            .cocktail-box
+            .cocktail-box style="width: 90%;"
               .row.flex
                 .col-5
                   = attachment_image_tag cocktail, :image, fallback:"default.jpeg", class:"rounded cocktail-img mgr-20", size:"120x160"
