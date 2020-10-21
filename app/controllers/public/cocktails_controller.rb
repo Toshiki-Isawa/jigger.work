@@ -6,6 +6,7 @@ class Public::CocktailsController < ApplicationController
 
   def index
     @cocktails = Cocktail.all
+    @new_cocktails = Cocktail.order(created_at: 'DESC').limit(14)
   end
 
   def ranking
