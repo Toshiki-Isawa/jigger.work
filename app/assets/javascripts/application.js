@@ -858,3 +858,12 @@ $(document).on('turbolinks:load',function() {
       location.href = $(this).data("href");
   });
 });
+
+// ローディングアニメーションを終了させる
+$(document).on("turbolinks:load", function() {
+  const spinner = document.getElementById('loading');
+  // spinner.classList.add('loaded');
+  setTimeout(function() {
+		spinner.classList.add('loaded');
+	},1000);
+});
