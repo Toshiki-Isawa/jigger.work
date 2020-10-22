@@ -1,6 +1,7 @@
 class SearchController < ApplicationController
   def search
     @cocktails = search_for(params[:content])
+    @new_cocktails = Cocktail.order(created_at: 'DESC').limit(14)
     if admin_signed_in?
       render 'admins/cocktails/index'
     else
