@@ -36,18 +36,18 @@
     = image_tag 'talk-room-index.png', class:"section4-img1"
     = image_tag 'talk-room-show.png', class:"section4-img2"
 
-nav.pagination id="pagination"
-  a id="pagination1" href="#section1"
-  a id="pagination2" href="#section2"
-  a id="pagination3" href="#section3"
-  a id="pagination4" href="#section4"
+nav.top-pagination id="top-pagination"
+  a id="top-pagination1" href="#section1"
+  a id="top-pagination2" href="#section2"
+  a id="top-pagination3" href="#section3"
+  a id="top-pagination4" href="#section4"
 
   
 javascript:
   document.addEventListener('turbolinks:load', function() {
 
     // スムーススクロール
-    const paginations = document.querySelectorAll(".pagination a");
+    const paginations = document.querySelectorAll(".top-pagination a");
     paginations.forEach(pagination => {
       pagination.addEventListener("click", e => {
         e.preventDefault();
@@ -81,7 +81,7 @@ javascript:
 
     // ページネーションの大きさを変える関数
     function activatePagination(element) {
-      const currentActiveIndex = document.querySelector("#pagination .active");
+      const currentActiveIndex = document.querySelector("#top-pagination .active");
       if (currentActiveIndex !== null) {
         currentActiveIndex.classList.remove("active");
       }
