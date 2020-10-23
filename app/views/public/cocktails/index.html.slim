@@ -17,9 +17,9 @@
   .row
     .col-lg-12
       - if params[:name]
-        h2 #{@page_title}カクテル（全#{@cocktails.size}件）
+        h2 #{@page_title}カクテル
       - else
-        h2 Cocktails（全#{@cocktails.size}件）
+        h2 Cocktail Recipes
       .jscroll
         .masonry
           - @cocktails.each do |cocktail|

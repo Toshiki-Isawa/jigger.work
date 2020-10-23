@@ -68,23 +68,18 @@
                             th スタイル
                             th アルコール(%)
                             th キャッチコピー
-                        .jscroll
-                          tbody
-                            - @recipes.each do |recipe|
-                              tr
-                                th = attachment_image_tag recipe, :image, fallback:"default.jpeg", class:"cocktail-img img-raised", width:"80", height:"80"
-                                th data-turbolinks="false"
-                                  = link_to public_cocktail_path(recipe.id), class:"grid__link"
-                                    = recipe.name
-                                th.text-nowrap = recipe.base_name
-                                th = recipe.taste_name
-                                th = recipe.style_name
-                                th = recipe.alcohol
-                                th = recipe.cocktail_desc
-
-                          .jscroll-link
-                            = link_to_prev_page @recipes, '前のページ', class: "prev"
-                            = link_to_next_page @recipes, '次のページ', class: "next"
+                        tbody
+                          - @recipes.each do |recipe|
+                            tr
+                              th = attachment_image_tag recipe, :image, fallback:"default.jpeg", class:"cocktail-img img-raised", width:"80", height:"80"
+                              th data-turbolinks="false"
+                                = link_to public_cocktail_path(recipe.id), class:"grid__link"
+                                  = recipe.name
+                              th.text-nowrap = recipe.base_name
+                              th = recipe.taste_name
+                              th = recipe.style_name
+                              th = recipe.alcohol
+                              th = recipe.cocktail_desc
 
                   - else
                     .text-center
@@ -104,23 +99,18 @@
                             th スタイル
                             th アルコール(%)
                             th キャッチコピー
-                        .jscroll
-                          tbody
-                            - @favorite_cocktails.each do |cocktail|
-                              tr
-                                th = attachment_image_tag cocktail, :image, fallback:"default.jpeg", class:"cocktail-img img-raised", width:"80", height:"80"
-                                th data-turbolinks="false"
-                                  = link_to public_cocktail_path(cocktail.id), class:"grid__link"
-                                    = cocktail.name
-                                th.text-nowrap = cocktail.base_name
-                                th = cocktail.taste_name
-                                th = cocktail.style_name
-                                th = cocktail.alcohol
-                                th = cocktail.cocktail_desc
-
-                          .jscroll-link
-                            = link_to_prev_page @recipes, '前のページ', class: "prev"
-                            = link_to_next_page @recipes, '次のページ', class: "next"
+                        tbody
+                          - @favorite_cocktails.each do |cocktail|
+                            tr
+                              th = attachment_image_tag cocktail, :image, fallback:"default.jpeg", class:"cocktail-img img-raised", width:"80", height:"80"
+                              th data-turbolinks="false"
+                                = link_to public_cocktail_path(cocktail.id), class:"grid__link"
+                                  = cocktail.name
+                              th.text-nowrap = cocktail.base_name
+                              th = cocktail.taste_name
+                              th = cocktail.style_name
+                              th = cocktail.alcohol
+                              th = cocktail.cocktail_desc
 
                   - else
                     .text-center
