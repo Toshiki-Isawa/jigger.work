@@ -77,6 +77,7 @@ class Public::CocktailsController < ApplicationController
       end
     end
     @base_cocktails = Cocktail.where(base_name: @cocktail.base_name).distinct.where.not(id: @cocktail.id).shuffle.take(3)
+    @taste_cocktails = Cocktail.where(taste_name: @cocktail.taste_name).distinct.where.not(id: @cocktail.id).shuffle.take(3)
     @rate = Rate.new
   end
 

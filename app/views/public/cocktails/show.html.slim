@@ -88,10 +88,27 @@
                               p = "Style:#{cocktail.style_name}"
                               p = "Alcohol:#{cocktail.alcohol}%"
 
-              - else
+              - elsif @base_cocktails.presence
                 h4 同じベースのレシピ
                 .row
                   - @base_cocktails.each do |cocktail|
+                    .col-lg-4 data-turbolinks="false"
+                      = link_to public_cocktail_path(cocktail.id), class:"no-decoration" do
+                        .cocktail-box
+                          .row
+                            .col-lg-6
+                              = attachment_image_tag cocktail, :image, fallback:"default.jpeg", class:"rounded cocktail-img", size:"110x160"
+                            .col-lg-6 style="padding: 0 5px;"
+                              h5.cocktail_title = cocktail.name
+                              p = "Base:#{cocktail.base_name}"
+                              p = "Taste:#{cocktail.taste_name}"
+                              p = "Style:#{cocktail.style_name}"
+                              p = "Alcohol:#{cocktail.alcohol}%"
+
+              - else
+                h4.name-title 同じテイストのレシピ
+                .row
+                  - @taste_cocktails.each do |cocktail|
                     .col-lg-4 data-turbolinks="false"
                       = link_to public_cocktail_path(cocktail.id), class:"no-decoration" do
                         .cocktail-box
@@ -182,9 +199,24 @@
                   p = "Style:#{cocktail.style_name}"
                   p = "Alcohol:#{cocktail.alcohol}%"
 
-      - else
+      - elsif @base_cocktails.presence
         h4.name-title 同じベースのレシピ
         - @base_cocktails.each do |cocktail|
+          = link_to public_cocktail_path(cocktail.id), class:"no-decoration" do
+            .cocktail-box style="width: 90%;"
+              .row.flex
+                .col-5
+                  = attachment_image_tag cocktail, :image, fallback:"default.jpeg", class:"rounded cocktail-img mgr-20", size:"120x160"
+                .col-6
+                  p.cocktail_title = cocktail.name
+                  p = "Base:#{cocktail.base_name}"
+                  p = "Taste:#{cocktail.taste_name}"
+                  p = "Style:#{cocktail.style_name}"
+                  p = "Alcohol:#{cocktail.alcohol}%"
+      
+      - else
+        h4.name-title 同じテイストのレシピ
+        - @taste_cocktails.each do |cocktail|
           = link_to public_cocktail_path(cocktail.id), class:"no-decoration" do
             .cocktail-box style="width: 90%;"
               .row.flex
