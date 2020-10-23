@@ -5,7 +5,7 @@ class Public::EndUsersController < ApplicationController
 
   def show
     @user = EndUser.find(params[:id])
-    @recipes = Cocktail.where(end_user_id: @user.id)
+    @recipes = Cocktail.where(end_user_id: @user.id).page(params[:page]).without_count.per(10)
     @favorite_cocktails = @user.favorite_cocktails
     @follow_users = @user.followings
 

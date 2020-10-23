@@ -14,8 +14,6 @@
 //= require activestorage
 //= require turbolinks
 //= require jquery3
-//= require jquery_ujs
-// require popper
 //= require bootstrap-sprockets
 //= require_tree .
 //= require cocoon
@@ -865,10 +863,12 @@ $(document).on('turbolinks:load', function() {
     scrollHeight = $(document).height();
     scrollPosition = $(window).height() + $(window).scrollTop();
     if ( (scrollHeight - scrollPosition) / scrollHeight <= 0.05) {
-          $('.jscroll').jscroll({
-            contentSelector: '.masonry',
-            nextSelector: 'a.next',
-          });
+      $('.jscroll').jscroll({
+        autoTrigger: true,
+        contentSelector: '.jscroll',
+        nextSelector: 'a.next',
+        loadingHtml: '読み込み中'
+      });
     }
   });
-})
+});
