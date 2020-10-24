@@ -7,7 +7,7 @@
 また、スマートフォンでも閲覧が出来るようにレスポンシブ対応もしています。
 
 <img width="1440" alt="top-page" src="https://user-images.githubusercontent.com/59522269/96361882-5c6d4980-1164-11eb-9889-861e08af321c.png">
-<img width="1440" alt="cocktail-index-page" src="https://user-images.githubusercontent.com/59522269/96361898-7dce3580-1164-11eb-8da5-3065a7d5f3f4.png">
+<img width="1440" alt="cocktail-index-page" src="https://user-images.githubusercontent.com/59522269/96839728-884e3f00-1484-11eb-923c-374281ac779a.png">
 <img width="1440" alt="cocktail-show-page" src="https://user-images.githubusercontent.com/59522269/96361903-8888ca80-1164-11eb-9e32-0366f7d0a7da.png">
 
 ### サイトテーマ
