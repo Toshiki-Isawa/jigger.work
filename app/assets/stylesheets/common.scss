@@ -244,13 +244,15 @@ header {
 #left-link {
   position: absolute;
   top: 8px;
-  left: 21%;
+  left: 50%;
+  transform: translateX(-120%);
   color: black;
 }
 #right-link {
   position: absolute;
   top: 8px;
-  right: 25%;
+  right: 50%;
+  transform: translateX(125%);
   color: black;
 }
 .header-text {
@@ -498,9 +500,6 @@ input.alcohol {
 }
 .mgb-10 {
   margin-bottom: 10px;
-}
-.vac {
-  vertical-align: middle;
 }
 // ---------------------
 
