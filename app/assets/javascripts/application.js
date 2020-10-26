@@ -20,34 +20,31 @@
 //= require toastr
 
 //  ヘッダーメニュー
-(function($) {
-  document.addEventListener('turbolinks:load',function () {
-    $('#nav-toggle').on('click', function() {
-      $('body').toggleClass('open');
-    });
+$(document).on('turbolinks:load', function() {
+  $('#nav-toggle').on('click', function() {
+    $('body').toggleClass('open');
   });
-})(jQuery);
+});
 
-(function () {
-  document.addEventListener('turbolinks:load', function() {
-    const btn = document.getElementById('dropdown__btn');
-    if(btn) {
-      btn.addEventListener('click', function(){
-        this.classList.toggle('is-open');
-      });
-    }
-  });
-}());
+// ドロップダウンボタン
+document.addEventListener('turbolinks:load', function() {
+  const btn = document.getElementById('dropdown__btn');
+  if(btn) {
+    btn.addEventListener('click', function(){
+      this.classList.toggle('is-open');
+    });
+  }
+});
 
 // Tabbutton
-$(document).on('turbolinks:load',function(){
+$(document).on('turbolinks:load',function() {
   $('.tab-content>div').hide();
   $('.tab-content>div').first().slideDown();
-    $('.tab-buttons span').click(function(){
+    $('.tab-buttons span').click(function() {
       var thisclass=$(this).attr('class');
       $('#lamp').removeClass().addClass('#lamp').addClass(thisclass);
-      $('.tab-content>div').each(function(){
-        if($(this).hasClass(thisclass)){
+      $('.tab-content>div').each(function() {
+        if($(this).hasClass(thisclass)) {
           $(this).fadeIn(800);
         }
         else{
@@ -58,7 +55,7 @@ $(document).on('turbolinks:load',function(){
 });
 
 // Page-top button
-jQuery(function() {
+$(document).on('turbolinks:load',function() {
   var appear = false;
   var pagetop = $('#page_top');
   $(window).scroll(function () {
