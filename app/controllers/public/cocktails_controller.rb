@@ -97,7 +97,7 @@ class Public::CocktailsController < ApplicationController
     @cocktail.ingredient_relations.zip(cocktail_params[:ingredient_relations_attributes].values) do |i,j|
       if Ingredient.find_by(name: j[:ingredient_id]).presence
         i.ingredient_id = Ingredient.find_by(name: j[:ingredient_id]).id
-      elsif i.ingredient_id.nil?
+      elsif i.ingredient_id.blank?
         break
       else
         new_ingredient = Ingredient.new
