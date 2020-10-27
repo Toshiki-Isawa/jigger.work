@@ -1,0 +1,16 @@
+ja:
+  activerecord:
+    models:
+      cocktail: カクテル
+      ingredient_relation: 材料
+    attributes:
+      cocktail:
+        name: レシピタイトル
+        technique_name: 技法
+        taste_name: 味わい
+        style_name: スタイル
+        alcohol: アルコール度数
+        tpo_name: TPO
+        recipe_desc: 作り方
+      ingredient_relation:
+        ingredient: 材料名
