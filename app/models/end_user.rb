@@ -19,6 +19,9 @@ class EndUser < ApplicationRecord
   has_many :direct_messages
   has_many :rooms, through: :entries
 
+  has_many :active_notifications, class_name: "Notification", foreign_key: "visiter_id", dependent: :destroy
+  has_many :passive_notifications, class_name: "Notification", foreign_key: "visited_id", dependent: :destroy
+
   def followed_by?(end_user)
     passive_relationships.find_by(following_id: end_user.id).present?
   end
@@ -88,5 +91,16 @@ class EndUser < ApplicationRecord
       sns = without_sns_data(auth)[:sns]
     end
     return { end_user: end_user ,sns: sns}
+  end
+
+  def create_notification_follow!(current_end_user)
+    temp = Notification.where(["visiter_id = ? and visited_id = ? and action = ? ",current_end_user.id, id, 'follow'])
+    if temp.blank?
+      notification = current_end_user.active_notifications.new(
+        visited_id: id,
+        action: 'follow'
+      )
+      notification.save if notification.valid?
+    end
   end
 end

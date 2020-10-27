@@ -43,6 +43,7 @@ html
                 li.dropdown__item = link_to 'マイページ', public_end_user_path(current_end_user), class:"dropdown__item-link"
                 li.dropdown__item = link_to 'マイレシピ',  new_public_cocktail_path, class:"dropdown__item-link"
                 li.dropdown__item = link_to 'ログアウト', destroy_end_user_session_path, method: :delete, class:"dropdown__item-link"
+                li.dropdown__item = link_to '通知一覧', notifications_path, class:"dropdown__item-link"
               - elsif admin_signed_in?
                 li.dropdown__item = link_to 'ログアウト', destroy_admin_session_path, method: :delete, class:"dropdown__item-link"
               - else

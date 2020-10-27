@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_10_19_051549) do
+ActiveRecord::Schema.define(version: 2020_10_27_080316) do
 
   create_table "admins", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -137,6 +137,19 @@ ActiveRecord::Schema.define(version: 2020_10_19_051549) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["name"], name: "index_ingredients_on_name", unique: true
+  end
+
+  create_table "notifications", force: :cascade do |t|
+    t.integer "visiter_id"
+    t.integer "visited_id"
+    t.integer "cocktail_id"
+    t.integer "rate_id"
+    t.string "chat_room_id"
+    t.string "direct_message_id"
+    t.string "action"
+    t.boolean "checked", default: false, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "rates", force: :cascade do |t|

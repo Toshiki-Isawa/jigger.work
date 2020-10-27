@@ -40,6 +40,8 @@ class Cocktail < ApplicationRecord
   has_many :ingredients, through: :ingredient_relations
   accepts_nested_attributes_for :ingredient_relations, allow_destroy:true
 
+  has_many :notifications, dependent: :destroy
+
   is_impressionable counter_cache: true
 
   # 複数条件検索
@@ -68,4 +70,35 @@ class Cocktail < ApplicationRecord
   def favorited_by?(end_user)
     favorites.where(end_user_id: end_user.id).exists?
   end
+
+  def create_notification_by(current_end_user)
+    notification = current_end_user.active_notifications.new(
+      cocktail_id: id,
+      visited_id: end_user_id,
+      action: "like"
+    )
+    notification.save if notification.valid?
+  end
+
+  def create_notification_rate!(current_end_user, rate_id)
+    temp_ids = Rate.select(:end_user_id).where(cocktail_id: id).where.not(end_user_id: current_end_user.id).distinct
+    temp_ids.each do |temp_id|
+      save_notification_rate!(current_end_user, rate_id, temp_id['end_user_id'])
+    end
+    save_notification_rate!(current_end_user, rate_id, end_user_id) if temp_ids.blank?
+  end
+
+  def save_notification_rate!(current_end_user, rate_id, visited_id)
+    notification = current_end_user.active_notifications.new(
+      cocktail_id: id,
+      rate_id: rate_id,
+      visited_id: visited_id,
+      action: 'rate'
+    )
+    if notification.visiter_id == notification.visited_id
+      notification.checked = true
+    end
+    notification.save if notification.valid?
+  end
+
 end
