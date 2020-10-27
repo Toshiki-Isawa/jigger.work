@@ -8,7 +8,7 @@ class ContactsController < ApplicationController
     if @contact.valid?
       render :confirm
     else
-      flash[:alert] = 'お問い合わせに失敗しました'
+      flash.now[:alert] = '入力内容をご確認下さい'
       render :index
     end
   end
