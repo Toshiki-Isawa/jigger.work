@@ -9,7 +9,10 @@
             .card-body
               - if @contact.errors.present?
                 strong 入力内容にエラーがあります
-                = render 'shared/error_messages', model: f.object
+                .alert.alert-warning
+                  ul
+                    - @contact.errors.each do |attr, error|
+                      li = error
                 
               .form-group
                 strong メールアドレス
