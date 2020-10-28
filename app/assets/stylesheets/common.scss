@@ -240,6 +240,16 @@ header {
     text-decoration: none;
   }
 }
+.notification-budge-icon {
+  position: absolute;
+  left: 30px;
+  top: 3px;
+}
+.notification-budge-dropdown {
+  position: absolute;
+  right: 25px;
+  bottom: 14px;
+}
 
 #left-link {
   position: absolute;

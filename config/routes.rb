@@ -7,6 +7,9 @@ Rails.application.routes.draw do
   post 'contacts/confirm' => 'contacts#confirm'
   post 'contacts/thanks' => 'contacts#thanks'
   resources :rooms
+  resources :notifications, only: :index do
+    delete :destroy_all, on: :collection
+  end
   
   # Public側ルーティング
   devise_for :end_users, controllers: {
@@ -41,6 +44,7 @@ Rails.application.routes.draw do
     resources :ingredients, only:[:index] do
       post :search, on: :collection
     end
+
   end
 
   # Admin側ルーティング

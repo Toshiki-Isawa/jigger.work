@@ -4,7 +4,9 @@ class Public::RatesController < ApplicationController
     rate = Rate.new(rate_params)
     rate.end_user_id = current_end_user.id
     respond_to do |format|
-      rate.save
+      if rate.save
+        rate.cocktail.create_notification_rate!(current_end_user, rate.id)
+      end
       format.js { flash.now[:notice] = 'コメントを投稿しました。' }
     end
   end
