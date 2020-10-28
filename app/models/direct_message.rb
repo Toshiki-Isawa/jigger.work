@@ -1,6 +1,7 @@
 class DirectMessage < ApplicationRecord
   belongs_to :end_user
   belongs_to :room
+  has_many :notifications, dependent: :destroy
 
   after_create_commit { DirectMessageBroadcastJob.perform_later self }
 
@@ -17,6 +18,19 @@ class DirectMessage < ApplicationRecord
       end
     end
     return count
+  end
+
+  def self.create_notification_dm(data)
+    receive_user_id = Entry.where(room_id: data[:chat_room_id]).where.not(end_user_id: data[:end_user_id]).select(:end_user_id)[0][:end_user_id]
+    message_id = DirectMessage.order(created_at: 'DESC').first.id
+    notification = EndUser.find_by(id: data[:end_user_id]).active_notifications.new(
+      visiter_id: data[:end_user_id],
+      visited_id: receive_user_id,
+      chat_room_id: data[:chat_room_id],
+      direct_message_id: message_id,
+      action: "dm"
+    )
+    notification.save if notification.valid?
   end
 
 end

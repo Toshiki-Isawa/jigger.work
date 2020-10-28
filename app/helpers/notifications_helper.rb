@@ -5,6 +5,7 @@ module NotificationsHelper
     @rate = nil
     your_cocktail = link_to 'あなたの投稿', public_cocktail_path(notification), style:"font-weight: bold;"
     @visiter_rate = notification.rate_id
+    @visiter_dm = notification.direct_message_id 
     #notification.actionがfollowかlikeかcommentか
     case notification.action
       when "follow" then
@@ -14,6 +15,9 @@ module NotificationsHelper
       when "rate" then
         @rate = Rate.find_by(id: @visiter_rate)&.comment
         tag.a(@visiter.name, href:public_end_user_path(@visiter), style:"font-weight: bold;")+"が"+tag.a('あなたの投稿', href:public_cocktail_path(notification.cocktail_id), style:"font-weight: bold;")+"にコメントしました"
+      when "dm" then
+        @direct_message = DirectMessage.find_by(id: @visiter_dm)&.content
+        tag.a(notification.visiter.name, href:public_end_user_path(@visiter), style:"font-weight: bold;")+"から"+tag.a('メッセージ', href:rooms_path, style:"font-weight: bold;")+"が来ました"
     end
   end
 
