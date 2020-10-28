@@ -31,6 +31,8 @@ html
               = attachment_image_tag current_end_user, :image, format: 'jpeg', class: "rounded-circle", fallback: "no_image.png", width:"40", height:"40"
               p.pc-screen = current_end_user.name
               i.fas.fa-angle-down.fa-lg.mgl-5
+              - if unchecked_notifications.any?
+                i.fas.fa-circle.notification-budge-icon style="color: red;"
             - elsif admin_signed_in?
               .btn Admin
               i.fas.fa-angle-down.fa-lg
@@ -43,6 +45,9 @@ html
                 li.dropdown__item = link_to 'マイページ', public_end_user_path(current_end_user), class:"dropdown__item-link"
                 li.dropdown__item = link_to 'マイレシピ',  new_public_cocktail_path, class:"dropdown__item-link"
                 li.dropdown__item = link_to 'ログアウト', destroy_end_user_session_path, method: :delete, class:"dropdown__item-link"
+                li.dropdown__item = link_to '通知一覧', notifications_path, class:"dropdown__item-link"
+                - if unchecked_notifications.any?
+                  i.fas.fa-circle.notification-budge-dropdown style="color: red;"
               - elsif admin_signed_in?
                 li.dropdown__item = link_to 'ログアウト', destroy_admin_session_path, method: :delete, class:"dropdown__item-link"
               - else
