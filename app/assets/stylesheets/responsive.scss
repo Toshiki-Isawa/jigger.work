@@ -46,6 +46,10 @@
     margin: 5px auto;
   }
 
+  .main-raised {
+    margin: -40px 0;
+  }
+
   // トップページ
   #bg-video {
     display: none;
@@ -54,6 +58,7 @@
     padding-top: 80px;
   }
   .section1 {
+    margin-top: -80px;
     & .header-left {
       width: 100vw;
 
