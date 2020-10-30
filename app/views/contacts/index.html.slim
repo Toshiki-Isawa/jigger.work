@@ -16,9 +16,11 @@
                 
               .form-group
                 strong メールアドレス
+                = f.label :email
                 = f.text_field :email, placeholder: "30文字以内", class:"form-control"
               .form-group
                 strong 内容
+                = f.label :message
                 = f.text_area :message, placeholder: "500文字以内", class:"form-control"
                 
             .footer.text-center
