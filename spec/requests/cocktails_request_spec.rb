@@ -1,6 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe "Cocktails", type: :request do
+  let(:end_user) { create(:end_user) }
+  let(:cocktail) { create(:cocktail, end_user: end_user) }
 
   describe 'カクテルレシピ一覧ページ' do
     context "一覧ページが正しく表示される" do
@@ -14,8 +16,6 @@ RSpec.describe "Cocktails", type: :request do
   end
 
   describe 'カクテルレシピ詳細ページ' do
-    let(:end_user) { create(:end_user) }
-    let(:cocktail) { create(:cocktail, end_user: end_user) }
 
     context "詳細ページが正しく表示される" do
       before do
@@ -27,6 +27,10 @@ RSpec.describe "Cocktails", type: :request do
       it 'レシピ名が表示される' do
         visit public_cocktail_path(cocktail)
   			expect(page).to have_content cocktail.name
+      end
+      it '投稿者名が表示される' do
+        visit public_cocktail_path(cocktail)
+  			expect(page).to have_content cocktail.end_user.name
       end
     end
   end
