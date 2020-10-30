@@ -11,4 +11,10 @@ FactoryBot.define do
     recipe_desc { Faker::Lorem.characters(number:20) }
     end_user
   end
+
+  # factory :cocktail_with_ingredient_relation, class: Cocktail do
+  #   after( :create ) do |cocktail|
+  #     create :ingredient_relation, cocktail: cocktail, ingredient: ingredient
+  #   end
+  # end
 end
