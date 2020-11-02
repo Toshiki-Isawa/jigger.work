@@ -131,10 +131,11 @@
                           th = attachment_image_tag user, :image, format: 'jpeg', class: "img-raised rounded-circle img-responsive", fallback: "no_image.png", size: "50x50"
                           th = link_to "#{user.name}", public_end_user_path(user.id)
                           th = user.cocktails.size
-                          - if user.followed_by?(current_end_user)
-                            th = link_to "フォロー済み", public_end_user_relationships_path(user.id), method: :delete, class:"btn btn-danger"
-                          - else  
-                            th = link_to "フォローする", public_end_user_relationships_path(user.id), method: :post, class:"btn btn-success"  
+                          - if user != current_end_user
+                            - if user.followed_by?(current_end_user)
+                              th = link_to "フォロー済み", public_end_user_relationships_path(user.id), method: :delete, class:"btn btn-danger"
+                            - else  
+                              th = link_to "フォローする", public_end_user_relationships_path(user.id), method: :post, class:"btn btn-success"  
                   - else
                     .text-center
                       h5 フォローしているユーザーがいません。
