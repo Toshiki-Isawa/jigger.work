@@ -19,7 +19,7 @@
             = attachment_image_tag @cocktail, :image, fallback:"default.jpeg", width:"260px",height:"360px", class:"img-raised rounded cocktail-img"
 
           div id="favorites_buttons_#{@cocktail.id}"
-            = render partial: "public/favorites/favorite", locals: { cocktail: @cocktail}
+            = render partial: "public/favorites/favorite", locals: { cocktail: @cocktail }
 
         .col-lg-8
           table.table
