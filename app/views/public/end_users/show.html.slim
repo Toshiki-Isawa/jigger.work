@@ -5,12 +5,12 @@
         .col-lg-6
           .profile
             .avatar
-              = attachment_image_tag @user, :image, format: 'jpeg', class: "img-raised rounded-circle img-responsive", fallback: "no_image.png", size: "160x160"
+              = attachment_image_tag @end_user, :image, format: 'jpeg', class: "img-raised rounded-circle img-responsive", fallback: "no_image.png", size: "160x160"
 
             .name
-              h2.title = @user.name
+              h2.title = @end_user.name
               - if end_user_signed_in?
-                - unless @user.id == current_end_user.id
+                - unless @end_user.id == current_end_user.id
                     - if @isRoom == true
                       = link_to room_path(@roomId) do
                           button.btn.go-chat id="dm_submit"
@@ -19,30 +19,28 @@
                     - else
                       = form_for @room, url: rooms_path do |f|
                           = fields_for @entry do |e|
-                              = e.hidden_field :end_user_id, :value=> @user.id
+                              = e.hidden_field :end_user_id, :value=> @end_user.id
                           button.btn.go-chat type="submit" id="dm_submit"
                             i.fas.fa-comment-dots.fa-2x
                             | トークルームへ行く
               br
-              - if end_user_signed_in? && @user == current_end_user
-                = link_to edit_public_end_user_path(@user.id), class:"btn btn-fab btn-info btn-round"
+              - if end_user_signed_in? && @end_user == current_end_user
+                = link_to edit_public_end_user_path(@end_user.id), class:"btn btn-fab btn-info btn-round"
                   i.fas.fa-edit
-                = link_to withdraw_public_end_user_path(@user.id), method: :patch, class:"btn btn-fab btn-danger btn-round", data:{confirm:'本当に退会しますか？'}
+                = link_to withdraw_public_end_user_path(@end_user.id), method: :patch, class:"btn btn-fab btn-danger btn-round", data:{confirm:'本当に退会しますか？'}
                   i.fas.fa-trash-alt
 
-              - if end_user_signed_in? && @user == current_end_user
-                  h5.email = @user.email
+              - if end_user_signed_in? && @end_user == current_end_user
+                  h5.email = @end_user.email
                   = link_to "マイレシピ作成", new_public_cocktail_path, class: "btn btn-success"
               - else
-                - if @user.followed_by?(current_end_user)
-                  = link_to "フォロー済み", public_end_user_relationships_path(@user.id), method: :delete, class:"btn btn-danger"
-                - else  
-                  = link_to "フォローする", public_end_user_relationships_path(@user.id), method: :post, class:"btn btn-success"
+                span id='follow_button_#{ @end_user.id }'
+                  = render partial: 'public/relationships/follow_button', locals: { end_user: @end_user }
 
       br
 
       .description.text-center
-        p = @user.introduction 
+        p = @end_user.introduction 
 
       .row
         .col
@@ -126,16 +124,14 @@
                           th 投稿レシピ数
                           th
                       tbody
-                        tr
                         - @follow_users.each do |user|
-                          th = attachment_image_tag user, :image, format: 'jpeg', class: "img-raised rounded-circle img-responsive", fallback: "no_image.png", size: "50x50"
-                          th = link_to "#{user.name}", public_end_user_path(user.id)
-                          th = user.cocktails.size
-                          - if user != current_end_user
-                            - if user.followed_by?(current_end_user)
-                              th = link_to "フォロー済み", public_end_user_relationships_path(user.id), method: :delete, class:"btn btn-danger"
-                            - else  
-                              th = link_to "フォローする", public_end_user_relationships_path(user.id), method: :post, class:"btn btn-success"  
+                          tr
+                            th = attachment_image_tag user, :image, format: 'jpeg', class: "img-raised rounded-circle img-responsive", fallback: "no_image.png", size: "50x50"
+                            th = link_to "#{user.name}", public_end_user_path(user.id)
+                            th = user.cocktails.size
+                            - if user != current_end_user
+                              th id='follow_button_#{ user.id }'
+                                = render partial: 'public/relationships/follow_button', locals: { end_user: user } 
                   - else
                     .text-center
                       h5 フォローしているユーザーがいません。

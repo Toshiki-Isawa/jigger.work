@@ -1,0 +1,4 @@
+- if end_user.followed_by?(current_end_user)
+  = link_to "フォロー解除", public_end_user_relationships_path(end_user), method: :delete, class:"btn btn-danger", remote: true
+- else  
+  = link_to "フォローする", public_end_user_relationships_path(end_user), method: :post, class:"btn btn-success", remote: true
