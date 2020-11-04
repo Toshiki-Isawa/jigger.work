@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe "Relationships", type: :request do
+RSpec.describe "Favorites", type: :request do
   let(:end_user) { create(:end_user) }
   let(:cocktail) { create(:cocktail, end_user: end_user) }
 
