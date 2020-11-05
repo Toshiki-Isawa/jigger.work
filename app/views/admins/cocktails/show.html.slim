@@ -1,196 +1,197 @@
-.card.card-content style="width: 90%;"
-  .pc-screen
-    .row.justify-content-center.flex
-      .col-lg-3.cocktail-show
-        h3.parenthses = @cocktail.name
-        p.blockquote = @cocktail.cocktail_desc
-        .share-button
-          .twitter-it-button.mgr-20
-            = link_to "https://twitter.com/share?url=#{request.url}/&text=#{@cocktail.name}/&hashtags=Jigger", title: 'Twitter', target: '_blank'
-              i.fab.fa-twitter-square.fa-2x
-          .line-it-button.mgr-20 data-lang="ja" data-type="share-a" data-ver="3" data-url="https://jigger.work/public/cocktails/#{@cocktail.id}" data-color="default" data-size="small" data-count="true" style="display: none;"
-            = link_to "https://social-plugins.line.me/lineit/share?url=#{request.url}"
-        div id="average_rate_#{@cocktail.id}"
-          = render 'public/rates/average_rate', cocktail: @cocktail
+.container
+  .card.card-content
+    .pc-screen
+      .row.justify-content-center.flex
+        .col-lg-3.cocktail-show
+          h3.parenthses = @cocktail.name
+          p.blockquote = @cocktail.cocktail_desc
+          .share-button
+            .twitter-it-button.mgr-20
+              = link_to "https://twitter.com/share?url=#{request.url}/&text=#{@cocktail.name}/&hashtags=Jigger", title: 'Twitter', target: '_blank'
+                i.fab.fa-twitter-square.fa-2x
+            .line-it-button.mgr-20 data-lang="ja" data-type="share-a" data-ver="3" data-url="https://jigger.work/public/cocktails/#{@cocktail.id}" data-color="default" data-size="small" data-count="true" style="display: none;"
+              = link_to "https://social-plugins.line.me/lineit/share?url=#{request.url}"
+          div id="average_rate_#{@cocktail.id}"
+            = render 'public/rates/average_rate', cocktail: @cocktail
 
-        .img-content
-          = attachment_image_tag @cocktail, :image, fallback:"default.jpeg", width:"260px",height:"360px", class:"img-raised rounded cocktail-img"
+          .img-content
+            = attachment_image_tag @cocktail, :image, fallback:"default.jpeg", width:"260px",height:"360px", class:"img-raised rounded cocktail-img"
 
-        div id="favorites_buttons_#{@cocktail.id}"
-          = render partial: "public/favorites/favorite", locals: { cocktail: @cocktail}
+          div id="favorites_buttons_#{@cocktail.id}"
+            = render partial: "public/favorites/favorite", locals: { cocktail: @cocktail}
 
-      .col-lg-8
-        table.table
-          thead
+        .col-lg-8
+          table.table
+            thead
+              tr
+                th Base
+                th Technique
+                th Taste
+                th Style
+                th Alcohol
+                th TPO
+            tobody
+              tr
+                th = @cocktail.base_name
+                th = @cocktail.technique_name
+                th = @cocktail.taste_name
+                th = @cocktail.style_name
+                th
+                  = @cocktail.alcohol
+                  |  %
+                th = @cocktail.tpo_name
+
+          .row
+            .col-lg-9
+              h4.name-title How to Make
+              p.blockquote = @cocktail.recipe_desc
+              br
+              table.table
+                thead
+                  tr
+                    th 材料
+                    th 量
+                    th 単位
+                tbody
+                - @cocktail.ingredient_relations.each do |recipe|
+                  tr
+                    th = recipe.ingredient.name
+                    th = recipe.amount
+                    th = recipe.unit
+
+            .col-lg-3.text-center
+              h4 投稿者
+              = link_to  admins_end_user_path(@cocktail.end_user_id)
+                = attachment_image_tag @cocktail.end_user, :image, format: 'jpeg', class: "img-raised rounded-circle", fallback: "no_image.png", width:"100%"
+                h4 = @cocktail.end_user.name
+              = link_to "レシピ削除", admins_cocktail_path(@cocktail.id), method: :delete,class:"btn btn-danger", data:{confirm:'本当に削除しますか？'}
+          
+          .row.flex
+            .col-lg-12
+              - if @similar_cocktails.presence
+                h4 おすすめの類似レシピ
+                .row
+                  - @similar_cocktails.each do |cocktail|
+                    .col-lg-4 data-turbolinks="false"
+                      = link_to admins_cocktail_path(cocktail.id), class:"no-decoration" do
+                        .cocktail-box
+                          .row
+                            .col-lg-6
+                              = attachment_image_tag cocktail, :image, fallback:"default.jpeg", class:"rounded cocktail-img", size:"110x160"
+                            .col-lg-6 style="padding: 0 5px;"
+                              p.cocktail_title = cocktail.name
+                              p = "Base:#{cocktail.base_name}"
+                              p = "Taste:#{cocktail.taste_name}"
+                              p = "Style:#{cocktail.style_name}"
+                              p = "Alcohol:#{cocktail.alcohol}%"
+
+              - elsif @base_cocktails.presence
+                h4 同じベースのレシピ
+                .row
+                  - @base_cocktails.each do |cocktail|
+                    .col-lg-4 data-turbolinks="false"
+                      = link_to admins_cocktail_path(cocktail.id), class:"no-decoration" do
+                        .cocktail-box
+                          .row
+                            .col-lg-6
+                              = attachment_image_tag cocktail, :image, fallback:"default.jpeg", class:"rounded cocktail-img", size:"110x160"
+                            .col-lg-6 style="padding: 0 5px;"
+                              p.cocktail_title = cocktail.name
+                              p = "Base:#{cocktail.base_name}"
+                              p = "Taste:#{cocktail.taste_name}"
+                              p = "Style:#{cocktail.style_name}"
+                              p = "Alcohol:#{cocktail.alcohol}%"
+
+      .rate-content
+        .row.justify-content-center.flex
+          .col-lg-3
+            - if end_user_signed_in?
+              = render "public/rates/rate_form", {cocktail: @cocktail, rate: @rate}
+          .col-lg-8
+            div id="cocktail_rates_#{ @cocktail.id }"
+              = render 'public/rates/rate_content', cocktail: @cocktail
+
+    .mobile-screen
+      h3.text-center = @cocktail.name
+      p.text-center = @cocktail.cocktail_desc
+
+      .share-button.text-center
+        .twitter-it-button.mgr-20
+          = link_to "https://twitter.com/share?url=#{request.url}/&text=#{@cocktail.name}/&hashtags=Jigger", title: 'Twitter', target: '_blank'
+            i.fab.fa-twitter-square.fa-2x
+        .line-it-button.mgr-20 data-lang="ja" data-type="share-a" data-ver="3" data-url="https://jigger.work/public/cocktails/#{@cocktail.id}" data-color="default" data-size="small" data-count="true" style="display: none;"
+          = link_to "https://social-plugins.line.me/lineit/share?url=#{request.url}"
+
+      .img-content.text-center
+        = attachment_image_tag @cocktail, :image, fallback:"default.jpeg", width:"80%", class:"img-raised rounded cocktail-img"
+
+      .row
+        .col
+          table.table
             tr
               th Base
-              th Technique
-              th Taste
-              th Style
-              th Alcohol
-              th TPO
-          tobody
-            tr
               th = @cocktail.base_name
+            tr
+              th Tec.
               th = @cocktail.technique_name
+            tr
+              th Taste
               th = @cocktail.taste_name
+        .col
+          table.table
+            tr
+              th Style
               th = @cocktail.style_name
-              th
-                = @cocktail.alcohol
-                |  %
+            tr
+              th Alc.
+              th = @cocktail.alcohol
+            tr
+              th TPO
               th = @cocktail.tpo_name
 
-        .row
-          .col-lg-9
-            h4.name-title How to Make
-            p.blockquote = @cocktail.recipe_desc
-            br
-            table.table
-              thead
-                tr
-                  th 材料
-                  th 量
-                  th 単位
-              tbody
-              - @cocktail.ingredient_relations.each do |recipe|
-                tr
-                  th = recipe.ingredient.name
-                  th = recipe.amount
-                  th = recipe.unit
+      .text-center
+        h4 投稿者
+        = link_to  admins_end_user_path(@cocktail.end_user_id)
+          = attachment_image_tag @cocktail.end_user, :image, format: 'jpeg', class: "img-raised rounded-circle", fallback: "no_image.png", width:"30%"
+          h4 = @cocktail.end_user.name
+        = link_to "レシピ削除", admins_cocktail_path(@cocktail.id), method: :delete,class:"btn btn-danger", data:{confirm:'本当に削除しますか？'}
 
-          .col-lg-3.text-center
-            h4 投稿者
-            = link_to  admins_end_user_path(@cocktail.end_user_id)
-              = attachment_image_tag @cocktail.end_user, :image, format: 'jpeg', class: "img-raised rounded-circle", fallback: "no_image.png", width:"100%"
-              h4 = @cocktail.end_user.name
-            = link_to "レシピ削除", admins_cocktail_path(@cocktail.id), method: :delete,class:"btn btn-danger", data:{confirm:'本当に削除しますか？'}
-        
-        .row
-          .col-lg-12
-            - if @similar_cocktails.presence
-              h4 おすすめの類似レシピ
-              .row
-                - @similar_cocktails.each do |cocktail|
-                  .col-lg-4
-                    = link_to admins_cocktail_path(cocktail.id), class:"no-decoration" do
-                      .cocktail-box
-                        .row
-                          .col-lg-5
-                            = attachment_image_tag cocktail, :image, fallback:"default.jpeg", class:"rounded cocktail-img", size:"110x160"
-                          .col-lg-7
-                            p.cocktail_title = cocktail.name
-                            p = "Base:#{cocktail.base_name}"
-                            p = "Taste:#{cocktail.taste_name}"
-                            p = "Style:#{cocktail.style_name}"
-                            p = "Alcohol:#{cocktail.alcohol}%"
-
-            - else
-              h4 同じベースのレシピ
-              .row
-                - @base_cocktails.each do |cocktail|
-                  .col-lg-4
-                    = link_to admins_cocktail_path(cocktail.id), class:"no-decoration" do
-                      .cocktail-box
-                        .row
-                          .col-lg-5
-                            = attachment_image_tag cocktail, :image, fallback:"default.jpeg", class:"rounded cocktail-img", size:"110x160"
-                          .col-lg-7
-                            p.cocktail_title = cocktail.name
-                            p = "Base:#{cocktail.base_name}"
-                            p = "Taste:#{cocktail.taste_name}"
-                            p = "Style:#{cocktail.style_name}"
-                            p = "Alcohol:#{cocktail.alcohol}%"
-
-    .rate-content
-      .row.justify-content-center.flex
-        .col-lg-3
-          - if end_user_signed_in?
-            = render "public/rates/rate_form", {cocktail: @cocktail, rate: @rate}
-        .col-lg-8
-          div id="cocktail_rates_#{ @cocktail.id }"
-            = render 'public/rates/rate_content', cocktail: @cocktail
-
-  .mobile-screen
-    h3.text-center = @cocktail.name
-    p.text-center = @cocktail.cocktail_desc
-
-    .share-button.text-center
-      .twitter-it-button.mgr-20
-        = link_to "https://twitter.com/share?url=#{request.url}/&text=#{@cocktail.name}/&hashtags=Jigger", title: 'Twitter', target: '_blank'
-          i.fab.fa-twitter-square.fa-2x
-      .line-it-button.mgr-20 data-lang="ja" data-type="share-a" data-ver="3" data-url="https://jigger.work/public/cocktails/#{@cocktail.id}" data-color="default" data-size="small" data-count="true" style="display: none;"
-        = link_to "https://social-plugins.line.me/lineit/share?url=#{request.url}"
-
-    .img-content.text-center
-      = attachment_image_tag @cocktail, :image, fallback:"default.jpeg", width:"80%", class:"img-raised rounded cocktail-img"
-
-    .row
-      .col
-        table.table
+      h4.name-title How to Make
+      p = @cocktail.recipe_desc
+      table.table
+        - @cocktail.ingredient_relations.each do |recipe|
           tr
-            th Base
-            th = @cocktail.base_name
-          tr
-            th Tec.
-            th = @cocktail.technique_name
-          tr
-            th Taste
-            th = @cocktail.taste_name
-      .col
-        table.table
-          tr
-            th Style
-            th = @cocktail.style_name
-          tr
-            th Alc.
-            th = @cocktail.alcohol
-          tr
-            th TPO
-            th = @cocktail.tpo_name
+            th = recipe.ingredient.name
+            th = recipe.amount
+            th = recipe.unit
 
-    .text-center
-      h4 投稿者
-      = link_to  admins_end_user_path(@cocktail.end_user_id)
-        = attachment_image_tag @cocktail.end_user, :image, format: 'jpeg', class: "img-raised rounded-circle", fallback: "no_image.png", width:"30%"
-        h4 = @cocktail.end_user.name
-      = link_to "レシピ削除", admins_cocktail_path(@cocktail.id), method: :delete,class:"btn btn-danger", data:{confirm:'本当に削除しますか？'}
+      - if @similar_cocktails.presence
+        h4.name-title おすすめの類似レシピ
+        - @similar_cocktails.each do |cocktail|
+          = link_to admins_cocktail_path(cocktail.id), class:"no-decoration" do
+            .cocktail-box
+              .row.flex
+                .col-5
+                  = attachment_image_tag cocktail, :image, fallback:"default.jpeg", class:"rounded cocktail-img mgr-20", size:"120x160"
+                .col-5
+                  p.cocktail_title = cocktail.name
+                  p = "Base:#{cocktail.base_name}"
+                  p = "Taste:#{cocktail.taste_name}"
+                  p = "Style:#{cocktail.style_name}"
+                  p = "Alcohol:#{cocktail.alcohol}%"
 
-    h4.name-title How to Make
-    p = @cocktail.recipe_desc
-    table.table
-      - @cocktail.ingredient_relations.each do |recipe|
-        tr
-          th = recipe.ingredient.name
-          th = recipe.amount
-          th = recipe.unit
-
-    - if @similar_cocktails.presence
-      h4.name-title おすすめの類似レシピ
-      - @similar_cocktails.each do |cocktail|
-        = link_to admins_cocktail_path(cocktail.id), class:"no-decoration" do
-          .cocktail-box
-            .row.flex
-              .col-5
-                = attachment_image_tag cocktail, :image, fallback:"default.jpeg", class:"rounded cocktail-img mgr-20", size:"120x160"
-              .col-5
-                p.cocktail_title = cocktail.name
-                p = "Base:#{cocktail.base_name}"
-                p = "Taste:#{cocktail.taste_name}"
-                p = "Style:#{cocktail.style_name}"
-                p = "Alcohol:#{cocktail.alcohol}%"
-
-    - else
-      h4.name-title 同じベースのレシピ
-      - @base_cocktails.each do |cocktail|
-        = link_to admins_cocktail_path(cocktail.id), class:"no-decoration" do
-          .cocktail-box
-            .row.flex
-              .col-5
-                = attachment_image_tag cocktail, :image, fallback:"default.jpeg", class:"rounded cocktail-img mgr-20", size:"120x160"
-              .col-5
-                p.cocktail_title = cocktail.name
-                p = "Base:#{cocktail.base_name}"
-                p = "Taste:#{cocktail.taste_name}"
-                p = "Style:#{cocktail.style_name}"
-                p = "Alcohol:#{cocktail.alcohol}%"
-        
+      - else
+        h4.name-title 同じベースのレシピ
+        - @base_cocktails.each do |cocktail|
+          = link_to admins_cocktail_path(cocktail.id), class:"no-decoration" do
+            .cocktail-box
+              .row.flex
+                .col-5
+                  = attachment_image_tag cocktail, :image, fallback:"default.jpeg", class:"rounded cocktail-img mgr-20", size:"120x160"
+                .col-5
+                  p.cocktail_title = cocktail.name
+                  p = "Base:#{cocktail.base_name}"
+                  p = "Taste:#{cocktail.taste_name}"
+                  p = "Style:#{cocktail.style_name}"
+                  p = "Alcohol:#{cocktail.alcohol}%"
+          
