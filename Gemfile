@@ -42,6 +42,7 @@ group :development, :test do
   gem 'rspec-rails'
   gem 'factory_bot_rails'
   gem 'simplecov'
+  gem 'pry-byebug'
 
   gem 'capistrano'
   gem 'capistrano-rails'

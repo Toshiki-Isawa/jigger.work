@@ -38,11 +38,13 @@
           tr
             th Cocktail-fのレシピを更新
             th = link_to "更新", get_api_cocktails_admins_cocktails_path, class:"btn btn-primary"
-            th = Cocktail.where(end_user_id: 1).order(:created_at).last.created_at.strftime('%Y/%m/%d/%H:%M')
+            - if Cocktail.where(end_user_id: 1).presence
+              th = Cocktail.where(end_user_id: 1).order(:created_at).last.created_at.strftime('%Y/%m/%d/%H:%M')
           tr
             th レシピ類似度の更新
             th = link_to "更新", similar_cocktail_admins_cocktails_path, class:"btn btn-primary"
-            th = Similar.order(:updated_at).last.updated_at.strftime('%Y/%m/%d/%H:%M')
+            - if Similar.all.present?
+              th = Similar.order(:updated_at).last.updated_at.strftime('%Y/%m/%d/%H:%M')
 
   h5 ランキング
   .row
