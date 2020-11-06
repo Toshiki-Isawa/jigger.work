@@ -34,17 +34,21 @@ RSpec.describe "Ingredients", type: :request do
       end
     end
 
-    context "create/destroy" do
+    context "create/update/destroy" do
       before do
         visit admins_ingredients_path
-      end
-      it '材料追加できる' do
         fill_in 'ingredient_name', with: 'test'
         fill_in 'ingredient_alcohol', with: 40
         click_button '追加'
       end
       it '材料追加に失敗する' do
         click_button '追加'
+      end
+      it '材料編集に成功する' do
+        click_button '変更'
+      end
+      it '材料削除に成功する' do
+        click_link '削除'
       end
     end
   end
