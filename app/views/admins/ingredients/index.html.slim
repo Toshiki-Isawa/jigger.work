@@ -38,7 +38,7 @@
           - @ingredients.each do |ingredient|
             tr
               th = link_to ingredient.name, search_admins_cocktails_path(:name => "#{ingredient.name}", :search_key => "ingredient"), method: :post
-              = form_with model: [:admins,ingredient], local: true do |fi|
+              = form_with model: [:admins,ingredient], method: :patch, local: true do |fi|
                 th = fi.select :type_name, options_for_select(Ingredient.type_names.keys, ingredient.type_name), class: 'form-control'
                 th = fi.number_field :alcohol, value: ingredient.alcohol
                 th = fi.submit "変更", class:"btn btn-info"
