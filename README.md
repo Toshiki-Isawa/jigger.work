@@ -30,7 +30,7 @@
 
 ### 機能一覧
 - [リスト](https://docs.google.com/spreadsheets/d/e/2PACX-1vRFK1YLlc_EjQoa_v-gJ_8-2Yx5_XWGg18kcis7NXoMTGeg7wpNb7SUz76EkqR_GYvpOF_24jtnB5Cv/pubhtml)
-- [レコメンドシステムのアルゴリズム](https://drive.google.com/file/d/16QyIc_TiDdQNt7bMZqKwdRM37k2JfiDV/view?usp=sharing)
+- [レコメンドシステムのアルゴリズム](https://github.com/irles24601/jigger.work/blob/f0bbe3c496eae893174119c2d745a45ff1b3da57/app/controllers/admins/cocktails_controller.rb#L84)
 
 ## 開発環境
 - OS：Linux(CentOS)
