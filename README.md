@@ -5,7 +5,6 @@
 登録ユーザーのお気に入りデータを解析し、レシピ同士の類似度を算出しているのでより正確な類似レシピを表示できます。
 チャット機能も実装しているので、お酒好きの仲間を増やす手助けにもどうぞ。
 また、スマートフォンでも閲覧が出来るようにレスポンシブ対応もしています。
-
 <img width="1440" alt="top-page" src="https://user-images.githubusercontent.com/59522269/96361882-5c6d4980-1164-11eb-9889-861e08af321c.png">
 <img width="1440" alt="cocktail-index-page" src="https://user-images.githubusercontent.com/59522269/96839728-884e3f00-1484-11eb-923c-374281ac779a.png">
 <img width="1440" alt="cocktail-show-page" src="https://user-images.githubusercontent.com/59522269/96361903-8888ca80-1164-11eb-9e32-0366f7d0a7da.png">
@@ -31,6 +30,7 @@
 
 ### 機能一覧
 - [リスト](https://docs.google.com/spreadsheets/d/e/2PACX-1vRFK1YLlc_EjQoa_v-gJ_8-2Yx5_XWGg18kcis7NXoMTGeg7wpNb7SUz76EkqR_GYvpOF_24jtnB5Cv/pubhtml)
+- [レコメンドシステムのアルゴリズム](https://drive.google.com/file/d/16QyIc_TiDdQNt7bMZqKwdRM37k2JfiDV/view?usp=sharing)
 
 ## 開発環境
 - OS：Linux(CentOS)
